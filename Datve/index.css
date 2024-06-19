@@ -1,0 +1,295 @@
+/* Home Page */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+body {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background: linear-gradient(rgba(161, 31, 31, 0.5), rgba(52, 16, 211, 0.5)), url('https://www.onlinekhabar.com/wp-content/uploads/2020/03/film-hall.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-blend-mode: overlay;
+    
+}
+
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: inherit;
+    filter: blur(5px); /* Adjust the value to increase/decrease the blur effect */
+    z-index: -1;
+}
+
+
+.main_body {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.menu {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    z-index: 1;
+    position: sticky;
+    top:0;
+    background-blend-mode: overlay;
+}
+
+.chung {
+    width: 90%;
+    border-radius: 30px;
+    align-items: center;
+    padding: 20px;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+.function {
+    display: flex;
+    padding: 10px;
+    width: 100%;
+}
+
+.viTri {
+    display: flex;
+    border-bottom: solid 2px wheat;
+    align-content: center;
+    width: 100%;
+    justify-content: space-around;
+}
+
+.viTri a img {
+    height: 60px;
+    width: 170px;
+}
+
+.bookAndpd {
+    padding: 20px;
+    margin-left: 70px;
+}
+
+.bookAndpd a {
+    padding: 10px 20px;
+    background-color: rgb(130, 83, 12);
+}
+
+.bookAndpd .Booking_T:hover {
+    background-color: aqua;
+    color: yellow;
+}
+
+.Booking_F:hover {
+    color: blue;
+    background-color: brown;
+}
+
+.searchAndLogin {
+    display: flex;
+    align-items: center;
+}
+
+.search-container {
+    position: relative;
+    display: inline-block;
+}
+
+.search-container input {
+    border: none;
+    border-radius: 20px;
+    height: 40px;
+    width: 230px;
+    padding-left: 40px;
+}
+
+.search-container button {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.search-container button svg {
+    fill: currentColor;
+}
+
+.Login {
+    margin-left: 20px;
+    padding: 12px;
+    border: none;
+    border-radius: 20px;
+    background-color: blue;
+}
+
+.chose_feature {
+    padding: 20px;
+    display: flex;
+    color: white;
+    justify-content: center;
+}
+.Location2 {
+    display: flex;
+    justify-content: center;
+    width: 80%;
+    position: relative;
+}
+
+.Location2 .first {
+    position: absolute;
+    left: 0;
+}
+.Location2 .first a{
+    padding: 0 0 0 10px;
+}
+
+.Location2 .second {
+    position: absolute;
+    right: 0;
+}
+.Location2 .second a{
+    padding: 0 0 0 10px;
+}
+.first .menu1 {
+    display: none;
+    background-color: black;
+    padding: 20px;
+    margin-top: 20px;
+}
+.menu1{
+    list-style-type: none;
+}
+.first button{
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 18px;
+    color: white;
+    background-color: black;
+    border: none;
+}
+.first:hover .menu1 {
+    display: flex;
+}
+.menu1 li a:hover{
+    color: yellow;
+}
+
+.end_page {
+    width: 100%;
+    background-color: #333; /* Background color for the footer */
+    border-top: 2px solid #ccc; /* Border at the top of the footer */
+    padding: 20px 0; /* Padding for spacing */
+    color: white; /* Text color */
+    position: relative;
+    bottom: 0;
+}
+
+.footer {
+    width: 90%;
+    margin: 0 auto; /* Center the footer content */
+}
+
+.footer .container {
+    width: 100%;
+}
+
+.footer-wr {
+    width: 100%;
+}
+
+.footer-list {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.footer-item {
+    padding: 10px;
+}
+
+.footer-item .text {
+    font-weight: bold;
+}
+
+.footer-item ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.footer-item ul li {
+    margin: 5px 0;
+}
+
+.footer-item ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+.footer-item ul li a:hover {
+    text-decoration: underline;
+}
+
+.footer-bottom {
+    border-top: 1px solid #444;
+    padding-top: 10px;
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-bottom-left {
+    font-size: 14px;
+}
+
+.footer-bottom .menu-list {
+    display: flex;
+    gap: 10px;
+}
+
+.footer-bottom .menu-list li {
+    margin: 0;
+}
+
+.footer-bottom .menu-list li a {
+    font-size: 14px;
+}
+
+.ft-author {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.ft-author-content ul {
+    list-style-type: none;
+    padding: 0;
+    font-size: 12px;
+}
+
+.ft-author-content ul li {
+    margin: 5px 0;
+}
+
+.ft-bct a img {
+    width: 143px;
+    display: block;
+    margin: 0 auto;
+}
