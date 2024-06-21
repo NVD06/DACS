@@ -1,0 +1,32 @@
+body{
+    position: relative;
+}
+footer{
+    position: absolute;
+    right: 10px;
+}
+.khungChinh{
+   border: solid 1px black;
+   padding: 10px;
+   width: fit-content;
+   position: absolute;
+   left: 10px;
+}
+.PhimChucNang{
+    margin: 10px;
+}
+.cacThuocTinhPhim{
+}
+.cacThuocTinhPhim div{
+    display: flex;
+    justify-content: space-between;
+}
+.movie {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px 0;
+}
+.movie img {
+    max-width: 200px;
+    height: auto;
+}
