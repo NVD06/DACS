@@ -15,12 +15,19 @@ footer{
 .PhimChucNang{
     margin: 10px;
 }
+<<<<<<< HEAD
 .cacThuocTinhPhim {
+=======
+.cacThuocTinhPhim{
+>>>>>>> d6899409e5050d69525cbd56eba283066d391d3a
 }
 .cacThuocTinhPhim div{
     display: flex;
     justify-content: space-between;
+<<<<<<< HEAD
     padding: 5px;
+=======
+>>>>>>> d6899409e5050d69525cbd56eba283066d391d3a
 }
 .movie {
     border: 1px solid #ccc;

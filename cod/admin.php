@@ -17,8 +17,13 @@
             <div>ID: <input type="text" id="idPhim"></div>
             <div>Tên phim: <input type="text" id="tenPhim"></div>
             <div>Ảnh: <input type="text" id="fileImage"></div>
+<<<<<<< HEAD
             <div>Mô tả: <textarea id="Mota" name="message" rows="4" cols="50" style="width: 165px;"></textarea></div>
             <div>Ngày chiếu: <input type="date" id="ngayChieu" style="width:165px;"></div>
+=======
+            <div>Mô tả: <input type="text" id="Mota"></div>
+            <div>Ngày chiếu: <input type="date" id="ngayChieu"></div>
+>>>>>>> d6899409e5050d69525cbd56eba283066d391d3a
             <div>Phòng chiếu: <input type="number" id="phongChieu"></div>
             <div>Số lượng vé bán: <input type="number" id="soVe"></div>
             <div>Số lượng vé đã bán: <input type="number" id="soVeDaBan"></div>
@@ -95,6 +100,7 @@
             });
         });
 
+<<<<<<< HEAD
         document.getElementById('edit-button').addEventListener('click', function() {
             const idPhim = document.getElementById('idPhim').value;
             const tenPhim = document.getElementById('tenPhim').value;
@@ -139,6 +145,10 @@
 
         function fetchMovies(status, containerClass) {
             fetch(status === 'playing' ? 'getPlayingMovies.php' : 'getComingMovies.php')
+=======
+        function fetchMovies(status, containerClass) {
+        fetch(status === 'playing' ? 'getPlayingMovies.php' : 'getComingMovies.php')
+>>>>>>> d6899409e5050d69525cbd56eba283066d391d3a
             .then(response => response.json())
             .then(movies => {
                 const container = document.querySelector(containerClass);
@@ -147,10 +157,16 @@
                     const movieDiv = document.createElement('div');
                     movieDiv.classList.add('movie');
                     movieDiv.innerHTML = `
+<<<<<<< HEAD
                         <p>${movie.movie_id}</p>
                         <h3>${movie.movie_name}</h3>
                         <img src="${movie.image_movie}" alt="${movie.movie_name}" onerror="this.onerror=null;this.src='default.jpg';">
                         <p>${movie.describe_movie}</p>
+=======
+                        <h3>${movie.movie_name}</h3>
+                        <img src="${movie.image_movie}" alt="${movie.movie_name}" onerror="this.onerror=null;this.src='default.jpg';">
+                        <p>${movie.describemovie}</p>
+>>>>>>> d6899409e5050d69525cbd56eba283066d391d3a
                         <p>Ngày chiếu: ${movie.date}</p>
                         <p>Phòng chiếu: ${movie.screen_id}</p>
                         <p>Số vé bán: ${movie.number_tickets}</p>
@@ -164,8 +180,12 @@
             .catch(error => {
                 console.error('Error:', error);
             });
+<<<<<<< HEAD
         }
 
+=======
+    }
+>>>>>>> d6899409e5050d69525cbd56eba283066d391d3a
         // Fetch and display movies when the page loads
         window.onload = function() {
             fetchMovies('playing', '.cacPhimDangChieu');
