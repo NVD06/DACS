@@ -32,8 +32,9 @@
                                 </div>
                             </div>
                             <div class="Login">
-                                <a href="">Đăng nhập</a>
+                                <a href="logout.php">Đăng xuất</a>
                             </div>
+                            <p style="color:aqua;">Name</p>
                         </div>
                     </div>
                 </div>
@@ -89,136 +90,46 @@
             </script>
             <div class="container1">
                 <h3>PHIM ĐANG CHIẾU</h3>
-                <div class="playing_movies">
-                    <div class="playing_movie">
-                        <div class="movie">
-                            <img src="images/444790107_1493394821576518_9028438683398357373_n.jpg" alt="">
-                            <h3 class="name">meo</h3>
-                            <div class="react">
-                                <a href="" class="trailer">Trailer</a>
-                                <button class="booking">ĐẶT VÉ</button>
-                            </div>    
-                        </div>
-                    </div>
-                    <div class="playing_movie">
-                        <div class="movie">
-                            <img src="images/444790107_1493394821576518_9028438683398357373_n.jpg" alt="">
-                            <h3 class="name">meo</h3>
-                            <div class="react">
-                                <a href="" class="trailer">Trailer</a>
-                                <button class="booking">ĐẶT VÉ</button>
-                            </div>    
-                        </div>
-                    </div>
-                    <div class="playing_movie">
-                        <div class="movie">
-                            <img src="images/444790107_1493394821576518_9028438683398357373_n.jpg" alt="">
-                            <h3 class="name">meo</h3>
-                            <div class="react">
-                                <a href="" class="trailer">Trailer</a>
-                                <button class="booking">ĐẶT VÉ</button>
-                            </div>    
-                        </div>
-                    </div>
-                    <div class="playing_movie">
-                        <div class="movie">
-                            <img src="images/444790107_1493394821576518_9028438683398357373_n.jpg" alt="">
-                            <h3 class="name">meo</h3>
-                            <div class="react">
-                                <a href="" class="trailer">Trailer</a>
-                                <button class="booking">ĐẶT VÉ</button>
-                            </div>    
-                        </div>
-                    </div>
-                    <div class="playing_movie">
-                        <div class="movie">
-                            <img src="images/444790107_1493394821576518_9028438683398357373_n.jpg" alt="">
-                            <h3 class="name">meo</h3>
-                            <div class="react">
-                                <a href="" class="trailer">Trailer</a>
-                                <button class="booking">ĐẶT VÉ</button>
-                            </div>    
-                        </div>
-                    </div>
+                <div class="playing_movies" id="playing_movies">
+                    <!-- Các phim sẽ được thêm vào đây -->
                 </div>
-                <button class="more" id="playing">XEM THÊM</button>
-                <h3>PHIM SẮP CHIẾU</h3>
-                <div class="comming_movies">
-                    <div class="comming_movie">
-                        <div class="movie">
-                            <img src="images/444790107_1493394821576518_9028438683398357373_n.jpg" alt="">
-                            <h3 class="name">meo</h3>
-                            <div class="react">
-                                <a href="" class="trailer">Trailer</a>
-                                <button class="booking">ĐẶT VÉ</button>
-                            </div>    
-                        </div>
-                    </div>
-                    <div class="comming_movie">
-                        <div class="movie">
-                            <img src="images/444790107_1493394821576518_9028438683398357373_n.jpg" alt="">
-                            <h3 class="name">meo</h3>
-                            <div class="react">
-                                <a href="" class="trailer">Trailer</a>
-                                <button class="booking">ĐẶT VÉ</button>
-                            </div>    
-                        </div>
-                    </div>
-                    <div class="comming_movie">
-                        <div class="movie">
-                            <img src="images/444790107_1493394821576518_9028438683398357373_n.jpg" alt="">
-                            <h3 class="name">meo</h3>
-                            <div class="react">
-                                <a href="" class="trailer">Trailer</a>
-                                <button class="booking">ĐẶT VÉ</button>
-                            </div>    
-                        </div>
-                    </div>
-                    <div class="comming_movie">
-                        <div class="movie">
-                            <img src="images/444790107_1493394821576518_9028438683398357373_n.jpg" alt="">
-                            <h3 class="name">meo</h3>
-                            <div class="react">
-                                <a href="" class="trailer">Trailer</a>
-                                <button class="booking">ĐẶT VÉ</button>
-                            </div>    
-                        </div>
-                    </div>
-                    <div class="comming_movie">
-                        <div class="movie">
-                            <img src="images/444790107_1493394821576518_9028438683398357373_n.jpg" alt="">
-                            <h3 class="name">meo</h3>
-                            <div class="react">
-                                <a href="" class="trailer">Trailer</a>
-                                <button class="booking">ĐẶT VÉ</button>
-                            </div>    
-                        </div>
-                    </div>
-                </div>
-                <button class="more" id="playing">XEM THÊM</button>
-                <script
-                        type="text/javascript"
-                        src="https://code.jquery.com/jquery-1.11.0.min.js"
-                        ></script>
-                        
-                        <script
-                        type="text/javascript"
-                        src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"
-                        ></script>
-                        
-                        <script>
-                            $(document).ready(function() {
-                                $('.playing_movies').slick({
-                                    slidesToShow: 4, // Hiển thị 5 slide
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function() {
+                            fetch('getPlayingMovies.php')
+                                .then(response => response.json())
+                                .then(data => {
+                                    const playingMoviesDiv = document.getElementById('playing_movies');
+                                    data.forEach(movie => {
+                                        const movieDiv = document.createElement('div');
+                                        movieDiv.classList.add('playing_movie');
+                                        movieDiv.innerHTML = `
+                                            <div class="movie">
+                                                <img src="${movie.image_movie}" alt="${movie.movie_name}">
+                                                <h3 class="name">${movie.movie_name}</h3>
+                                                <div class="react">
+                                                    <a href="" class="trailer">Trailer</a>
+                                                    <button class="booking">ĐẶT VÉ</button>
+                                                </div>    
+                                            </div>
+                                            <div class="movie_information">
+                                                <h2>${movie.movie_name}</h2>
+                                                <p>${movie.thoiLuong}</p>
+                                                <p>${movie.daoDien}</p>
+                                                <a href="details.php?movie_id=${movie.movie_id}" style="margin-left:40%;">Chi tiet</a>
+                                            </div>
+                                        `;
+                                        playingMoviesDiv.appendChild(movieDiv);
+                                    });
+                                    $('.playing_movies').slick({
+                                    slidesToShow: 4,
                                     slidesToScroll: 1,
                                     infinite: true,
                                     arrows: true,
                                     draggable: false,
-                                    autoplay: true,           // Enable automatic slideshow
-                                    autoplaySpeed: 1500, 
+                                    autoplay: true,
+                                    autoplaySpeed: 1500,
                                     prevArrow: `<button type='button' class='slick-prev slick-arrow'></button>`,
                                     nextArrow: `<button type='button' class='slick-next slick-arrow'></button>`,
-                                    
                                     responsive: [
                                         {
                                             breakpoint: 1024,
@@ -236,18 +147,54 @@
                                         }
                                     ]
                                 });
-                            });
-                            $('.comming_movies').slick({
-                                slidesToShow: 4, // Hiển thị 5 slide
-                                slidesToScroll: 1,
-                                infinite: true,
-                                arrows: true,
-                                draggable: false,
-                                autoplay: true,           // Enable automatic slideshow
-                                autoplaySpeed: 1500, 
-                                prevArrow: `<button type='button' class='slick-prev slick-arrow'></button>`,
-                                nextArrow: `<button type='button' class='slick-next slick-arrow'></button>`,
-                                responsive: [
+                            })
+                            .catch(error => console.error('Error fetching movies:', error));
+                        });
+                                    
+                    </script>
+                <a href="playingMovies.php">XEM THÊM</a>
+                <h3>PHIM SẮP CHIẾU</h3>
+                <div class="comming_movies" id="comming_movies">
+                
+                </div>
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function() {
+                            fetch('getComingMovies.php')
+                                .then(response => response.json())
+                                .then(data => {
+                                    const playingMoviesDiv = document.getElementById('comming_movies');
+                                    data.forEach(movie => {
+                                        const movieDiv = document.createElement('div');
+                                        movieDiv.classList.add('comming_movie');
+                                        movieDiv.innerHTML = `
+                                            <div class="movie">
+                                                <img src="${movie.image_movie}" alt="${movie.movie_name}">
+                                                <h3 class="name">${movie.movie_name}</h3>
+                                                <div class="react">
+                                                    <a href="" class="trailer">Trailer</a>
+                                                    <button class="booking">ĐẶT VÉ</button>
+                                                </div>    
+                                            </div>
+                                            <div class="movie_information">
+                                                <h2>${movie.movie_name}</h2>
+                                                <p>${movie.thoiLuong}</p>
+                                                <p>${movie.daoDien}</p>
+                                                <a href="details.php?movie_id=${movie.movie_id}" style="margin-left:40%;">Chi tiet</a>
+                                            </div>
+                                        `;
+                                        playingMoviesDiv.appendChild(movieDiv);
+                                    });
+                                    $('.comming_movies').slick({
+                                    slidesToShow: 4,
+                                    slidesToScroll: 1,
+                                    infinite: true,
+                                    arrows: true,
+                                    draggable: false,
+                                    autoplay: true,
+                                    autoplaySpeed: 1500,
+                                    prevArrow: `<button type='button' class='slick-prev slick-arrow'></button>`,
+                                    nextArrow: `<button type='button' class='slick-next slick-arrow'></button>`,
+                                    responsive: [
                                         {
                                             breakpoint: 1024,
                                             settings: {
@@ -263,8 +210,22 @@
                                             }
                                         }
                                     ]
-                            });
+                                });
+                            })
+                            .catch(error => console.error('Error fetching movies:', error));
+                        });
+                                    
                     </script>
+                <a href="comingMovie.php">XEM THÊM</a>
+                <script
+                        type="text/javascript"
+                        src="https://code.jquery.com/jquery-1.11.0.min.js"
+                        ></script>
+                        
+                        <script
+                        type="text/javascript"
+                        src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"
+                        ></script>
             </div>
             
         </div>    

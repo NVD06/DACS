@@ -1,7 +1,7 @@
 <?php
 include "connectToDatabase.php";
 
-$sql = "SELECT * FROM tblmovie WHERE status_movie='coming'";
+$sql = "SELECT * FROM tblmovie WHERE status_movie='comming'";
 $result = $conn->query($sql);
 
 $movies = array();

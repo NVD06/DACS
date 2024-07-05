@@ -17,52 +17,90 @@
             <div>ID: <input type="text" id="idPhim"></div>
             <div>Tên phim: <input type="text" id="tenPhim"></div>
             <div>Ảnh: <input type="text" id="fileImage"></div>
-<<<<<<< HEAD
             <div>Mô tả: <textarea id="Mota" name="message" rows="4" cols="50" style="width: 165px;"></textarea></div>
+            <div>Thời lượng: <input type="number" id="thoiLuong"></div>
+            <div>Đạo diễn và diễn viên: <input type="text" name="daoDien" id="daoDien"></div>
             <div>Ngày chiếu: <input type="date" id="ngayChieu" style="width:165px;"></div>
-=======
-            <div>Mô tả: <input type="text" id="Mota"></div>
-            <div>Ngày chiếu: <input type="date" id="ngayChieu"></div>
->>>>>>> d6899409e5050d69525cbd56eba283066d391d3a
             <div>Phòng chiếu: <input type="number" id="phongChieu"></div>
-            <div>Số lượng vé bán: <input type="number" id="soVe"></div>
             <div>Số lượng vé đã bán: <input type="number" id="soVeDaBan"></div>
             <div>Trạng thái phim: <input type="text" id="status"></div>
             <div>Giá vé: <input type="number" id="price"></div>
+
+            <h3>Thoi Gian va phong chieu</h3>
+            <div>ma chieu: <input type="int" id="showtime_id"></div>
+            <div>thoi gian: <input type="time" id="thoiGian"></div>
+            <div>ngayChieu: <input type="date" id="date_time"></div>
+            <div>ma Phim: <input type="" id="idPhim2"></div>
+            <div class="PhimChucNang">
+            <button id="add-button2">Add</button>
+            <button id="delete-button2">Delete</button>
+            <button id="edit-button2">Edit</button>
+        </div>
         </div>
     </div>
     <footer>
-        <div>
+        <div style="display: flex;">
             <div class="cacPhimDangChieu"></div>
             <div class="cacPhimSapChieu"></div>
         </div>
     </footer>
 
     <script>
+       document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('add-button2').addEventListener('click', function() {
+                const idPhim2 = document.getElementById('idPhim2').value;
+                const thoiGian = document.getElementById('thoiGian').value;
+                const date_time = document.getElementById('date_time').value;
+                const showtime_id = document.getElementById('showtime_id').value;
+                
+                const formData = new FormData();
+                formData.append('idPhim2', idPhim2);
+                formData.append('thoiGian', thoiGian);
+                formData.append('date_time', date_time);
+                formData.append('showtime_id', showtime_id);
+
+                fetch('addShowtime.php', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.text())
+                .then(data => {
+                    alert(data);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+            });
+        });
         document.getElementById('add-button').addEventListener('click', function() {
+            // Lấy các giá trị từ các input fields
             const idPhim = document.getElementById('idPhim').value;
             const tenPhim = document.getElementById('tenPhim').value;
-            const fileImage = document.getElementById('fileImage').value; // URL of the image
+            const fileImage = document.getElementById('fileImage').value;
             const Mota = document.getElementById('Mota').value;
+            const thoiLuong = document.getElementById('thoiLuong').value;
+            const daoDien = document.getElementById('daoDien').value;
             const ngayChieu = document.getElementById('ngayChieu').value;
             const phongChieu = document.getElementById('phongChieu').value;
-            const soVe = document.getElementById('soVe').value;
             const soVeDaBan = document.getElementById('soVeDaBan').value;
             const status = document.getElementById('status').value;
             const price = document.getElementById('price').value;
 
+            // Tạo FormData object
             const formData = new FormData();
             formData.append('idPhim', idPhim);
             formData.append('tenPhim', tenPhim);
             formData.append('fileImage', fileImage);
             formData.append('Mota', Mota);
+            formData.append('thoiLuong', thoiLuong);
+            formData.append('daoDien', daoDien);
             formData.append('ngayChieu', ngayChieu);
             formData.append('phongChieu', phongChieu);
-            formData.append('soVe', soVe);
             formData.append('soVeDaBan', soVeDaBan);
             formData.append('status', status);
             formData.append('price', price);
 
+            // Gửi request
             fetch('addMovie.php', {
                 method: 'POST',
                 body: formData
@@ -76,8 +114,9 @@
             });
         });
 
+
         document.getElementById('delete-button').addEventListener('click', function() {
-            const tenPhim = document.getElementById('tenPhim').value;
+            const tenPhim = document.getElementById('idPhim').value;
 
             if (!tenPhim) {
                 alert('Please enter a movie name to delete.');
@@ -85,7 +124,7 @@
             }
 
             const formData = new FormData();
-            formData.append('tenPhim', tenPhim);
+            formData.append('idPhim', tenPhim);
 
             fetch('deleteMovie.php', {
                 method: 'POST',
@@ -100,15 +139,15 @@
             });
         });
 
-<<<<<<< HEAD
         document.getElementById('edit-button').addEventListener('click', function() {
             const idPhim = document.getElementById('idPhim').value;
             const tenPhim = document.getElementById('tenPhim').value;
             const fileImage = document.getElementById('fileImage').value; 
             const Mota = document.getElementById('Mota').value;
+            const thoiLuong = document.getElementById('thoiLuong').value;
+            const daoDien = document.getElementById('daoDien').value;
             const ngayChieu = document.getElementById('ngayChieu').value;
             const phongChieu = document.getElementById('phongChieu').value;
-            const soVe = document.getElementById('soVe').value;
             const soVeDaBan = document.getElementById('soVeDaBan').value;
             const status = document.getElementById('status').value;
             const price = document.getElementById('price').value;
@@ -123,9 +162,10 @@
             formData.append('tenPhim', tenPhim);
             formData.append('fileImage', fileImage);
             formData.append('Mota', Mota);
+            formData.append('thoiLuong', thoiLuong);
+            formData.append('daoDien', daoDien);
             formData.append('ngayChieu', ngayChieu);
             formData.append('phongChieu', phongChieu);
-            formData.append('soVe', soVe);
             formData.append('soVeDaBan', soVeDaBan);
             formData.append('status', status);
             formData.append('price', price);
@@ -145,31 +185,23 @@
 
         function fetchMovies(status, containerClass) {
             fetch(status === 'playing' ? 'getPlayingMovies.php' : 'getComingMovies.php')
-=======
-        function fetchMovies(status, containerClass) {
-        fetch(status === 'playing' ? 'getPlayingMovies.php' : 'getComingMovies.php')
->>>>>>> d6899409e5050d69525cbd56eba283066d391d3a
             .then(response => response.json())
             .then(movies => {
                 const container = document.querySelector(containerClass);
                 container.innerHTML = ''; // Clear existing content
                 movies.forEach(movie => {
+                    console.log('Movie image URL:', movie.image_movie); // Log the image URL
                     const movieDiv = document.createElement('div');
                     movieDiv.classList.add('movie');
                     movieDiv.innerHTML = `
-<<<<<<< HEAD
                         <p>${movie.movie_id}</p>
                         <h3>${movie.movie_name}</h3>
-                        <img src="${movie.image_movie}" alt="${movie.movie_name}" onerror="this.onerror=null;this.src='default.jpg';">
+                        <img src="${movie.image_movie}" alt="${movie.movie_name}" onerror="this.onerror=null;this.src='default.jpg'; console.error('Error loading image:', '${movie.image_movie}');">
                         <p>${movie.describe_movie}</p>
-=======
-                        <h3>${movie.movie_name}</h3>
-                        <img src="${movie.image_movie}" alt="${movie.movie_name}" onerror="this.onerror=null;this.src='default.jpg';">
-                        <p>${movie.describemovie}</p>
->>>>>>> d6899409e5050d69525cbd56eba283066d391d3a
+                        <p>Thời lượng: ${movie.thoiLuong}</p>
+                        <p>Đạo diễn: ${movie.daoDien}</p>
                         <p>Ngày chiếu: ${movie.date}</p>
                         <p>Phòng chiếu: ${movie.screen_id}</p>
-                        <p>Số vé bán: ${movie.number_tickets}</p>
                         <p>Số vé đã bán: ${movie.number_tickets_sold}</p>
                         <p>Trạng thái: ${movie.status_movie}</p>
                         <p>Giá vé: ${movie.price}</p>
@@ -180,12 +212,8 @@
             .catch(error => {
                 console.error('Error:', error);
             });
-<<<<<<< HEAD
         }
 
-=======
-    }
->>>>>>> d6899409e5050d69525cbd56eba283066d391d3a
         // Fetch and display movies when the page loads
         window.onload = function() {
             fetchMovies('playing', '.cacPhimDangChieu');

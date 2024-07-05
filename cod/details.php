@@ -1,3 +1,32 @@
+<?php
+include "connectToDatabase.php";
+
+if (isset($_GET['movie_id'])) {
+    $movie_id = $_GET['movie_id'];
+    $sql = "SELECT * FROM tblmovie WHERE movie_id = ?";
+    $stmt = $conn->prepare($sql);
+    if (!$stmt) {
+        die("Lỗi khi chuẩn bị câu lệnh SQL: " . $conn->error);
+    }
+    $stmt->bind_param("i", $movie_id);
+    $stmt->execute();
+    $result = $stmt->get_result();  
+
+    if ($result->num_rows > 0) {
+        $movie = $result->fetch_assoc();
+    } else {
+        echo "No movie found";
+        exit;
+    }
+
+    $stmt->close();
+    $conn->close();
+} else {
+    echo "No movie ID provided";
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,7 +34,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="index.css">
-    <title>Đăng nhập</title>
+    <title>Chi Tiết Phim</title>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
 </head>
@@ -32,7 +61,7 @@
                                 </div>
                             </div>
                             <div class="Login">
-                                <a href="">Đăng nhập</a>
+                                <a href="logout.php">Đăng xuất</a>
                             </div>
                         </div>
                     </div>
@@ -63,28 +92,20 @@
         <div class="Page_Content">
             <!-- this is page content -->
             <div class="chiTietPhim">
-                <img src="" id="chiTietImg" alt="">
+                <img src="<?php echo $movie['image_movie']; ?>" id="chiTietImg" alt="">
                 <div class="MoTa">
-                    <h1 id="chiTietTenPhim"></h1>
+                    <h1 id="chiTietTenPhim"><?php echo $movie['movie_name']; ?></h1>
                     <div class="khoangCach">
                         <div class="phanMot"><p>Khởi chiếu:</p></div>
-                        <div class="phan2" id="chiTietNgayKhoiChieu"><p></p></div>
-                    </div>
-                    <div class="khoangCach">
-                        <div class="phanMot"><p>Thể loại:</p></div>
-                        <div class="phan2" id="chiTietTheLoai"><p></p></div>
-                    </div>
-                    <div class="khoangCach">
-                        <div class="phanMot"><p>Diễn viên:</p></div>
-                        <div class="phan2" id="chiTietDienVien"><p></p></div>
+                        <div class="phan2" id="chiTietNgayKhoiChieu"><p><?php echo $movie['date']; ?></p></div>
                     </div>
                     <div class="khoangCach">
                         <div class="phanMot"><p>Đạo diễn:</p></div>
-                        <div class="phan2" id="chiTietDaoDien"><p></p></div>
+                        <div class="phan2" id="chiTietDaoDien"><p><?php echo $movie['daoDien']; ?></p></div>
                     </div>
-                    <p id="chiTietMoTa" style="color: white; margin-top: 30px;"></p>
+                    <p id="chiTietMoTa" style="color: white; margin-top: 30px;"><?php echo $movie['describe_movie']; ?></p>
                     <div class="LienKet">
-                        <a href="#"><h2>TRAILER</h2></a>
+                        <a href=""><h2>TRAILER</h2></a>
                         <a href="thanhtoan.php"><h2>Đặt vé</h2></a>
                     </div>
                 </div>
@@ -114,27 +135,4 @@
                                     <li class="footer-list-item"><a href="#">Thẻ quà tặng</a></li>
                                     <li class="footer-list-item"><a href="#">Tuyển dụng</a></li>
                                     <li class="footer-list-item"><a href="#">Liên hệ quảng cáo</a></li>
-                                    <li class="footer-list-item"><a href="#">Liên hệ công ty</a></li>
-                                </ul>
-                            </div>
-                            <div class="footer-item col col-4">
-                                <p class="footer-title">điều khoản và quy định</p>
-                                <ul class="footer-list-item">
-                                    <li class="footer-list-item"><a href="#">Điều khoản chung</a></li>
-                                    <li class="footer-list-item"><a href="#">Điều khoản giao dịch</a></li>
-                                    <li class="footer-list-item"><a href="#">Chính sách thanh toán</a></li>
-                                    <li class="footer-list-item"><a href="#">Chính sách bảo mật</a></li>
-                                    <li class="footer-list-item"><a href="#">Câu hỏi thường gặp</a></li>
-                                    <li class="footer-list-item"><a href="#">Kết nối</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="footer-copyright">&copy; 2022 <a href="https://cinestar.com.vn" target="_self">Cinestar.com.vn</a>. All rights reserved.</div>
-                    </div>
-                    </div>
-                </div>
-            </div> 
-        </div>
-    </div>
-</body>
-</html>
+                                   
