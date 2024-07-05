@@ -30,6 +30,7 @@
             <div>ma chieu: <input type="int" id="showtime_id"></div>
             <div>thoi gian: <input type="time" id="thoiGian"></div>
             <div>ngayChieu: <input type="date" id="date_time"></div>
+            <div>Trạng thái : <input type="text" id="status"></div>
             <div>ma Phim: <input type="" id="idPhim2"></div>
             <div class="PhimChucNang">
             <button id="add-button2">Add</button>
@@ -46,32 +47,89 @@
     </footer>
 
     <script>
-       document.addEventListener('DOMContentLoaded', function() {
-            document.getElementById('add-button2').addEventListener('click', function() {
-                const idPhim2 = document.getElementById('idPhim2').value;
-                const thoiGian = document.getElementById('thoiGian').value;
-                const date_time = document.getElementById('date_time').value;
-                const showtime_id = document.getElementById('showtime_id').value;
-                
-                const formData = new FormData();
-                formData.append('idPhim2', idPhim2);
-                formData.append('thoiGian', thoiGian);
-                formData.append('date_time', date_time);
-                formData.append('showtime_id', showtime_id);
+        document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('add-button2').addEventListener('click', function() {
+        const idPhim2 = document.getElementById('idPhim2').value;
+        const thoiGian = document.getElementById('thoiGian').value;
+        const date_time = document.getElementById('date_time').value;
+        const status = document.getElementById('status').value;
+        const showtime_id = document.getElementById('showtime_id').value;
 
-                fetch('addShowtime.php', {
-                    method: 'POST',
-                    body: formData
-                })
-                .then(response => response.text())
-                .then(data => {
-                    alert(data);
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                });
-            });
+        const formData = new FormData();
+        formData.append('idPhim2', idPhim2);
+        formData.append('thoiGian', thoiGian);
+        formData.append('date_time', date_time);
+        formData.append('status', status);
+        formData.append('showtime_id', showtime_id);
+
+        fetch('addShowtime.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.text())
+        .then(data => {
+            alert(data);
+        })
+        .catch(error => {
+            console.error('Error:', error);
         });
+    });
+
+    document.getElementById('delete-button2').addEventListener('click', function() {
+        const showtime_id = document.getElementById('showtime_id').value;
+
+        if (!showtime_id) {
+            alert('Please enter a showtime ID to delete.');
+            return;
+        }
+
+        const formData = new FormData();
+        formData.append('showtime_id', showtime_id);
+
+        fetch('deleteShowtime.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.text())
+        .then(data => {
+            alert(data);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    });
+
+    document.getElementById('edit-button2').addEventListener('click', function() {
+        const idPhim2 = document.getElementById('idPhim2').value;
+        const thoiGian = document.getElementById('thoiGian').value;
+        const date_time = document.getElementById('date_time').value;
+        const showtime_id = document.getElementById('showtime_id').value;
+
+        if (!showtime_id) {
+            alert('Please enter a showtime ID to edit.');
+            return;
+        }
+
+        const formData = new FormData();
+        formData.append('idPhim2', idPhim2);
+        formData.append('thoiGian', thoiGian);
+        formData.append('date_time', date_time);
+        formData.append('showtime_id', showtime_id);
+
+        fetch('editShowtime.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.text())
+        .then(data => {
+            alert(data);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    });
+});
+
         document.getElementById('add-button').addEventListener('click', function() {
             // Lấy các giá trị từ các input fields
             const idPhim = document.getElementById('idPhim').value;
@@ -186,7 +244,7 @@
         function fetchMovies(status, containerClass) {
             fetch(status === 'playing' ? 'getPlayingMovies.php' : 'getComingMovies.php')
             .then(response => response.json())
-            .then(movies => {
+            .then(movies=> {
                 const container = document.querySelector(containerClass);
                 container.innerHTML = ''; // Clear existing content
                 movies.forEach(movie => {
