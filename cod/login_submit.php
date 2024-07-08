@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 include "connectToDatabase.php"; // Đảm bảo rằng file connectToDatabase.php chứa kết nối đến cơ sở dữ liệu
 
 // Xử lý đăng nhập
@@ -11,7 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = mysqli_real_escape_string($conn, $email);
 
     // Truy vấn kiểm tra thông tin người dùng
-    $sql = "SELECT email, password, password_check, leveluser FROM tbluser WHERE email = ?";
+    $sql = "SELECT email, password, password_check, userName, leveluser FROM tbluser WHERE email = ?";
     $stmt = $conn->prepare($sql);
     if (!$stmt) {
         die("Prepare statement failed: " . $conn->error);
@@ -25,7 +25,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $row = $result->fetch_assoc();
 
         // Kiểm tra mật khẩu đã băm hoặc mật khẩu gốc
-        if ($password===$row['password'] || $password === $row['password_check']) {
+        if ($password ===$row['password'] || $password === $row['password_check']) {
+            // Lưu tên người dùng vào session
+            $_SESSION['userName'] = $row['userName'];
             if ($row['leveluser'] == 1) {
                 // Người dùng là admin
                 header('Location: admin.php');

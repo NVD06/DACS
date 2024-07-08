@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,7 +38,15 @@
                             <div class="Login">
                                 <a href="logout.php">Đăng xuất</a>
                             </div>
-                            <p style="color:aqua;">Name</p>
+                            <p style="color:aqua;">
+                                <?php
+                                if (isset($_SESSION['userName'])) {
+                                    echo htmlspecialchars($_SESSION['userName']);
+                                } else {
+                                    echo "Name";
+                                }
+                                ?>
+                            </p>
                         </div>
                     </div>
                 </div>
