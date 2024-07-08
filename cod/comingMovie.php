@@ -81,9 +81,9 @@
                             </div>
                         </div>
                         <div class="title_phim">' . $row['movie_name'] . '</div>
-                        <div style="display: flex;justify-content: space-between;">
+                        <div style="display: flex;">
                             <div>
-                                <a href="#" class="videoLink" data-trailer-url="">Xem video</a>
+                                <a href="#" class="videoLink" data-trailer-url="" style="margin-left:90px;">Xem video</a>
                                 <div class="videoPopup popup">
                                     <div class="popup-content">
                                         <span class="close">&times;</span>
@@ -92,9 +92,6 @@
                                         </video>
                                     </div>
                                 </div>
-                            </div>
-                            <div>
-                                <a href="datve.php?movie_id=' . $row['movie_id'] . '">Đặt vé</a>
                             </div>
                         </div>
                     </div>';

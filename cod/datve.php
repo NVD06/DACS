@@ -34,7 +34,7 @@ $conn->close();
             <div class="chung">
                 <div class="function">
                     <div class="viTri">
-                        <a href=""><img src="https://cinestar.com.vn/_next/image/?url=%2Fassets%2Fimages%2Fheader-logo.png&w=1920&q=75" alt="Home page logo"></a>
+                        <a href="index.php"><img src="https://cinestar.com.vn/_next/image/?url=%2Fassets%2Fimages%2Fheader-logo.png&w=1920&q=75" alt="Home page logo"></a>
                         <div class="bookAndpd">
                             <a href="" class="Booking_T">ĐẶT VÉ NGAY</a>
                             <a href="" class="Booking_F">ĐẶT BẮP NƯỚC</a>

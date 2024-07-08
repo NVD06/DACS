@@ -462,6 +462,11 @@ a {
     background-color: aqua;
     width: 60%;
     height: 25vw;
+} 
+.gioChieu a{
+    color: black;
+    border: solid 1px;
+    margin-left: 2px;
 }
 .more{
     text-align: center;

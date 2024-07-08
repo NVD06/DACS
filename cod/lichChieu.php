@@ -1,3 +1,7 @@
+<?php
+include "takeSchedule.php"
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -62,16 +66,25 @@
         </div>  
         <div class="Page_Content">
             <!-- this is page content -->
-             <div class="thoiGianChieu">
-                <div class="anhPhim">
-                    <img src="images/444790107_1493394821576518_9028438683398357373_n.jpg" alt="">
-                    <h2>ten phim</h2>
-                </div>
-                <div class="gioChieu">
-                    <p>ngay</p>
-                    <p>gio chieu</p>
-                </div>
-             </div>
+            <div class="thoiGianChieu">
+            <div class="anhPhim">
+                <img src="<?php echo htmlspecialchars($image_movie); ?>" alt="">
+                <h2><?php echo htmlspecialchars($movie_name); ?></h2>
+            </div>
+            <div class="gioChieu">
+                <?php
+                if (isset($showtimes)) {
+                    foreach ($showtimes as $date => $times) {
+                        echo "<p><strong>$date</strong></p>";
+                        foreach ($times as $time) {
+                            echo "<a>$time </a>";
+                        }
+                        echo "<br>";
+                    }
+                }
+                ?>
+        </div>
+    </div>
         </div>
         <div class="end_page">
             <div class="footer">

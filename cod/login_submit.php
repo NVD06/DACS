@@ -1,57 +1,31 @@
 <?php
-session_start();
-include "connectToDatabase.php"; // Đảm bảo rằng file connectToDatabase.php chứa kết nối đến cơ sở dữ liệu
+include 'connectToDatabase.php';
 
-// Xử lý đăng nhập
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    // Bảo vệ dữ liệu nhập từ form
-    $email = mysqli_real_escape_string($conn, $email);
-
-    // Truy vấn kiểm tra thông tin người dùng
-    $sql = "SELECT email, password, password_check, userName, leveluser FROM tbluser WHERE email = ?";
-    $stmt = $conn->prepare($sql);
-    if (!$stmt) {
-        die("Prepare statement failed: " . $conn->error);
-    }
+    $stmt = $conn->prepare("SELECT leveluser, password,userName FROM tbluser WHERE email = ?");
     $stmt->bind_param("s", $email);
     $stmt->execute();
-    $result = $stmt->get_result();
+    $stmt->store_result();
+    $stmt->bind_result($level, $hashed_password, $username);
+    $stmt->fetch();
 
-    if ($result->num_rows == 1) {
-        // Lấy thông tin người dùng
-        $row = $result->fetch_assoc();
-
-        // Kiểm tra mật khẩu đã băm hoặc mật khẩu gốc
-        if ($password ===$row['password'] || $password === $row['password_check']) {
-            // Lưu tên người dùng vào session
-            $_SESSION['userName'] = $row['userName'];
-            if ($row['leveluser'] == 1) {
-                // Người dùng là admin
-                header('Location: admin.php');
-                exit; // Đảm bảo kết thúc kịch bản sau khi chuyển hướng
-            } else if ($row['leveluser'] == 0) {
-                // Người dùng là user
-                header('Location: index.php');
-                exit; // Đảm bảo kết thúc kịch bản sau khi chuyển hướng
-            } else {
-                // Trường hợp level không hợp lệ
-                echo "Level không hợp lệ";
-            }
-        } else {
-            // Mật khẩu không đúng
-            echo "Đăng nhập thất bại. Vui lòng kiểm tra lại email và mật khẩu.";
+    if ($stmt->num_rows > 0 && password_verify($password, $hashed_password)) {
+        session_start();
+        $_SESSION['leveluser'] = $level;
+        $_SESSION['userName'] = $username;
+        if($level == 1){
+            header("Location: admin.php?userName=$username");
+        }else if($level == 0){
+            header("Location: index.php?userName=$username");
         }
     } else {
-        // Không tìm thấy người dùng với email này
-        echo "Đăng nhập thất bại. Vui lòng kiểm tra lại email và mật khẩu.";
-    }
+        echo "<script>alert('invalid email or password'); window.location.href='login.php';</script>";
+        }
 
-    // Đóng kết nối
     $stmt->close();
+    $conn->close();
 }
-
-$conn->close();
 ?>

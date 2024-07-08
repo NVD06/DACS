@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="stylesheet" href="pdc.css">
-    <title>Đang chiếu</title>
+    <title>Phim đang chiếu</title>
 </head>
 <body background="" style="background-color: brown;">
     <div class="main_body">
@@ -94,7 +94,7 @@
                                 </div>
                             </div>
                             <div>
-                                <a href="datve.php?movie_id=' . $row['movie_id'] . '">Đặt vé</a>
+                                <a href="lichchieu.php?movie_name=' . $row['movie_name'] . '">Đặt vé</a>
                             </div>
                         </div>
                     </div>';
