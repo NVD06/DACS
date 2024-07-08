@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-    <link rel="stylesheet" href="psc.css">
-    <title>Đăng nhập</title>
+    <link rel="stylesheet" href="pdc.css">
+    <title>Sắp Chiếu</title>
 </head>
 <body background="" style="background-color: brown;">
     <div class="main_body">
@@ -14,7 +14,7 @@
             <div class="chung">
                 <div class="function">
                     <div class="viTri">
-                        <a href=""><img src="https://cinestar.com.vn/_next/image/?url=%2Fassets%2Fimages%2Fheader-logo.png&w=1920&q=75" alt="Home page logo"></a>
+                        <a href="index.php"><img src="https://cinestar.com.vn/_next/image/?url=%2Fassets%2Fimages%2Fheader-logo.png&w=1920&q=75" alt="Home page logo"></a>
                         <div class="bookAndpd">
                             <a href="" class="Booking_T">ĐẶT VÉ NGAY</a>
                             <a href="" class="Booking_F">ĐẶT BẮP NƯỚC</a>
@@ -61,223 +61,66 @@
                 
             </div>
         </div> 
-        <div style="text-transform: uppercase;color: white;font-size: 30px;margin-top: 40px;">phim sắp chiếu</div> 
+        <div style="text-transform: uppercase;color: white;font-size: 30px;margin-top: 40px;">phim đang chiếu</div> 
         <div class="Page_Content" style="display: flex;width: 80%;flex-wrap: wrap;margin-top: 40px;margin-bottom: 100px; ">
-            <div class="container_phim">
-                <div class="overlay-container" style="background-image: url(../../image/wibu.jpg);width: 100%;">
-                    <div class="overlay-text">
-                        <h2 style="margin-bottom: 70px;text-transform: uppercase;color: white;text-align: center;">Honkai impact iii</h2>
-                        <div>
-                            <div class="icon"><span class="material-symbols-outlined">bookmark</span><a href="">Hoat Hinh</a></div>
-                            <div class="icon"><span class="material-symbols-outlined"> schedule</span><a href="">115'</a></div>
-                            <div class="icon"><span class="material-symbols-outlined">public</span><a href="">Trung Quoc</a></div>
-                            <div class="icon"><span class="material-symbols-outlined">sms</span><a href="">Long tieng</a></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="title_phim">HONKAI IMPACT 3</div>
-                <div style="display: flex;justify-content: space-between;">
-                    <div>
-                        <a href="#" id="videoLink">Xem video</a>
-                        <div id="videoPopup" class="popup">
-                            <div class="popup-content">
-                                <span class="close">&times;</span>
-                                <video controls>
-                                    <source src="../../image/ssstwitter.com_1704418333724.mp4" type="video/mp4">
-                                </video>
+        <?php
+        include "connectToDatabase.php";
+
+        $sql = "SELECT movie_name, image_movie, describe_movie, movie_id FROM tblmovie WHERE status_movie = 'comming'";
+        $result = $conn->query($sql);
+
+        if ($result->num_rows > 0) {
+            while($row = $result->fetch_assoc()) {
+                echo '<div class="container_phim">
+                        <div class="overlay-container" style="background-image: url(' . $row['image_movie'] . ');width: 100%;">
+                            <div class="overlay-text">
+                                <h2 style="margin-bottom: 70px;text-transform: uppercase;color: white;text-align: center;">' . $row['movie_name'] . '</h2>
+                                <div>
+                                    <div class="icon"><span class="material-symbols-outlined">bookmark</span><a href="">' . $row['describe_movie'] . '</a></div>
+                                </div>
                             </div>
                         </div>
-                        <script src="c.js"></script>
-                    </div>
-                    <div>
-                        <a href="" id="videoLink">Đặt vé</a>
-                    </div>
-                </div>
-            </div>  
-            <div class="container_phim">
-                <div class="overlay-container" style="background-image: url(../../image/wibu.jpg);width: 100%;">
-                    <div class="overlay-text">
-                        <h2 style="margin-bottom: 70px;text-transform: uppercase;color: white;text-align: center;">Honkai impact iii</h2>
-                        <div>
-                            <div class="icon"><span class="material-symbols-outlined">bookmark</span><a href="">Hoat Hinh</a></div>
-                            <div class="icon"><span class="material-symbols-outlined"> schedule</span><a href="">115'</a></div>
-                            <div class="icon"><span class="material-symbols-outlined">public</span><a href="">Trung Quoc</a></div>
-                            <div class="icon"><span class="material-symbols-outlined">sms</span><a href="">Long tieng</a></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="title_phim">HONKAI IMPACT 3</div>
-                <div style="display: flex;justify-content: space-between;">
-                    <div>
-                        <a href="#" id="videoLink">Xem video</a>
-                        <div id="videoPopup" class="popup">
-                            <div class="popup-content">
-                                <span class="close">&times;</span>
-                                <video controls>
-                                    <source src="../../image/ssstwitter.com_1704418333724.mp4" type="video/mp4">
-                                </video>
+                        <div class="title_phim">' . $row['movie_name'] . '</div>
+                        <div style="display: flex;justify-content: space-between;">
+                            <div>
+                                <a href="#" class="videoLink" data-trailer-url="">Xem video</a>
+                                <div class="videoPopup popup">
+                                    <div class="popup-content">
+                                        <span class="close">&times;</span>
+                                        <video controls>
+                                            <source src="" type="video/mp4">
+                                        </video>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <a href="datve.php?movie_id=' . $row['movie_id'] . '">Đặt vé</a>
                             </div>
                         </div>
-                        <script src="c.js"></script>
-                    </div>
-                    <div>
-                        <a href="" id="videoLink">Đặt vé</a>
-                    </div>
-                </div>
-            </div> 
-            <div class="container_phim">
-                <div class="overlay-container" style="background-image: url(../../image/wibu.jpg);width: 100%;">
-                    <div class="overlay-text">
-                        <h2 style="margin-bottom: 70px;text-transform: uppercase;color: white;text-align: center;">Honkai impact iii</h2>
-                        <div>
-                            <div class="icon"><span class="material-symbols-outlined">bookmark</span><a href="">Hoat Hinh</a></div>
-                            <div class="icon"><span class="material-symbols-outlined"> schedule</span><a href="">115'</a></div>
-                            <div class="icon"><span class="material-symbols-outlined">public</span><a href="">Trung Quoc</a></div>
-                            <div class="icon"><span class="material-symbols-outlined">sms</span><a href="">Long tieng</a></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="title_phim">HONKAI IMPACT 3</div>
-                <div style="display: flex;justify-content: space-between;">
-                    <div>
-                        <a href="#" id="videoLink">Xem video</a>
-                        <div id="videoPopup" class="popup">
-                            <div class="popup-content">
-                                <span class="close">&times;</span>
-                                <video controls>
-                                    <source src="../../image/ssstwitter.com_1704418333724.mp4" type="video/mp4">
-                                </video>
-                            </div>
-                        </div>
-                        <script src="c.js"></script>
-                    </div>
-                    <div>
-                        <a href="" id="videoLink">Đặt vé</a>
-                    </div>
-                </div>
-            </div>  
-            <div class="container_phim">
-                <div class="overlay-container" style="background-image: url(../../image/wibu.jpg);width: 100%;">
-                    <div class="overlay-text">
-                        <h2 style="margin-bottom: 70px;text-transform: uppercase;color: white;text-align: center;">Honkai impact iii</h2>
-                        <div>
-                            <div class="icon"><span class="material-symbols-outlined">bookmark</span><a href="">Hoat Hinh</a></div>
-                            <div class="icon"><span class="material-symbols-outlined"> schedule</span><a href="">115'</a></div>
-                            <div class="icon"><span class="material-symbols-outlined">public</span><a href="">Trung Quoc</a></div>
-                            <div class="icon"><span class="material-symbols-outlined">sms</span><a href="">Long tieng</a></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="title_phim">HONKAI IMPACT 3</div>
-                <div style="display: flex;justify-content: space-between;">
-                    <div>
-                        <a href="#" id="videoLink">Xem video</a>
-                        <div id="videoPopup" class="popup">
-                            <div class="popup-content">
-                                <span class="close">&times;</span>
-                                <video controls>
-                                    <source src="../../image/ssstwitter.com_1704418333724.mp4" type="video/mp4">
-                                </video>
-                            </div>
-                        </div>
-                        <script src="c.js"></script>
-                    </div>
-                    <div>
-                        <a href="" id="videoLink">Đặt vé</a>
-                    </div>
-                </div>
-            </div>   
-            <div class="container_phim">
-                <div class="overlay-container" style="background-image: url(../../image/wibu.jpg);width: 100%;">
-                    <div class="overlay-text">
-                        <h2 style="margin-bottom: 70px;text-transform: uppercase;color: white;text-align: center;">Honkai impact iii</h2>
-                        <div>
-                            <div class="icon"><span class="material-symbols-outlined">bookmark</span><a href="">Hoat Hinh</a></div>
-                            <div class="icon"><span class="material-symbols-outlined"> schedule</span><a href="">115'</a></div>
-                            <div class="icon"><span class="material-symbols-outlined">public</span><a href="">Trung Quoc</a></div>
-                            <div class="icon"><span class="material-symbols-outlined">sms</span><a href="">Long tieng</a></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="title_phim">HONKAI IMPACT 3</div>
-                <div style="display: flex;justify-content: space-between;">
-                    <div>
-                        <a href="#" id="videoLink">Xem video</a>
-                        <div id="videoPopup" class="popup">
-                            <div class="popup-content">
-                                <span class="close">&times;</span>
-                                <video controls>
-                                    <source src="../../image/ssstwitter.com_1704418333724.mp4" type="video/mp4">
-                                </video>
-                            </div>
-                        </div>
-                        <script src="c.js"></script>
-                    </div>
-                    <div>
-                        <a href="" id="videoLink">Đặt vé</a>
-                    </div>
-                </div>
-            </div>  <div class="container_phim">
-            <div class="overlay-container" style="background-image: url(../../image/wibu.jpg);width: 100%;">
-                <div class="overlay-text">
-                    <h2 style="margin-bottom: 70px;text-transform: uppercase;color: white;text-align: center;">Honkai impact iii</h2>
-                    <div>
-                        <div class="icon"><span class="material-symbols-outlined">bookmark</span><a href="">Hoat Hinh</a></div>
-                        <div class="icon"><span class="material-symbols-outlined"> schedule</span><a href="">115'</a></div>
-                        <div class="icon"><span class="material-symbols-outlined">public</span><a href="">Trung Quoc</a></div>
-                        <div class="icon"><span class="material-symbols-outlined">sms</span><a href="">Long tieng</a></div>
-                    </div>
-                </div>
-            </div>
-            <div class="title_phim">HONKAI IMPACT 3</div>
-            <div style="display: flex;justify-content: space-between;">
-                <div>
-                    <a href="#" id="videoLink">Xem video</a>
-                    <div id="videoPopup" class="popup">
-                        <div class="popup-content">
-                            <span class="close">&times;</span>
-                            <video controls>
-                                <source src="../../image/ssstwitter.com_1704418333724.mp4" type="video/mp4">
-                            </video>
-                        </div>
-                    </div>
-                    <script src="c.js"></script>
-                </div>
-                <div>
-                    <a href="" id="videoLink">Đặt vé</a>
-                </div>
-            </div>
-        </div>  
-        <div class="container_phim">
-            <div class="overlay-container" style="background-image: url(../../image/wibu.jpg);width: 100%;">
-                <div class="overlay-text">
-                    <h2 style="margin-bottom: 70px;text-transform: uppercase;color: white;text-align: center;">Honkai impact iii</h2>
-                    <div>
-                        <div class="icon"><span class="material-symbols-outlined">bookmark</span><a href="">Hoat Hinh</a></div>
-                        <div class="icon"><span class="material-symbols-outlined"> schedule</span><a href="">115'</a></div>
-                        <div class="icon"><span class="material-symbols-outlined">public</span><a href="">Trung Quoc</a></div>
-                        <div class="icon"><span class="material-symbols-outlined">sms</span><a href="">Long tieng</a></div>
-                    </div>
-                </div>
-            </div>
-            <div class="title_phim">HONKAI IMPACT 3</div>
-            <div style="display: flex;justify-content: space-between;">
-                <div>
-                    <a href="#" id="videoLink">Xem video</a>
-                    <div id="videoPopup" class="popup">
-                        <div class="popup-content">
-                            <span class="close">&times;</span>
-                            <video controls>
-                                <source src="../../image/ssstwitter.com_1704418333724.mp4" type="video/mp4">
-                            </video>
-                        </div>
-                    </div>
-                    <script src="c.js"></script>
-                </div>
-                <div>
-                    <a href="" id="videoLink">Đặt vé</a>
-                </div>
-            </div>
+                    </div>';
+            }
+        } else {
+            echo "No movies found";
+        }
+        $conn->close();
+        ?>
+        <script>
+        document.querySelectorAll('.videoLink').forEach(function(link) {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const popup = this.nextElementSibling;
+                popup.style.display = 'block';
+            });
+        });
+
+        document.querySelectorAll('.close').forEach(function(span) {
+            span.addEventListener('click', function() {
+                const popup = this.closest('.popup');   
+                popup.style.display = 'none';
+            });
+        });
+        </script>
+
         </div>            
         </div>         
         <div class="end_page">

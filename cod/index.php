@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="index.css">
-    <title>Đăng nhập</title>
+    <title>Home Page</title>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
 </head>
@@ -50,7 +50,7 @@
                         </nav>
                         
                         <div class="second">
-                            <a href=""><i class="fas fa-calendar"></i> Lịch chiếu</a>
+                            <a href="lichChieu.php"><i class="fas fa-calendar"></i> Lịch chiếu</a>
                             <a href="">Khuyến mãi</a>
                             <a href="">Thuê sự kiện</a>
                             <a href="">Giải trí</a>
@@ -103,20 +103,16 @@
                                         const movieDiv = document.createElement('div');
                                         movieDiv.classList.add('playing_movie');
                                         movieDiv.innerHTML = `
-                                            <div class="movie">
-                                                <img src="${movie.image_movie}" alt="${movie.movie_name}">
-                                                <h3 class="name">${movie.movie_name}</h3>
-                                                <div class="react">
-                                                    <a href="" class="trailer">Trailer</a>
-                                                    <button class="booking">ĐẶT VÉ</button>
-                                                </div>    
-                                            </div>
+                                       <div class="movie">
+                                            <img src="${movie.image_movie}" alt="${movie.movie_name}">
+                                            <h3 class="name">${movie.movie_name}</h3> 
                                             <div class="movie_information">
                                                 <h2>${movie.movie_name}</h2>
                                                 <p>${movie.thoiLuong}</p>
                                                 <p>${movie.daoDien}</p>
-                                                <a href="details.php?movie_id=${movie.movie_id}" style="margin-left:40%;">Chi tiet</a>
+                                                <a href="details.php?movie_name=${movie.movie_name}" style="margin-left:40%; border:solid 1px none; border-radius:40%; background-color:yellow; padding: 5px; color:black;">Chi tiết</a>
                                             </div>
+                                        </div>
                                         `;
                                         playingMoviesDiv.appendChild(movieDiv);
                                     });
@@ -167,20 +163,16 @@
                                         const movieDiv = document.createElement('div');
                                         movieDiv.classList.add('comming_movie');
                                         movieDiv.innerHTML = `
-                                            <div class="movie">
-                                                <img src="${movie.image_movie}" alt="${movie.movie_name}">
-                                                <h3 class="name">${movie.movie_name}</h3>
-                                                <div class="react">
-                                                    <a href="" class="trailer">Trailer</a>
-                                                    <button class="booking">ĐẶT VÉ</button>
-                                                </div>    
-                                            </div>
+                                        <div class="movie">
+                                            <img src="${movie.image_movie}" alt="${movie.movie_name}">
+                                            <h3 class="name">${movie.movie_name}</h3>  
                                             <div class="movie_information">
                                                 <h2>${movie.movie_name}</h2>
                                                 <p>${movie.thoiLuong}</p>
                                                 <p>${movie.daoDien}</p>
-                                                <a href="details.php?movie_id=${movie.movie_id}" style="margin-left:40%;">Chi tiet</a>
+                                                <a href="details.php?movie_name=${movie.movie_name}"style="margin-left:40%; border:solid 1px none; border-radius:40%; background-color:yellow; padding: 5px; color:black;">Chi tiet</a>
                                             </div>
+                                        </div>
                                         `;
                                         playingMoviesDiv.appendChild(movieDiv);
                                     });

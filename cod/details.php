@@ -1,14 +1,14 @@
 <?php
 include "connectToDatabase.php";
 
-if (isset($_GET['movie_id'])) {
-    $movie_id = $_GET['movie_id'];
-    $sql = "SELECT * FROM tblmovie WHERE movie_id = ?";
+if (isset($_GET['movie_name'])) {
+    $movie_name = $_GET['movie_name'];
+    $sql = "SELECT * FROM tblmovie WHERE movie_name = ?";
     $stmt = $conn->prepare($sql);
     if (!$stmt) {
         die("Lỗi khi chuẩn bị câu lệnh SQL: " . $conn->error);
     }
-    $stmt->bind_param("i", $movie_id);
+    $stmt->bind_param("s", $movie_name);
     $stmt->execute();
     $result = $stmt->get_result();  
 
@@ -22,7 +22,7 @@ if (isset($_GET['movie_id'])) {
     $stmt->close();
     $conn->close();
 } else {
-    echo "No movie ID provided";
+    echo "No movie name provided";
     exit;
 }
 ?>
@@ -106,7 +106,7 @@ if (isset($_GET['movie_id'])) {
                     <p id="chiTietMoTa" style="color: white; margin-top: 30px;"><?php echo $movie['describe_movie']; ?></p>
                     <div class="LienKet">
                         <a href=""><h2>TRAILER</h2></a>
-                        <a href="thanhtoan.php"><h2>Đặt vé</h2></a>
+                        <a href="lichChieu.php?m"><h2>Đặt vé</h2></a>
                     </div>
                 </div>
             </div>

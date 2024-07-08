@@ -355,13 +355,14 @@ a {
     height: 100%;
     box-sizing: border-box;
 }
-.movie img{
+.movie img {
     width: 200px;
-    height:300px;
+    height: 300px;
 }
-.movie:hover + .movie_information {
+.movie:hover .movie_information {
     display: block; /* Hiển thị khi hover vào phần movie */
 }
+
 .name{
     text-align: center;
     color: white;

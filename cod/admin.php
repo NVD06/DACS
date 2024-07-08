@@ -6,7 +6,8 @@
     <link rel="stylesheet" href="adminDisplay.css">
     <title>Document</title>
 </head>
-<body>
+<body style="background-color: brown;">
+    <a href="logout.php" style="border:solid 1px black; padding:10px; margin:20px;">Đăng xuất</a>
     <div class="khungChinh">
         <div class="PhimChucNang">
             <button id="add-button">Add</button>
