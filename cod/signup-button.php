@@ -1,5 +1,4 @@
 <?php
-// Include the database connection file
 include "connectToDatabase.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -36,12 +35,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $hashed_password = password_hash($password, PASSWORD_BCRYPT);
 
     // Insert user into database
-    $sql = "INSERT INTO tbluser (email, userName, password, leveluser) VALUES (?, ?, ?, 0)";
+    $sql = "INSERT INTO tbluser (email, userName, password, password_check, leveluser) VALUES (?, ?, ?, ?, 0)";
     $stmt = $conn->prepare($sql);
     if (!$stmt) {
         die("Prepare statement failed: " . $conn->error);
     }
-    $stmt->bind_param("sss", $email, $name, $hashed_password);
+    $stmt->bind_param("ssss", $email, $name, $hashed_password, $password);
 
     if ($stmt->execute()) {
         echo "Registration successful!";
