@@ -61,7 +61,7 @@ if (isset($_GET['movie_name'])) {
                                 </div>
                             </div>
                             <div class="Login">
-                                <a href="logout.php">Đăng xuất</a>
+                                <a href="">Đăng nhập</a>
                             </div>
                         </div>
                     </div>
@@ -92,21 +92,29 @@ if (isset($_GET['movie_name'])) {
         <div class="Page_Content">
             <!-- this is page content -->
             <div class="chiTietPhim">
-                <img src="<?php echo $movie['image_movie']; ?>" id="chiTietImg" alt="">
+                <img src="" id="chiTietImg" alt="">
                 <div class="MoTa">
-                    <h1 id="chiTietTenPhim"><?php echo $movie['movie_name']; ?></h1>
+                    <h1 id="chiTietTenPhim"></h1>
                     <div class="khoangCach">
                         <div class="phanMot"><p>Khởi chiếu:</p></div>
-                        <div class="phan2" id="chiTietNgayKhoiChieu"><p><?php echo $movie['date']; ?></p></div>
+                        <div class="phan2" id="chiTietNgayKhoiChieu"><p></p></div>
+                    </div>
+                    <div class="khoangCach">
+                        <div class="phanMot"><p>Thể loại:</p></div>
+                        <div class="phan2" id="chiTietTheLoai"><p></p></div>
+                    </div>
+                    <div class="khoangCach">
+                        <div class="phanMot"><p>Diễn viên:</p></div>
+                        <div class="phan2" id="chiTietDienVien"><p></p></div>
                     </div>
                     <div class="khoangCach">
                         <div class="phanMot"><p>Đạo diễn:</p></div>
-                        <div class="phan2" id="chiTietDaoDien"><p><?php echo $movie['daoDien']; ?></p></div>
+                        <div class="phan2" id="chiTietDaoDien"><p></p></div>
                     </div>
-                    <p id="chiTietMoTa" style="color: white; margin-top: 30px;"><?php echo $movie['describe_movie']; ?></p>
+                    <p id="chiTietMoTa" style="color: white; margin-top: 30px;"></p>
                     <div class="LienKet">
-                        <a href=""><h2>TRAILER</h2></a>
-                        <a href="lichChieu.php?m"><h2>Đặt vé</h2></a>
+                        <a href="#"><h2>TRAILER</h2></a>
+                        <a href="thanhtoan.php"><h2>Đặt vé</h2></a>
                     </div>
                 </div>
             </div>
@@ -125,7 +133,7 @@ if (isset($_GET['movie_name'])) {
                                 </div>
                                 <div class="ft-group-btn"><a class="btn btn--pri" href="/movie"><span class="btn__text">mua vé</span><span class="btn__icon"><i class="icon-ic-tickets"></i></span></a>
                                     <a class="btn btn--border" href="https://cinestar.com.vn/news/detail/tuyendung"><span class="btn__text">Tuyển dụng</span><span class="btn__icon"><i class="icon-ic-career"></i></span></a>
-                                </div>
+                                </div>      
                             </div>
                             <div class="footer-item col col-4">
                                 <p class="footer-title">CÔNG TY CỔ PHẦN GIẢI TRÍ CINESTAR</p>
@@ -135,4 +143,27 @@ if (isset($_GET['movie_name'])) {
                                     <li class="footer-list-item"><a href="#">Thẻ quà tặng</a></li>
                                     <li class="footer-list-item"><a href="#">Tuyển dụng</a></li>
                                     <li class="footer-list-item"><a href="#">Liên hệ quảng cáo</a></li>
-                                   
+                                    <li class="footer-list-item"><a href="#">Liên hệ công ty</a></li>
+                                </ul>
+                            </div>
+                            <div class="footer-item col col-4">
+                                <p class="footer-title">điều khoản và quy định</p>
+                                <ul class="footer-list-item">
+                                    <li class="footer-list-item"><a href="#">Điều khoản chung</a></li>
+                                    <li class="footer-list-item"><a href="#">Điều khoản giao dịch</a></li>
+                                    <li class="footer-list-item"><a href="#">Chính sách thanh toán</a></li>
+                                    <li class="footer-list-item"><a href="#">Chính sách bảo mật</a></li>
+                                    <li class="footer-list-item"><a href="#">Câu hỏi thường gặp</a></li>
+                                    <li class="footer-list-item"><a href="#">Kết nối</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="footer-copyright">&copy; 2022 <a href="https://cinestar.com.vn" target="_self">Cinestar.com.vn</a>. All rights reserved.</div>
+                    </div>
+                    </div>
+                </div>
+            </div> 
+        </div>
+    </div>
+</body>
+</html>
