@@ -1,12 +1,32 @@
+<?php
+include "connectToDatabase.php";
+
+// Kiểm tra kết nối
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Truy vấn dữ liệu từ bảng phim
+$sql = "SELECT image_movie FROM tblmovie";
+$result = $conn->query($sql);
+// Kiểm tra và lấy dữ liệu
+if ($result->num_rows > 0) {
+    $movies = $result->fetch_all(MYSQLI_ASSOC);
+} else {
+    $movies = [];
+}
+
+$conn->close();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-    <link rel="stylesheet" href="pdc.css">
-    <title>Phim đang chiếu</title>
+    <link rel="stylesheet" href="datve.css">
+    <title>Đăng nhập</title>    
 </head>
 <body background="" style="background-color: brown;">
     <div class="main_body">
@@ -22,12 +42,14 @@
                         <div class="searchAndLogin">
                             <div class="searchIcon">
                                 <div class="search-container">
-                                    <input type="text" placeholder="Tìm kiếm">
-                                    <button type="button">
+                                    <form method="post">
+                                        <input type="text" placeholder="Tìm kiếm">
+                                        <button type="button" name="btn">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                                             <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.415l-3.85-3.85a1.007 1.007 0 0 0-.115-.098zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
                                         </svg>
-                                    </button>
+                                        </button>
+                                    </form>
                                 </div>
                             </div>
                             <div class="Login">
@@ -57,79 +79,56 @@
                             <a href="">Giới thiệu</a>
                         </div>
                     </div>
-                </div>
+                </div>  
                 
             </div>
-        </div> 
-        <div style="text-transform: uppercase;color: white;font-size: 30px;margin-top: 40px;">phim đang chiếu</div> 
-        <div class="Page_Content" style="display: flex;width: 80%;flex-wrap: wrap;margin-top: 40px;margin-bottom: 100px; ">
-        <?php
-        include "connectToDatabase.php";
-
-        $sql = "SELECT movie_name, image_movie, describe_movie, movie_id FROM tblmovie WHERE status_movie = 'playing'";
-        $result = $conn->query($sql);
-
-        if ($result->num_rows > 0) {
-            while($row = $result->fetch_assoc()) {
-                echo '<div class="container_phim">
-                        <div class="overlay-container" style="background-image: url(' . $row['image_movie'] . ');width: 100%;">
-                            <div class="overlay-text">
-                                <h2 style="margin-bottom: 70px;text-transform: uppercase;color: white;text-align: center;">' . $row['movie_name'] . '</h2>
-                                <div>
-                                    <div class="icon"><span class="material-symbols-outlined">bookmark</span><a href="">' . $row['describe_movie'] . '</a></div>
-                                </div>
-                            </div>
+        </div>  
+        <div class="Page_Content">
+        <div class="Page_Content">
+            <div style="color: white; font-size: 50px; text-transform: uppercase; text-align: center; margin-top: 30px;">phim đang chiếu</div>
+            <div class="container">
+                <div class="slide">
+                    <?php foreach ($movies as $movie): ?>
+                    <div class="item" style="background-image: url('<?php echo $movie['image_movie']; ?>');">
+                        <div class="content">
+                            <div class="name"><?php echo $movie['movie_name']; ?></div>
+                            <div class="des"><?php echo $movie['describe_movie']; ?></div>
+                            <button><a style="color: black;" href="">Đặt Vé</a></button>
                         </div>
-                        <div class="title_phim">' . $row['movie_name'] . '</div>
-                        <div style="display: flex;justify-content: space-between;">
-                            <div>
-                                <a href="#" class="videoLink" data-trailer-url="">Xem video</a>
-                                <div class="videoPopup popup">
-                                    <div class="popup-content">
-                                        <span class="close">&times;</span>
-                                        <video controls>
-                                            <source src="" type="video/mp4">
-                                        </video>
-                                    </div>
-                                </div>
-                            </div>
-                            <div>
-                                <a href="lichchieu.php?movie_name=' . $row['movie_name'] . '">Đặt vé</a>
-                            </div>
-                        </div>
-                    </div>';
-            }
-        } else {
-            echo "No movies found";
-        }
-        $conn->close();
-        ?>
-        <script>
-        document.querySelectorAll('.videoLink').forEach(function(link) {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                const popup = this.nextElementSibling;
-                popup.style.display = 'block';
-            });
-        });
+                    </div>
+                    <?php endforeach; ?>
+                </div>
+                <div class="button">
+                    <div>
+                        <button class="prev"><i class="fa-solid fa-arrow-left"></i></button>
+                        <button style="padding-bottom: 0; width: 80px;"><a style="color: black;" href="../Datve/phimdangchieu/pdc.html">Xem thêm</a></button>
+                        <button class="next"><i class="fa-solid fa-arrow-right"></i></button>
+                    </div>
+                </div>
+                <script>
+                    let next = document.querySelector('.next');
+                    let prev = document.querySelector('.prev');
 
-        document.querySelectorAll('.close').forEach(function(span) {
-            span.addEventListener('click', function() {
-                const popup = this.closest('.popup');   
-                popup.style.display = 'none';
-            });
-        });
-        </script>
+                    next.addEventListener('click', function() {
+                        let items = document.querySelectorAll('.item');
+                        document.querySelector('.slide').appendChild(items[0]);
+                    });
 
-        </div>            
+                    prev.addEventListener('click', function() {
+                        let items = document.querySelectorAll('.item');
+                        document.querySelector('.slide').prepend(items[items.length - 1]);
+                    });
+                </script>
+            </div>
+        </div>
         </div>         
-        <div class="end_page">
-            <div class="footer">
+        <div class="end_page" style="background-color: #333333">
+            <div class="footer" >
                 <div>
-                    <div class="container">
-                    <div class="footer-wr">
-                        <div class="footer-top-mobile">&nbsp;</div>
-                        <div class="footer-list row">
+                    <div class="container" style="background-color: #333333">
+                    <div class="footer-wr" style="background-color: #333333">
+                        <div class="footer-top-mobile"style="background-color: #333333">&nbsp;</div>
+                        <div class="footer-list row" style="background-color: #333333">
                             <div class="footer-item col col-4"><a href="/" class="ft-logo" aria-label="The logo of Cinestar"><img src="/assets/images/footer-logo.png" alt=""></a>
                                 <div class="ft-text">
                                     <p class="txt-deskop">BE HAPPY, BE A STAR</p>
