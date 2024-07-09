@@ -11,12 +11,6 @@ SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
 
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
 --
 -- Cơ sở dữ liệu: `dacs`
 --
@@ -74,15 +68,32 @@ CREATE TABLE `tblscreen` (
 -- Cấu trúc bảng cho bảng `tblseat`
 --
 
-CREATE TABLE `tblseat` (
-  `seat_id` int(11) NOT NULL,
-  `seat_name` varchar(5) NOT NULL,
-  `screen_id` int(11) NOT NULL,
-  `status` varchar(50) NOT NULL
+CREATE TABLE tblseat (
+    seat_id INT(11) NOT NULL AUTO_INCREMENT,
+    seat_name VARCHAR(5) NOT NULL,
+    screen_id INT(11) NOT NULL,
+    status VARCHAR(50) NOT NULL,
+    PRIMARY KEY (seat_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
+CREATE TABLE tblbooking (
+    booking_id INT(11) NOT NULL AUTO_INCREMENT,
+    movie_id INT(11) NOT NULL,
+    date DATE NOT NULL,
+    time TIME NOT NULL,
+    seat VARCHAR(5) NOT NULL,
+    food JSON NOT NULL,
+    total_price INT(11) NOT NULL,
+    PRIMARY KEY (booking_id),
+    FOREIGN KEY (movie_id) REFERENCES tblmovie(id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 -- --------------------------------------------------------
-
+INSERT INTO tblseat (seat_name, screen_id, status) VALUES
+('A1', 1, 'available'),
+('A2', 1, 'available'),
+('A3', 1, 'available'),
+('A4', 1, 'available'),
+('A5', 1, 'available'),
 --
 -- Cấu trúc bảng cho bảng `tblshowtime`
 --

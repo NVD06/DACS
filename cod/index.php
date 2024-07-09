@@ -17,7 +17,7 @@
                     <div class="viTri">
                         <a href=""><img src="https://cinestar.com.vn/_next/image/?url=%2Fassets%2Fimages%2Fheader-logo.png&w=1920&q=75" alt="Home page logo"></a>
                         <div class="bookAndpd">
-                            <a href="" class="Booking_T">ĐẶT VÉ NGAY</a>
+                            <a href="booking.php" class="Booking_T">ĐẶT VÉ NGAY</a>
                             <a href="" class="Booking_F">ĐẶT BẮP NƯỚC</a>
                         </div>
                         <div class="searchAndLogin">
@@ -91,7 +91,6 @@
             <div class="container1">
                 <h3>PHIM ĐANG CHIẾU</h3>
                 <div class="playing_movies" id="playing_movies">
-                    <!-- Các phim sẽ được thêm vào đây -->
                 </div>
                     <script>
                         document.addEventListener('DOMContentLoaded', function() {
