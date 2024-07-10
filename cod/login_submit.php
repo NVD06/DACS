@@ -17,9 +17,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['leveluser'] = $level;
         $_SESSION['userName'] = $username;
         if($level == 1){
-            header("Location: admin.php?userName=$username");
+            header("Location: admin.php");
         }else if($level == 0){
-            header("Location: index.php?userName=$username");
+            header("Location: index.php");
         }
     } else {
         echo "<script>alert('invalid email or password'); window.location.href='login.php';</script>";

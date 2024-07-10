@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($row['count'] > 0) {
         // Update the showtime record
-        $updateSql = "UPDATE tblshowtime SET movie_id='$idPhim2', thoiGian='$thoiGian', date_time='$date_time' WHERE showtime_id='$showtime_id'";
+        $updateSql = "UPDATE tblshowtime SET movie_id='$idPhim2', thoiGian='$thoiGian', date='$date_time' WHERE showtime_id='$showtime_id'";
 
         if ($conn->query($updateSql) === TRUE) {
             echo "Record updated successfully";
