@@ -90,7 +90,6 @@ if (isset($_GET['movie_name'])) {
             </div>
         </div>  
         <div class="Page_Content">
-            <!-- this is page content -->
             <div class="chiTietPhim">
                 <img src="<?php echo $movie['image_movie']; ?>" id="chiTietImg" alt="">
                 <div class="MoTa">
@@ -106,12 +105,11 @@ if (isset($_GET['movie_name'])) {
                     <p id="chiTietMoTa" style="color: white; margin-top: 30px;"><?php echo $movie['describe_movie']; ?></p>
                     <div class="LienKet">
                         <a href=""><h2>TRAILER</h2></a>
-                        <a href="lichChieu.php?movie_name=$movie['movie_name']"><h2>Đặt vé</h2></a>
+                        <a href="booking.php?movie_name=$movie['movie_name']"><h2>Đặt vé</h2></a>
                     </div>
                 </div>
             </div>
-        </div>    
-             
+        </div>
         <div class="end_page">
             <div class="footer">
                 <div>
