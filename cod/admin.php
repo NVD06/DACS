@@ -1,3 +1,6 @@
+<?php
+include "takeShowTimeIn4.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,40 +11,73 @@
 </head>
 <body style="background-color: brown;">
     <a href="logout.php" style="border:solid 1px black; padding:10px; margin:20px;">Đăng xuất</a>
-    <div class="khungChinh">
+    <a href="index.php">Trang chủ</a>
+    <div class="khungChinh" style="margin-top:50px;">
         <div class="PhimChucNang">
             <button id="add-button">Add</button>
             <button id="delete-button">Delete</button>
             <button id="edit-button">Edit</button>
         </div>
         <div class="cacThuocTinhPhim" id="movieForm">
-            <div>ID: <input type="text" id="idPhim"></div>
-            <div>Tên phim: <input type="text" id="tenPhim"></div>
-            <div>Ảnh: <input type="text" id="fileImage"></div>
-            <div>Mô tả: <textarea id="Mota" name="message" rows="4" cols="50" style="width: 165px;"></textarea></div>
-            <div>Thời lượng: <input type="number" id="thoiLuong"></div>
-            <div>Đạo diễn và diễn viên: <input type="text" name="daoDien" id="daoDien"></div>
-            <div>Ngày chiếu: <input type="date" id="ngayChieu" style="width:165px;"></div>
-            <div>Phòng chiếu: <input type="number" id="phongChieu"></div>
-            <div>Số lượng vé đã bán: <input type="number" id="soVeDaBan"></div>
-            <div>Trạng thái phim: <select name="status" id="status">
-                <option value="playing">playing</option>
-                <option value="comming">comming</option>
-            </select></div>
-            <div>Giá vé: <input type="number" id="price"></div>
+                <div>ID: <input type="text" id="idPhim"></div>
+                <div>Tên phim: <input type="text" id="tenPhim"></div>
+                <div>Ảnh: <input type="text" id="fileImage"></div>
+                <div>Mô tả: <textarea id="Mota" name="message" rows="4" cols="50" style="width: 165px;"></textarea></div>
+                <div>Thời lượng: <input type="number" id="thoiLuong"></div>
+                <div>Đạo diễn và diễn viên: <input type="text" name="daoDien" id="daoDien"></div>
+                <div>Ngày chiếu: <input type="date" id="ngayChieu" style="width:165px;"></div>
+                <div>Phòng chiếu: <input type="number" id="phongChieu"></div>
+                <div>Số lượng vé đã bán: <input type="number" id="soVeDaBan"></div>
+                <div>Trạng thái phim: <select name="status" id="status">
+                    <option value="playing">playing</option>
+                    <option value="comming">comming</option>
+                </select></div>
+                <div>Giá vé: <input type="number" id="price"></div>
 
-            <h3>Thoi Gian va phong chieu</h3>
-            <div>ma chieu: <input type="int" id="showtime_id"></div>
-            <div>thoi gian: <input type="time" id="thoiGian"></div>
-            <div>ngayChieu: <input type="date" id="date_time"></div>
-            <div>Trạng thái : <input type="text" id="status"></div>
-            <div>ma Phim: <input type="" id="idPhim2"></div>
-            <div class="PhimChucNang">
-            <button id="add-button2">Add</button>
-            <button id="delete-button2">Delete</button>
-            <button id="edit-button2">Edit</button>
+                <h3>Thoi Gian va phong chieu</h3>
+                <div>ma chieu: <input type="int" id="showtime_id"></div>
+                <div>thoi gian: <input type="time" id="thoiGian"></div>
+                <div>ngayChieu: <input type="date" id="date_time"></div>
+                <div>ma Phim: <input type="" id="idPhim2"></div>
+                <div class="PhimChucNang">
+                    <button id="add-button2">Add</button>
+                    <button id="delete-button2">Delete</button>
+                    <button id="edit-button2">Edit</button>
+                </div>
         </div>
-        </div>
+    </div>
+    <div class="khungChinh" style="margin-top:60%;">
+        <h2>Lịch Chiếu</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Showtime ID</th>
+                    <th>Thời Gian</th>
+                    <th>Ngày</th>
+                    <th>Movie ID</th>
+                    <th>Tên Phim</th>
+                    <th>Ảnh</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
+                        echo "<tr>";
+                        echo "<td>" . htmlspecialchars($row['showtime_id']) . "</td>";
+                        echo "<td>" . htmlspecialchars($row['thoiGian']) . "</td>";
+                        echo "<td>" . htmlspecialchars($row['date']) . "</td>";
+                        echo "<td>" . htmlspecialchars($row['movie_id']) . "</td>";
+                        echo "<td>" . htmlspecialchars($row['movie_name']) . "</td>";
+                        echo "<td><img src='" . htmlspecialchars($row['image_movie']) . "' alt='" . htmlspecialchars($row['movie_name']) . "' class='movie-image'></td>";
+                        echo "</tr>";
+                    }
+                } else {
+                    echo "<tr><td colspan='6'>Không có lịch chiếu nào</td></tr>";
+                }
+                ?>
+            </tbody>
+        </table>
     </div>
     <footer>
         <div style="display: flex;">

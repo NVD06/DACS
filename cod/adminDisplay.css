@@ -34,3 +34,19 @@ footer div{
     max-width: 200px;
     height: auto;
 }
+table {
+    width: 40%;
+    border-collapse: collapse;
+    position: relative;
+}
+table, th, td {
+    border: 1px solid white;
+}
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+.movie-image {
+    width: 100px;
+    height: auto;
+}

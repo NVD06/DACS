@@ -1,4 +1,5 @@
 <?php
+session_start();
 include "takeSchedule.php"
 ?>
 
@@ -19,7 +20,7 @@ include "takeSchedule.php"
             <div class="chung">
                 <div class="function">
                     <div class="viTri">
-                        <a href=""><img src="https://cinestar.com.vn/_next/image/?url=%2Fassets%2Fimages%2Fheader-logo.png&w=1920&q=75" alt="Home page logo"></a>
+                        <a href="index.php"><img src="https://cinestar.com.vn/_next/image/?url=%2Fassets%2Fimages%2Fheader-logo.png&w=1920&q=75" alt="Home page logo"></a>
                         <div class="bookAndpd">
                             <a href="" class="Booking_T">ĐẶT VÉ NGAY</a>
                             <a href="" class="Booking_F">ĐẶT BẮP NƯỚC</a>
@@ -36,8 +37,17 @@ include "takeSchedule.php"
                                 </div>
                             </div>
                             <div class="Login">
-                                <a href="">Đăng nhập</a>
+                                <a href="logout.php">Đăng xuất</a>
                             </div>
+                            <p style="color:aqua;">
+                                <?php
+                                if (isset($_SESSION['userName'])) {
+                                    echo htmlspecialchars($_SESSION['userName']);
+                                } else {
+                                    header('login.php');
+                                }
+                                ?>
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -67,22 +77,39 @@ include "takeSchedule.php"
         <div class="Page_Content">
             <!-- this is page content -->
             <div class="thoiGianChieu">
-            <div class="anhPhim">
-                <img src="<?php echo htmlspecialchars($image_movie); ?>" alt="">
-                <h2><?php echo htmlspecialchars($movie_name); ?></h2>
-            </div>
-            <div class="gioChieu">
-                <?php
-                if (isset($showtimes)) {
-                    foreach ($showtimes as $date => $times) {
+        <div class="anhPhim">
+            <img src="<?php echo htmlspecialchars($image_movie ?? 'images/default_image.jpg'); ?>" alt="">
+            <h2><?php echo htmlspecialchars($movie_name ?? 'Tất cả các phim'); ?></h2>
+        </div>
+        <div class="gioChieu">
+        <?php
+        if (isset($showtimes)) {
+            if (isset($movie_id)) {
+                foreach ($showtimes as $date => $times) {
+                    echo "<p><strong>$date</strong></p>";
+                    foreach ($times as $time) {
+                        // Sử dụng thẻ <a> với thuộc tính href
+                        echo "<p><a href='details.php?time=" . urlencode($time) . "&date=" . urlencode($date) . "&movie_name=" . urlencode($movie_name) . "'>$time</a></p>";
+                    }
+                    echo "<br>";
+                }
+            } else {
+                foreach ($showtimes as $movie => $dates) {
+                    echo "<h2>" . htmlspecialchars($movie) . "</h2>";
+                    foreach ($dates as $date => $times) {
                         echo "<p><strong>$date</strong></p>";
                         foreach ($times as $time) {
-                            echo "<a>$time </a>";
+                            // Sử dụng thẻ <a> với thuộc tính href
+                            echo "<a href='details.php?time=" . urlencode($time) . "&date=" . urlencode($date) . "&movie_name=" . urlencode($movie_name) . "'>$time</a>";
                         }
                         echo "<br>";
                     }
                 }
-                ?>
+            }
+        }
+        ?>
+        </div>
+    </div>
         </div>
     </div>
         </div>

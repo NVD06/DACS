@@ -43,7 +43,7 @@ session_start();
                                 if (isset($_SESSION['userName'])) {
                                     echo htmlspecialchars($_SESSION['userName']);
                                 } else {
-                                    echo "Name";
+                                    header("Location: login.php");
                                 }
                                 ?>
                             </p>
