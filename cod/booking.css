@@ -50,23 +50,27 @@ body {
 
 .seat-grid {
     display: grid;
-    grid-template-columns: repeat(5, 50px);
-    gap: 10px;
+    grid-template-columns: repeat(5, 1fr);
+    grid-row-gap: 5px;
+    grid-column-gap: 5px;
     justify-content: center;
 }
+
 .seat {
-    width: 50px;
-    height: 50px;
-    background-color: green;
-    color: white;
+    margin-left: 60px;
+    width: 40px;
+    height: 40px;
+    background-color: #4CAF50;
+    border: 2px solid #fff;
     text-align: center;
     line-height: 50px;
+    border-radius: 5px;
     cursor: pointer;
-    margin: 5px;
+    transition: background-color 0.3s ease;
 }
 
 .seat.unavailable {
-    background-color: red;
+    background-color: #f44336; /* Màu đỏ cho ghế đã được đặt */
     cursor: not-allowed;
 }
 
