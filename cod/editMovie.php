@@ -32,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         $updateSql = "UPDATE tblmovie SET movie_name=?, image_movie=?, describe_movie=?, thoiLuong=?, daoDien=?, date=?, screen_id=?, number_tickets_sold=?, status_movie=?, price=? WHERE movie_id=?";
         $stmt = $conn->prepare($updateSql);
-        $stmt->bind_param("sssiiissiii", $tenPhim, $fileImage, $Mota, $thoiLuong, $daoDien, $ngayChieu, $phongChieu, $soVeDaBan, $status, $price, $idPhim);
+        $stmt->bind_param("sssiiisssii", $tenPhim, $fileImage, $Mota, $thoiLuong, $daoDien, $ngayChieu, $phongChieu, $soVeDaBan, $status, $price, $idPhim);
 
         if ($stmt->execute()) {
             if ($stmt->affected_rows > 0) {
