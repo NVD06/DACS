@@ -1,14 +1,5 @@
 <?php
 session_start();
-function isLoggedIn() {
-    return isset($_SESSION['userName']);
-}
-function getCurrentUrl() {
-    return "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-}
-if (!isLoggedIn()) {
-    $_SESSION['redirect_url'] = getCurrentUrl();
-}
 ?>
 
 <!DOCTYPE html>
@@ -44,17 +35,18 @@ if (!isLoggedIn()) {
                                     </button>
                                 </div>
                             </div>
-                            <div >
-                                <?php if (isLoggedIn()): ?>
-                                    <div style="display:flex;">
-                                    <div class="Login"><a href="logout.php">Đăng xuất</a></div>
-                                    <p style="color:aqua;"><?php echo htmlspecialchars($_SESSION['userName']); ?></p>
-                                    </div>
-                                <?php else: ?>
-                                    <div class="Login"> <a href="login.php">Đăng nhập</a></div>
-                                <?php endif; ?>
+                            <div class="Login">
+                                <a href="logout.php">Đăng xuất</a>
                             </div>
-                            
+                            <p style="color:aqua;">
+                                <?php
+                                if (isset($_SESSION['userName'])) {
+                                    echo htmlspecialchars($_SESSION['userName']);
+                                } else {
+                                    header("Location: login.php");
+                                }
+                                ?>
+                            </p>
                         </div>
                     </div>
                 </div>
