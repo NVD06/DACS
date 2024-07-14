@@ -1,6 +1,7 @@
 <?php
 session_start();
-include "takeSchedule.php"
+include "takeSchedule.php";
+include "connectToDatabase.php"
 ?>
 
 <!DOCTYPE html>
@@ -75,42 +76,68 @@ include "takeSchedule.php"
             </div>
         </div>  
         <div class="Page_Content">
-            <!-- this is page content -->
-            <div class="thoiGianChieu">
-        <div class="anhPhim">
-            <img src="<?php echo htmlspecialchars($image_movie ?? 'images/default_image.jpg'); ?>" alt="">
-            <h2><?php echo htmlspecialchars($movie_name ?? 'Tất cả các phim'); ?></h2>
-        </div>
-        <div class="gioChieu">
-        <?php
-        if (isset($showtimes)) {
-            if (isset($movie_id)) {
-                foreach ($showtimes as $date => $times) {
-                    echo "<p><strong>$date</strong></p>";
-                    foreach ($times as $time) {
-                        // Sử dụng thẻ <a> với thuộc tính href
-                        echo "<p><a href='details.php?time=" . urlencode($time) . "&date=" . urlencode($date) . "&movie_name=" . urlencode($movie_name) . "'>$time</a></p>";
-                    }
-                    echo "<br>";
-                }
-            } else {
-                foreach ($showtimes as $movie => $dates) {
-                    echo "<h2>" . htmlspecialchars($movie) . "</h2>";
-                    foreach ($dates as $date => $times) {
-                        echo "<p><strong>$date</strong></p>";
-                        foreach ($times as $time) {
-                            // Sử dụng thẻ <a> với thuộc tính href
-                            echo "<a href='details.php?time=" . urlencode($time) . "&date=" . urlencode($date) . "&movie_name=" . urlencode($movie_name) . "'>$time</a>";
+                <?php
+                    if (isset($showtimes)) {
+                        if (isset($movie_id)) {
+                            echo "<div class='thoiGianChieu'>";
+                            echo "<div class='anhPhim'>";
+                            echo "<img src='" . htmlspecialchars($image_movie ?? 'images/default_image.jpg') . "' alt=''>";
+                            echo "<h2>" . htmlspecialchars($movie_name ?? 'Tất cả các phim') . "</h2>";
+                            echo "</div>";
+                            echo "<div class='gioChieu'>";
+                            foreach ($showtimes as $date => $times) {
+                                echo "<p><strong>$date</strong></p>";
+                                echo "<div class='showtimes-container'>"; // Container for showtimes
+                                foreach ($times as $time) {
+                                    echo "<div class='showtime-item'>";
+                                    echo "<p><a href='details.php?time=" . urlencode($time) . "&date=" . urlencode($date) . "&movie_name=" . urlencode($movie_name) . "'>$time</a></p>";
+                                    echo "</div>";
+                                }
+                                echo "</div>";
+                                echo "<br>";
+                            }
+                            echo "</div>";
+                            echo "</div>";
+                        } else {
+                            foreach ($showtimes as $movie => $dates) {
+                                // Lấy thông tin phim từ CSDL dựa trên $movie
+                                $stmt = $conn->prepare("SELECT image_movie FROM tblmovie WHERE movie_name = ?");
+                                if ($stmt === false) {
+                                    die('Prepare failed: ' . htmlspecialchars($conn->error));
+                                }
+                                $stmt->bind_param("s", $movie);
+                                $stmt->execute();
+                                $stmt->bind_result($image_movie);
+                                $stmt->fetch();
+                                $stmt->close();
+                        
+                                echo "<div class='thoiGianChieu'>";
+                                echo "<div class='anhPhim'>";
+                                echo "<img src='" . htmlspecialchars($image_movie ?? 'images/default_image.jpg') . "' alt=''>";
+                                echo "<h2>" . htmlspecialchars($movie) . "</h2>";
+                                echo "</div>";
+                                echo "<div class='gioChieu'>";
+                                foreach ($dates as $date => $times) {
+                                    echo "<p><strong>$date</strong></p>";
+                                    echo "<div class='showtimes-container'>"; // Container for showtimes
+                                    foreach ($times as $time) {
+                                        echo "<div class='showtime-item'>";
+                                        echo "<p><a href='details.php?time=" . urlencode($time) . "&date=" . urlencode($date) . "&movie_name=" . urlencode($movie) . "'>$time</a></p>";
+                                        echo "</div>";
+                                    }
+                                    echo "</div>";
+                                    echo "<br>";
+                                }
+                                echo "</div>";
+                                echo "</div>";
+                            }
                         }
-                        echo "<br>";
                     }
-                }
-            }
-        }
-        ?>
+                ?>
+            </div>
         </div>
     </div>
-        </div>
+</div>
     </div>
         </div>
         <div class="end_page">
