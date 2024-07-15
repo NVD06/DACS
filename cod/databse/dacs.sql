@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th7 15, 2024 lúc 05:38 AM
+-- Thời gian đã tạo: Th7 12, 2024 lúc 04:29 AM
 -- Phiên bản máy phục vụ: 10.4.32-MariaDB
 -- Phiên bản PHP: 8.0.30
 
@@ -46,16 +46,16 @@ CREATE TABLE `tblmovie` (
 --
 
 INSERT INTO `tblmovie` (`movie_id`, `movie_name`, `image_movie`, `describe_movie`, `date`, `number_tickets_sold`, `price`, `status_movie`, `screen_id`, `thoiLuong`, `daoDien`) VALUES
-(1, 'QUỶ ÁM', 'https://cinestar.com.vn/pictures/Cinestar/10-2023/quy-am-tin-do.jpg', 'Phần tiếp theo của bộ phim năm 1973 kể về một cô bé 12 tuổi bị ám bởi một thực thể ma quỷ bí ẩn, buộc mẹ cô phải tìm đến sự giúp đỡ của hai linh mục để cứu cô.', '2024-07-15', '', '45000', 'playing', 1, 75, 'Leslie Odom Jr., Ellen Burstyn, Lidya Jewett, Olivia Marcum, Ann Dowd'),
-(2, 'ĐẤT RỪNG PHƯƠNG NAM (K)', 'https://cinestar.com.vn/pictures/Cinestar/10-2023/poster-dat-rung-phuong-nam.jpg', 'Sau bao ngày chờ đợi, dự án điện ảnh gợi ký ức tuổi thơ của nhiều thế hệ người Việt chính thức tung hình ảnh đầu tiên đầy cảm xúc. First look poster khắc họa hình ảnh đối lập: bé An đang ôm chặt mẹ giữa một khung cảnh chạy giặc loạn lạc. Cùng chờ đợi và theo dõi thêm hành trình bé An đi tìm cha khắp nam kỳ lục tỉnh cùng các người bạn đồng hành nhé!', '2024-07-16', '', '45000', 'playing', 2, 80, 'Nguyễn Quang Dũng'),
-(3, 'KRAVEN THỢ SĂN THỦ LĨNH', 'https://cinestar.com.vn/pictures/Cinestar/10-2023/kraven.jpg', 'Gã nhập cư Nga Sergei Kravinoff đang thực hiện nhiệm vụ chứng minh rằng anh ta là thợ săn vĩ đại nhất thế giới.', '2024-07-16', '', '45000', 'playing', 3, 80, 'J.C. Chandor'),
-(4, 'MỸ NHÂN ĐẠO CHÍCH', 'https://cinestar.com.vn/pictures/Cinestar/11-2023/my-nhan-dao-chich.jpg', 'Cặp mẹ con “đạo chích” Ji Hye - Joo Yeong từng thực hiện vô số phi vụ thành công, nhưng mà là… công cốc. Để khép lại sự nghiệp không mấy vẻ vang này, Ji Hye lên kế hoạch trộm số vàng với giá trị lên đến 60 tỷ Won bằng cách lợi dụng trái tim mong manh mới biết yêu của anh chàng tài phiệt Wan Gyu. Nhưng phi vụ đặc biệt này không hề suôn sẻ khi cũng có những kẻ khác đang nhòm ngó số vàng kếch xù này.', '2024-07-16', '', '45000', 'playing', 4, 80, 'Lee Seung-Joon'),
-(5, 'MỸ NHÂN ĐẠO CHÍCH 2', 'https://cinestar.com.vn/pictures/Cinestar/11-2023/my-nhan-dao-chich.jpg', 'Cặp mẹ con “đạo chích” Ji Hye - Joo Yeong từng thực hiện vô số phi vụ thành công, nhưng mà là… công cốc. Để khép lại sự nghiệp không mấy vẻ vang này, Ji Hye lên kế hoạch trộm số vàng với giá trị lên đến 60 tỷ Won bằng cách lợi dụng trái tim mong manh mới biết yêu của anh chàng tài phiệt Wan Gyu. Nhưng phi vụ đặc biệt này không hề suôn sẻ khi cũng có những kẻ khác đang nhòm ngó số vàng kếch xù này.', '2024-07-16', '', '45000', 'comming', 4, 80, 'Lee Seung-Joon'),
-(6, 'QUỶ ÁM 2', 'https://cinestar.com.vn/pictures/Cinestar/10-2023/quy-am-tin-do.jpg', 'Phần tiếp theo của bộ phim năm 1973 kể về một cô bé 12 tuổi bị ám bởi một thực thể ma quỷ bí ẩn, buộc mẹ cô phải tìm đến sự giúp đỡ của hai linh mục để cứu cô.', '2024-07-14', '', '45000', 'comming', 1, 75, 'Leslie Odom Jr., Ellen Burstyn, Lidya Jewett, Olivia Marcum, Ann Dowd'),
-(7, 'ĐẤT RỪNG PHƯƠNG NAM 2 (K)', 'https://cinestar.com.vn/pictures/Cinestar/10-2023/poster-dat-rung-phuong-nam.jpg', 'Sau bao ngày chờ đợi, dự án điện ảnh gợi ký ức tuổi thơ của nhiều thế hệ người Việt chính thức tung hình ảnh đầu tiên đầy cảm xúc. First look poster khắc họa hình ảnh đối lập: bé An đang ôm chặt mẹ giữa một khung cảnh chạy giặc loạn lạc. Cùng chờ đợi và theo dõi thêm hành trình bé An đi tìm cha khắp nam kỳ lục tỉnh cùng các người bạn đồng hành nhé!', '2024-07-16', '', '45000', 'comming', 2, 80, 'Nguyễn Quang Dũng'),
-(8, 'KRAVEN THỢ SĂN THỦ LĨNH 2', 'https://cinestar.com.vn/pictures/Cinestar/10-2023/kraven.jpg', 'Gã nhập cư Nga Sergei Kravinoff đang thực hiện nhiệm vụ chứng minh rằng anh ta là thợ săn vĩ đại nhất thế giới.', '2024-07-16', '', '45000', 'comming', 3, 80, 'J.C. Chandor'),
-(9, 'HÀNH TINH CÁT PHẦN 2', 'https://cinestar.com.vn/pictures/Cinestar/11-2023/dune-poster.jpg', 'Dune: Hành tinh cát - Phần hai là bộ phim sử thi khoa học viễn tưởng của Mỹ ra mắt năm 2023 do Denis Villeneuve đạo diễn vởi kịch bản do Villeneuve, Jon Spaihts và Eric Roth cùng chấp bút.', '2024-07-15', '', '45000', 'playing', 5, 80, 'Denis Villeneuve'),
-(10, 'HÀNH TINH CÁT PHẦN 3', 'https://cinestar.com.vn/pictures/Cinestar/11-2023/dune-poster.jpg', 'Dune: Hành tinh cát - Phần hai là bộ phim sử thi khoa học viễn tưởng của Mỹ ra mắt năm 2023 do Denis Villeneuve đạo diễn vởi kịch bản do Villeneuve, Jon Spaihts và Eric Roth cùng chấp bút.', '2024-07-15', '', '45000', 'comming', 5, 80, 'Denis Villeneuve');
+(1, 'qqq23', 'https://th.bing.com/th/id/OIP.aMh1Cym0hAwil7GF3HHlkwHaFj?w=237&h=180&c=7&r=0&o=5&pid=1.7', 'qelfql', '0000-00-00', '10', '10000', 'playing', 9, 120, '0'),
+(5, 'as', 'https://scontent.fhan2-4.fna.fbcdn.net/v/t39.30808-6/449632693_509769851489742_9156914807177748195_n.jpg?stp=dst-jpg_p600x600&_nc_cat=105&ccb=1-7&_nc_sid=aa7b47&_nc_ohc=gSUlIpBNRyMQ7kNvgGnI0GM&_nc_ht=scontent.fhan2-4.fna&gid=ADcRI35RyO-WMLngnznoBgT&oh=00_AYDQESYbVVRvN1vW7JWGurryjlxWw05AWzresz2RwkV95Q&oe=668D609A', 'asdasd', '0000-00-00', '10', '10000', 'playing', 10, 123, '22'),
+(6, 'qanque', 'https://scontent.fhan2-3.fna.fbcdn.net/v/t39.30808-6/449786790_1154246499153373_7789522500839181561_n.jpg?stp=dst-jpg_s600x600&_nc_cat=101&ccb=1-7&_nc_sid=aa7b47&_nc_ohc=J4YBA3N4I7wQ7kNvgHZI8J6&_nc_ht=scontent.fhan2-3.fna&gid=Afo2eZBlS_oNSJOC_mGbzsP&oh=00_AYCLsXkNqmUUi7QMnJMCkPnIo0zfEQhSjc_RkbItPJ-sVQ&oe=668D6A4B', 'anh quan que', '0000-00-00', '10', '10000', 'playing', 11, 241, '0'),
+(8, 'qq', 'https://scontent.fhan2-5.fna.fbcdn.net/v/t39.30808-6/449924170_1154246569153366_6496021831540113558_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=aa7b47&_nc_ohc=8L6u02ASPacQ7kNvgFRmOGC&_nc_ht=scontent.fhan2-5.fna&gid=AslZVGqSSKi1wsFQy80Y2q8&oh=00_AYBBSQLIFOzBV2Rsa22g1Sox5pDWsK7XiyhlIESTRT0DkA&oe=668D5108', 'âsd', '0000-00-00', '0', '10000', 'playing', 12, 123, '0'),
+(11, 'chanrh', 'https://scontent.fhan20-1.fna.fbcdn.net/v/t39.30808-6/449715432_774461518213509_6486492988495652848_n.jpg?stp=dst-jpg_p180x540&_nc_cat=102&ccb=1-7&_nc_sid=833d8c&_nc_ohc=-Il8mxMiAOQQ7kNvgGAuJVp&_nc_ht=scontent.fhan20-1.fna&gid=AgMu2zYGDEI1rlORcbEy622&oh=00_AYAvsK6pQAPXpCNBSCZGaXtvY5R6epb7G2JGyV5cLso7jA&oe=668D0D59', 'ádasd', '2024-06-30', '12', '100', 'comming', 13, 12, 'aa'),
+(12, 'chanrh', 'https://scontent.fhan2-3.fna.fbcdn.net/v/t39.30808-6/449613113_8096872803665276_6563164721179065115_n.jpg?stp=dst-jpg_p180x540&_nc_cat=111&ccb=1-7&_nc_sid=aa7b47&_nc_ohc=A9O3piCClXYQ7kNvgGG54Ip&_nc_ht=scontent.fhan2-3.fna&gid=APhLMSygCWsTjkR_dVopShl&oh=00_AYApP0hFip0Zun_2j6dao8Y0PVUDXb7Bv61OCjAJU30XvA&oe=668D6D62', 'ádasd', '2024-06-30', '12', '100', 'comming', 13, 12, 'aa'),
+(13, 'qưqwe', 'https://scontent.fhan20-1.fna.fbcdn.net/v/t39.30808-6/449715432_774461518213509_6486492988495652848_n.jpg?stp=dst-jpg_p180x540&_nc_cat=102&ccb=1-7&_nc_sid=833d8c&_nc_ohc=-Il8mxMiAOQQ7kNvgGAuJVp&_nc_ht=scontent.fhan20-1.fna&gid=AgMu2zYGDEI1rlORcbEy622&oh=00_AYAvsK6pQAPXpCNBSCZGaXtvY5R6epb7G2JGyV5cLso7jA&oe=668D0D59', 'ád', '2024-07-04', '0', '12', 'comming', 1, 12, 'a'),
+(14, 'qưqwe', 'https://scontent.fhan2-5.fna.fbcdn.net/v/t39.30808-6/449964192_965756462226939_7818703905406624512_n.jpg?stp=dst-jpg_s720x720&_nc_cat=104&ccb=1-7&_nc_sid=127cfc&_nc_ohc=LlPcKDcgqKMQ7kNvgHVKo1K&_nc_ht=scontent.fhan2-5.fna&gid=APhLMSygCWsTjkR_dVopShl&oh=00_AYC1uUFs8cfhsMFMYlNpqE8QaGhyQgFAsaghkobXKGAnHw&oe=668D4AE4', 'ád', '2024-07-04', '0', '12', 'comming', 2, 12, 'a'),
+(15, 'qưqwe', 'https://scontent.fhan20-1.fna.fbcdn.net/v/t39.30808-6/449974065_1098039805009553_3844813000063352753_n.jpg?stp=dst-jpg_p526x296&_nc_cat=1&ccb=1-7&_nc_sid=127cfc&_nc_ohc=P8brSId-EmoQ7kNvgG-k3Wl&_nc_ht=scontent.fhan20-1.fna&oh=00_AYBcJ2vTZvCsU7iXCFKOkEHgf7oTT85z9s5ZAMMoYDsmUQ&oe=668D61A1', 'ád', '2024-07-04', '0', '12', 'comming', 4, 12, 'a'),
+(30, 'asfafs', 'https://scontent.fhan20-1.fna.fbcdn.net/v/t39.30808-6/450451462_350218318113495_6644553441156951295_n.jpg?stp=dst-jpg_s600x600&_nc_cat=103&ccb=1-7&_nc_sid=127cfc&_nc_ohc=_UD3oUL9KMYQ7kNvgEkuv2w&_nc_ht=scontent.fhan20-1.fna&oh=00_AYAzjBiQo7g-bCZZGkimIMuNqFkT7buyg70MKMzz2brnEQ&oe=66967001', 'asdafv wgfw vd fdgeg rgewgr', '2024-07-04', '13', '1313', 'playing', 2, 123, 'asd');
 
 -- --------------------------------------------------------
 
@@ -134,14 +134,7 @@ INSERT INTO `tblshowtime` (`showtime_id`, `thoiGian`, `date`, `movie_id`) VALUES
 (2, '22:52:00', '2024-07-10', 1),
 (3, '14:00:00', '2024-07-05', 1),
 (4, '15:00:00', '2024-07-05', 1),
-(5, '03:30:00', '2024-07-16', 2),
-(6, '16:00:00', '2024-07-16', 2),
-(7, '01:18:00', '2024-07-23', 3),
-(8, '10:15:00', '2024-07-23', 3),
-(9, '10:15:00', '2024-07-23', 4),
-(10, '01:18:00', '2024-07-23', 4),
-(11, '01:18:00', '2024-07-23', 9),
-(12, '20:18:00', '2024-07-23', 9);
+(5, '00:00:00', '2024-07-10', 5);
 
 -- --------------------------------------------------------
 
@@ -173,8 +166,21 @@ CREATE TABLE `tbluser` (
 --
 
 INSERT INTO `tbluser` (`user_id`, `email`, `password`, `leveluser`, `userName`) VALUES
-(6, 'nguyenvu00304@gmail.com', '$2y$10$FJX.XqJMbY16/K4UWLL0Z.cat2EThyuMBsdVvZv5yHmrYtgqQe/R6', '1', 'vu04'),
-(7, 'pimpompimpom4@gmail.com', '$2y$10$qrpDLI09.At68ILiOiRCAu1HyqWdg2GpDeAJ3UxoSyiqWYoLX.W0W', '0', 'uuaa');
+(6, 'nguyenvu00304@gmail.com', '$2y$10$FJX.XqJMbY16/K4UWLL0Z.cat2EThyuMBsdVvZv5yHmrYtgqQe/R6', '1', 'vu04');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
+  `username` varchar(50) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `password` text NOT NULL,
+  `level` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -217,8 +223,20 @@ ALTER TABLE `tbluser`
   ADD PRIMARY KEY (`user_id`);
 
 --
+-- Chỉ mục cho bảng `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT cho các bảng đã đổ
 --
+
+--
+-- AUTO_INCREMENT cho bảng `tblmovie`
+--
+ALTER TABLE `tblmovie`
+  MODIFY `movie_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT cho bảng `tblscreen`
@@ -236,7 +254,7 @@ ALTER TABLE `tblseat`
 -- AUTO_INCREMENT cho bảng `tblshowtime`
 --
 ALTER TABLE `tblshowtime`
-  MODIFY `showtime_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `showtime_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT cho bảng `tbltickets`
@@ -248,7 +266,13 @@ ALTER TABLE `tbltickets`
 -- AUTO_INCREMENT cho bảng `tbluser`
 --
 ALTER TABLE `tbluser`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT cho bảng `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

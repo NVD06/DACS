@@ -111,7 +111,6 @@ if (isset($_GET['movie_name'])) {
                     <p id="chiTietMoTa" style="color: white; margin-top: 30px;"><?php echo $movie['describe_movie']; ?></p>
                     <div class="LienKet">
                         <a href=""><h2>TRAILER</h2></a>
-
                         <a href="lichChieu.php?movie_name=<?php echo $movie['movie_name']; ?>"><h2>Đặt vé</h2></a>
                     </div>
                 </div>

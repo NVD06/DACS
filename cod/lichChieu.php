@@ -72,7 +72,7 @@ include "connectToDatabase.php"
             </div>
         </div>  
         <div class="Page_Content">
-        <?php
+            <?php
             if (isset($showtimes)) {
                 if (isset($movie_id)) {
                     echo "<div class='thoiGianChieu'>";
@@ -84,7 +84,7 @@ include "connectToDatabase.php"
 
                     // Kiểm tra và hiển thị trạng thái của phim
                     if (isset($status_movie) && $status_movie === 'comming') {
-                        echo "<h1>Phim sắp chiếu</h1>";
+                        echo "<p>Phim sắp chiếu</p>";
                     }
 
                     foreach ($showtimes as $date => $times) {
@@ -119,6 +119,12 @@ include "connectToDatabase.php"
                         echo "<h2>" . htmlspecialchars($movie) . "</h2>";
                         echo "</div>";
                         echo "<div class='gioChieu'>";
+
+                        // Kiểm tra và hiển thị trạng thái của phim
+                        if ($status_movie === 'comming') {
+                            echo "<p>Phim sắp chiếu</p>";
+                        }
+
                         foreach ($dates as $date => $times) {
                             echo "<p><strong>$date</strong></p>";
                             echo "<div class='showtimes-container'>"; // Container for showtimes
@@ -137,7 +143,6 @@ include "connectToDatabase.php"
             }
             ?>
 
-            </div>
         </div>
     </div>
 </div>

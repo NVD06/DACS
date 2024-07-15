@@ -21,8 +21,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($row['count'] > 0) {
             echo "Error: showtime ID already exists.";
         } else {
-            $sql = "INSERT INTO tblshowtime (movie_id, showtime_id, date)
-                    VALUES ('$idPhim2', '$showtime_id', '$date_time $thoiGian')";
+            $sql = "INSERT INTO tblshowtime (movie_id, showtime_id, date, thoiGian)
+                    VALUES ('$idPhim2', '$showtime_id', '$date_time', '$thoiGian')";
 
             if ($conn->query($sql) === TRUE) {
                 echo "New record created successfully";
