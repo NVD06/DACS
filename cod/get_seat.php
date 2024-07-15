@@ -15,7 +15,7 @@ if ($conn->connect_error) {
 $date = $_GET['date'];
 $time = $_GET['time'];
 
-$sql = "SELECT seat_name, status FROM tblseat WHERE screen_id = 1";
+$sql = "SELECT seat_name, status FROM tblseat WHERE screen_id = 1"; //sửa 
 $result = $conn->query($sql);
 
 $seats = [];

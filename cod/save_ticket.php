@@ -1,69 +1,66 @@
 <?php
-session_start();
-if (!isset($_SESSION['userName'])) {
-    header("Location: login.php");
-    exit();
+include "connectToDatabase.php";
+$data = json_decode(file_get_contents('php://input'), true);
+
+if ($data === null) {
+    die(json_encode(['success' => false, 'message' => 'Dữ liệu không hợp lệ']));
 }
 
-// Kết nối tới cơ sở dữ liệu
-$servername = "localhost"; 
-$username = "root"; 
-$password = ""; 
-$dbname = "dacs"; 
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-if ($conn->connect_error) {
-    die("Kết nối thất bại: " . $conn->connect_error);
+$seats = $data['seats'] ?? [];
+if (empty($seats)) {
+    die(json_encode(['success' => false, 'message' => 'Không có ghế nào được chọn']));
 }
 
-$userName = $_SESSION['userName'];
-$sql = "SELECT * FROM tblticket WHERE userName = '$userName'";
-$result = $conn->query($sql);
+$food = json_encode($data['food']);
+$total_price = floatval(str_replace(',', '', explode(' ', $data['total_price'])[0]));
 
+$sql_movie = "SELECT movie_name, image_movie FROM tblmovie LIMIT 1";
+$result_movie = $conn->query($sql_movie);
+if ($result_movie === false || $result_movie->num_rows === 0) {
+    die(json_encode(['success' => false, 'message' => 'Không tìm thấy thông tin phim hoặc lỗi truy vấn']));
+}
+
+$movie = $result_movie->fetch_assoc();
+$movie_name = $movie['movie_name'];
+$image_movie = $movie['image_movie'];
+
+$date = $data['date'];
+$time = $data['time'];
+
+$conn->begin_transaction();
+
+try {
+    foreach ($seats as $seat) {
+        $sql_ticket = $conn->prepare("INSERT INTO tblticket (movie, date, time, seat, food, total_price) 
+                                      VALUES (?, ?, ?, ?, ?, ?)");
+        if ($sql_ticket === false) {
+            throw new Exception('Lỗi chuẩn bị câu truy vấn: ' . $conn->error);
+        }
+
+        $sql_ticket->bind_param("sssssd", $movie_name, $date, $time, $seat, $food, $total_price);
+        if ($sql_ticket->execute() === false) {
+            throw new Exception('Lỗi chèn dữ liệu vào bảng tblticket: ' . $sql_ticket->error);
+        }
+
+        $sql_seat = $conn->prepare("UPDATE tblseat SET status='unavailable' WHERE seat_name=?");
+        if ($sql_seat === false) {
+            throw new Exception('Lỗi chuẩn bị câu truy vấn cập nhật ghế: ' . $conn->error);
+        }
+
+        $sql_seat->bind_param("s", $seat);
+        if ($sql_seat->execute() === false) {
+            throw new Exception('Lỗi cập nhật trạng thái ghế: ' . $sql_seat->error);
+        }
+    }
+
+    $conn->commit();
+    echo json_encode(['success' => true, 'message' => 'Đặt vé thành công']);
+
+} catch (Exception $e) {
+    $conn->rollback();
+    error_log($e->getMessage());
+    echo json_encode(['success' => false, 'message' => $e->getMessage()]);
+}
+
+$conn->close();
 ?>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vé đã đặt</title>
-    <link rel="stylesheet" href="viewticket.css">
-</head>
-<body>
-    <div class="main_body">
-        <h1>Vé đã đặt của bạn</h1>
-        <table border="1">
-            <tr>
-                <th>ID</th>
-                <th>Tên phim</th>
-                <th>Ngày</th>
-                <th>Giờ</th>
-                <th>Ghế</th>
-                <th>Thức ăn</th>
-                <th>Tổng giá</th>
-            </tr>
-            <?php
-            if ($result->num_rows > 0) {
-                while ($row = $result->fetch_assoc()) {
-                    echo "<tr>";
-                    echo "<td>" . htmlspecialchars($row['id']) . "</td>";
-                    echo "<td>" . htmlspecialchars($row['movie']) . "</td>";
-                    echo "<td>" . htmlspecialchars($row['date']) . "</td>";
-                    echo "<td>" . htmlspecialchars($row['time']) . "</td>";
-                    echo "<td>" . htmlspecialchars($row['seat']) . "</td>";
-                    echo "<td>" . htmlspecialchars($row['food']) . "</td>";
-                    echo "<td>" . htmlspecialchars($row['total_price']) . "</td>";
-                    echo "</tr>";
-                }
-            } else {
-                echo "<tr><td colspan='8'>Bạn chưa đặt vé nào.</td></tr>";
-            }
-            $conn->close();
-            ?>
-        </table>
-        <a href="index.php">Quay lại trang chủ</a>
-    </div>
-</body>
-</html>
