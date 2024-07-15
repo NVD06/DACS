@@ -26,8 +26,15 @@ include "takeShowTimeIn4.php";
                 <div>Thời lượng: <input type="number" id="thoiLuong"></div>
                 <div>Đạo diễn và diễn viên: <input type="text" name="daoDien" id="daoDien"></div>
                 <div>Ngày chiếu: <input type="date" id="ngayChieu" style="width:165px;"></div>
-                <div>Phòng chiếu: <input type="number" id="phongChieu"></div>
-                <div>Số lượng vé đã bán: <input type="number" id="soVeDaBan"></div>
+                <div>Phòng chiếu: <select name="number" id="phongChieu">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                </select></div>
                 <div>Trạng thái phim: <select name="status" id="status">
                     <option value="playing">playing</option>
                     <option value="comming">comming</option>
@@ -179,7 +186,6 @@ include "takeShowTimeIn4.php";
                 const daoDien = document.getElementById('daoDien').value;
                 const ngayChieu = document.getElementById('ngayChieu').value;
                 const phongChieu = document.getElementById('phongChieu').value;
-                const soVeDaBan = document.getElementById('soVeDaBan').value;
                 const status = document.getElementById('status').value;
                 const price = document.getElementById('price').value;
 
@@ -193,7 +199,6 @@ include "takeShowTimeIn4.php";
                 formData.append('daoDien', daoDien);
                 formData.append('ngayChieu', ngayChieu);
                 formData.append('phongChieu', phongChieu);
-                formData.append('soVeDaBan', soVeDaBan);
                 formData.append('status', status);
                 formData.append('price', price);
 
@@ -244,7 +249,6 @@ include "takeShowTimeIn4.php";
                 const daoDien = document.getElementById('daoDien').value;
                 const ngayChieu = document.getElementById('ngayChieu').value;
                 const phongChieu = document.getElementById('phongChieu').value;
-                const soVeDaBan = document.getElementById('soVeDaBan').value;
                 const status = document.getElementById('status').value;
                 const price = document.getElementById('price').value;
 
@@ -262,7 +266,6 @@ include "takeShowTimeIn4.php";
                 formData.append('daoDien', daoDien);
                 formData.append('ngayChieu', ngayChieu);
                 formData.append('phongChieu', phongChieu);
-                formData.append('soVeDaBan', soVeDaBan);
                 formData.append('status', status);
                 formData.append('price', price);
 
@@ -317,7 +320,6 @@ include "takeShowTimeIn4.php";
                             document.getElementById('daoDien').value = movieDiv.querySelector('p:nth-child(6)').textContent.replace('Đạo diễn: ', '');
                             document.getElementById('ngayChieu').value = movieDiv.querySelector('p:nth-child(7)').textContent.replace('Ngày chiếu: ', '');
                             document.getElementById('phongChieu').value = movieDiv.querySelector('p:nth-child(8)').textContent.replace('Phòng chiếu: ', '');
-                            document.getElementById('soVeDaBan').value = movieDiv.querySelector('p:nth-child(9)').textContent.replace('Số vé đã bán: ', '');
                             document.getElementById('status').value = movieDiv.querySelector('p:nth-child(10)').textContent.replace('Trạng thái: ', '');
                             document.getElementById('price').value = movieDiv.querySelector('p:nth-child(11)').textContent.replace('Giá vé: ', '');
                         });

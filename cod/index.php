@@ -31,7 +31,7 @@ if (!isLoggedIn()) {
                         <a href=""><img src="https://cinestar.com.vn/_next/image/?url=%2Fassets%2Fimages%2Fheader-logo.png&w=1920&q=75" alt="Home page logo"></a>
                         <div class="bookAndpd">
                             <a href="booking.php" class="Booking_T">ĐẶT VÉ NGAY</a>
-                            <a href="" class="Booking_F">ĐẶT BẮP NƯỚC</a>
+                            <a href="bapnuoc.php" class="Booking_F">ĐẶT BẮP NƯỚC</a>
                         </div>
                         <div class="searchAndLogin">
                             <div class="searchIcon">
@@ -68,13 +68,12 @@ if (!isLoggedIn()) {
                                 <li><a href="">Cinerstar Đà Nẵng</a></li>
                             </ul>
                         </nav>
-                        
                         <div class="second">
                             <a href="lichChieu.php"><i class="fas fa-calendar"></i> Lịch chiếu</a>
                             <a href="">Khuyến mãi</a>
-                            <a href="">Thuê sự kiện</a>
+                            <a href="events.php">Thuê sự kiện</a>
                             <a href="">Giải trí</a>
-                            <a href="">Giới thiệu</a>
+                            <a href="gioithieu.php">Giới thiệu</a>
                         </div>
                     </div>
                 </div>

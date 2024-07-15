@@ -37,15 +37,13 @@ include "connectToDatabase.php"
                                     </button>
                                 </div>
                             </div>
-                            <div class="Login">
+                            <div class="Login" >
                                 <a href="logout.php">Đăng xuất</a>
                             </div>
                             <p style="color:aqua;">
                                 <?php
                                 if (isset($_SESSION['userName'])) {
                                     echo htmlspecialchars($_SESSION['userName']);
-                                } else {
-                                    header('login.php');
                                 }
                                 ?>
                             </p>
@@ -62,17 +60,15 @@ include "connectToDatabase.php"
                                 <li><a href="">Cinerstar Đà Nẵng</a></li>
                             </ul>
                         </nav>
-                        
                         <div class="second">
-                            <a href=""><i class="fas fa-calendar"></i> Lịch chiếu</a>
+                            <a href="lichChieu.php"><i class="fas fa-calendar"></i> Lịch chiếu</a>
                             <a href="">Khuyến mãi</a>
-                            <a href="">Thuê sự kiện</a>
+                            <a href="events.php">Thuê sự kiện</a>
                             <a href="">Giải trí</a>
-                            <a href="">Giới thiệu</a>
+                            <a href="gioithieu.php">Giới thiệu</a>
                         </div>
                     </div>
                 </div>
-                
             </div>
         </div>  
         <div class="Page_Content">

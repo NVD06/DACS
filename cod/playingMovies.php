@@ -39,7 +39,6 @@
                 <div class="chose_feature">
                     <div class="Location2">
                         <nav class="first">
-                            <!-- Thêm biểu tượng địa điểm vào nút Chọn rạp -->
                             <button><i class="fas fa-map-marker-alt"></i> Chọn rạp</button>
                             <ul class="menu1">
                                 <li><a href="">Cinerstar Hồ Chí Minh</a></li>
@@ -47,21 +46,18 @@
                                 <li><a href="">Cinerstar Đà Nẵng</a></li>
                             </ul>
                         </nav>
-                        
                         <div class="second">
-                            <!-- Thêm biểu tượng lịch vào liên kết Lịch chiếu -->
-                            <a href=""><i class="fas fa-calendar"></i> Lịch chiếu</a>
+                            <a href="lichChieu.php"><i class="fas fa-calendar"></i> Lịch chiếu</a>
                             <a href="">Khuyến mãi</a>
-                            <a href="">Thuê sự kiện</a>
+                            <a href="events.php">Thuê sự kiện</a>
                             <a href="">Giải trí</a>
-                            <a href="">Giới thiệu</a>
+                            <a href="gioithieu.php">Giới thiệu</a>
                         </div>
                     </div>
                 </div>
-                
             </div>
         </div> 
-        <div style="text-transform: uppercase;color: white;font-size: 30px;margin-top: 40px;">phim đang chiếu</div> 
+        <div style="text-transform: uppercase;color: white;font-size: 30px;margin-top: 40px;">Phim đang chiếu</div> 
         <div class="Page_Content" style="display: flex;width: 80%;flex-wrap: wrap;margin-top: 40px;margin-bottom: 100px; ">
         <?php
         include "connectToDatabase.php";
