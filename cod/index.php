@@ -44,11 +44,15 @@ if (!isLoggedIn()) {
                                     </button>
                                 </div>
                             </div>
-                            <div >
+                            <div>
                                 <?php if (isLoggedIn()): ?>
-                                    <div style="display:flex;">
-                                    <div class="Login"><a href="logout.php">Đăng xuất</a></div>
-                                    <p style="color:aqua;"><?php echo htmlspecialchars($_SESSION['userName']); ?></p>
+                                    <div class="dropdown" style="display:flex;">
+                                        <p style="color:aqua; cursor:pointer;"><?php echo htmlspecialchars($_SESSION['userName']); ?></p>
+                                        <div class="dropdown-content">
+                                            <a href="profile.php">Thông tin cá nhân</a>
+                                            <a href="settings.php">Hóa đơn</a>
+                                            <a href="logout.php">Đăng xuất</a>
+                                        </div>
                                     </div>
                                 <?php else: ?>
                                     <div class="Login"> <a href="login.php">Đăng nhập</a></div>

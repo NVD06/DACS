@@ -1,7 +1,27 @@
 <?php
 session_start();
 include "takeSchedule.php";
-include "connectToDatabase.php"
+include "connectToDatabase.php";
+
+function isLoggedIn() {
+    return isset($_SESSION['userName']);
+}
+
+if (!isLoggedIn()) {
+    $_SESSION['redirect_url'] = $_SERVER['REQUEST_URI'];
+    header("Location: login.php?redirect_url=" . urlencode($_SERVER['REQUEST_URI']));
+    exit;
+}
+
+if (isset($_GET['movie_name'])) {
+    $movie_name = $_GET['movie_name'];
+    // Perform actions to show movie schedule
+    // ...
+} else {
+    echo "No movie name provided";
+    exit;
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -37,16 +57,20 @@ include "connectToDatabase.php"
                                     </button>
                                 </div>
                             </div>
-                            <div class="Login" >
-                                <a href="logout.php">Đăng xuất</a>
+                            <div>
+                                <?php if (isLoggedIn()): ?>
+                                    <div class="dropdown" style="display:flex;">
+                                        <p style="color:aqua; cursor:pointer;"><?php echo htmlspecialchars($_SESSION['userName']); ?></p>
+                                        <div class="dropdown-content">
+                                            <a href="profile.php">Thông tin cá nhân</a>
+                                            <a href="settings.php">Hóa đơn</a>
+                                            <a href="logout.php">Đăng xuất</a>
+                                        </div>
+                                    </div>
+                                <?php else: ?>
+                                    <div class="Login"> <a href="login.php">Đăng nhập</a></div>
+                                <?php endif; ?>
                             </div>
-                            <p style="color:aqua;">
-                                <?php
-                                if (isset($_SESSION['userName'])) {
-                                    echo htmlspecialchars($_SESSION['userName']);
-                                }
-                                ?>
-                            </p>
                         </div>
                     </div>
                 </div>

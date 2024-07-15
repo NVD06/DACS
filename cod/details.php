@@ -1,6 +1,15 @@
 <?php
 include "connectToDatabase.php";
 session_start();
+function isLoggedIn() {
+    return isset($_SESSION['userName']);
+}
+function getCurrentUrl() {
+    return "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+}
+if (!isLoggedIn()) {
+    $_SESSION['redirect_url'] = getCurrentUrl();
+}
 if (isset($_GET['movie_name'])) {
     $movie_name = $_GET['movie_name'];
     $sql = "SELECT * FROM tblmovie WHERE movie_name = ?";
@@ -37,6 +46,15 @@ if (isset($_GET['movie_name'])) {
     <title>Chi Tiết Phim</title>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+    <script>
+    function checkLogin(event, movieName) {
+        <?php if (!isLoggedIn()): ?>
+            event.preventDefault();
+            alert('Please log in to book tickets.');
+            window.location.href = 'login.php?redirect_url=' + encodeURIComponent(window.location.href + '&movie_name=' + movieName);
+        <?php endif; ?>
+    }
+    </script>
 </head>
 <body background="" style="background-color: brown;">
     <div class="main_body">
@@ -60,16 +78,20 @@ if (isset($_GET['movie_name'])) {
                                     </button>
                                 </div>
                             </div>
-                            <div class="Login" >
-                                <a href="logout.php">Đăng xuất</a>
+                            <div>
+                                <?php if (isLoggedIn()): ?>
+                                    <div class="dropdown" style="display:flex;">
+                                        <p style="color:aqua; cursor:pointer;"><?php echo htmlspecialchars($_SESSION['userName']); ?></p>
+                                        <div class="dropdown-content">
+                                            <a href="profile.php">Thông tin cá nhân</a>
+                                            <a href="settings.php">Hóa đơn</a>
+                                            <a href="logout.php">Đăng xuất</a>
+                                        </div>
+                                    </div>
+                                <?php else: ?>
+                                    <div class="Login"> <a href="login.php">Đăng nhập</a></div>
+                                <?php endif; ?>
                             </div>
-                            <p style="color:aqua;">
-                                <?php
-                                if (isset($_SESSION['userName'])) {
-                                    echo htmlspecialchars($_SESSION['userName']);
-                                }
-                                ?>
-                            </p>
                         </div>
                     </div>
                 </div>
@@ -111,7 +133,9 @@ if (isset($_GET['movie_name'])) {
                     <p id="chiTietMoTa" style="color: white; margin-top: 30px;"><?php echo $movie['describe_movie']; ?></p>
                     <div class="LienKet">
                         <a href=""><h2>TRAILER</h2></a>
-                        <a href="lichChieu.php?movie_name=<?php echo $movie['movie_name']; ?>"><h2>Đặt vé</h2></a>
+                        <!-- <a href="lichChieu.php?movie_name=<?php echo $movie['movie_name']; ?>"><h2>Đặt vé</h2></a> -->
+                        <a href="lichChieu.php?movie_name=<?php echo urlencode($movie['movie_name']); ?>" onclick="checkLogin(event, '<?php echo addslashes($movie['movie_name']); ?>')"><h2>Đặt vé</h2></a>
+
                     </div>
                 </div>
             </div>

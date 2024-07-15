@@ -1,6 +1,15 @@
 <?php
 include "connectToDatabase.php";
-
+session_start();
+function isLoggedIn() {
+    return isset($_SESSION['userName']);
+}
+function getCurrentUrl() {
+    return "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+}
+if (!isLoggedIn()) {
+    $_SESSION['redirect_url'] = getCurrentUrl();
+}
 // Kiểm tra kết nối
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
@@ -27,6 +36,15 @@ $conn->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="datve.css">
     <title>Đăng nhập</title>    
+    <script>
+    function checkLogin(event, movieName) {
+        <?php if (!isLoggedIn()): ?>
+            event.preventDefault();
+            alert('Please log in to book tickets.');
+            window.location.href = 'login.php?redirect_url=' + encodeURIComponent(window.location.href + '&movie_name=' + movieName);
+        <?php endif; ?>
+    }
+    </script>
 </head>
 <body background="" style="background-color: brown;">
     <div class="main_body">
@@ -52,8 +70,19 @@ $conn->close();
                                     </form>
                                 </div>
                             </div>
-                            <div class="Login">
-                                <a href="">Đăng nhập</a>
+                            <div>
+                                <?php if (isLoggedIn()): ?>
+                                    <div class="dropdown" style="display:flex;">
+                                        <p style="color:aqua; cursor:pointer;"><?php echo htmlspecialchars($_SESSION['userName']); ?></p>
+                                        <div class="dropdown-content">
+                                            <a href="profile.php">Thông tin cá nhân</a>
+                                            <a href="settings.php">Hóa đơn</a>
+                                            <a href="logout.php">Đăng xuất</a>
+                                        </div>
+                                    </div>
+                                <?php else: ?>
+                                    <div class="Login"> <a href="login.php">Đăng nhập</a></div>
+                                <?php endif; ?>
                             </div>
                         </div>
                     </div>
@@ -93,7 +122,7 @@ $conn->close();
                         <div class="content">
                             <div class="name"><?php echo $movie['movie_name']; ?></div>
                             <div class="des"><?php echo $movie['describe_movie']; ?></div>
-                            <button><a style="color: black;" href="lichchieu.php?movie_name=<?php echo $movie['movie_name']; ?>">Đặt Vé</a></button>
+                            <button><a style="color: black;" href="lichChieu.php?movie_name=<?php echo urlencode($movie['movie_name']); ?>" onclick="checkLogin(event, '<?php echo addslashes($movie['movie_name']); ?>')">Đặt Vé</a></button>
                         </div>
                     </div>
                     <?php endforeach; ?>

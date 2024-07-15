@@ -1,3 +1,26 @@
+<?php
+session_start();
+include "connectToDatabase.php";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    // Validate the user credentials
+    // ...
+
+    // Assuming credentials are valid
+    $_SESSION['userName'] = $username;
+
+    // Redirect to the intended page
+    if (isset($_GET['redirect_url'])) {
+        $redirect_url = $_GET['redirect_url'];
+        header("Location: $redirect_url");
+    } else {
+        header("Location: index.php");
+    }
+    exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

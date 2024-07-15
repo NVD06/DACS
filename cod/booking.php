@@ -106,9 +106,10 @@ $conn->close();
         const numTicketsSelect = document.getElementById('num-tickets');
         const totalPriceElem = document.querySelector('.total-price span');
         const btnBook = document.querySelector('.btn-book');
+        const foodItems = document.querySelectorAll('.food-item');
 
         let selectedSeats = [];
-        let selectedFood = {};
+        let selectedFood = {'COMBO SOLO': 0, 'COMBO COUPLE': 0, 'COMBO PARTY': 0};
         let ticketCount = parseInt(numTicketsSelect.value);
 
         const foodPrices = {
@@ -164,7 +165,26 @@ $conn->close();
             }
         });
 
-        // Event listeners for food items remain the same
+        foodItems.forEach(item => {
+            const minusBtn = item.querySelector('.minus');
+            const plusBtn = item.querySelector('.plus');
+            const quantityElem = item.querySelector('span');
+            const foodName = item.querySelector('div:nth-child(2)').textContent.trim();
+
+            plusBtn.addEventListener('click', () => {
+                selectedFood[foodName]++;
+                quantityElem.textContent = selectedFood[foodName];
+                updateTotalPrice();
+            });
+
+            minusBtn.addEventListener('click', () => {
+                if (selectedFood[foodName] > 0) {
+                    selectedFood[foodName]--;
+                    quantityElem.textContent = selectedFood[foodName];
+                    updateTotalPrice();
+                }
+            });
+        });
 
         btnBook.addEventListener('click', () => {
             if (selectedSeats.length !== ticketCount) {
@@ -190,7 +210,7 @@ $conn->close();
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
-                    alert('Đặt vé thành công');
+                    alert('Đặt vé thành công. Hóa đơn của bạn:\n' + JSON.stringify(data.receipt, null, 2));
                     loadSeats(<?= json_encode($screen_id) ?>);
                 } else {
                     alert('Đặt vé thất bại: ' + data.message);
