@@ -140,3 +140,27 @@ if (isset($_GET['movie_name'])) {
                                     <li class="footer-list-item"><a href="#">Tuyển dụng</a></li>
                                     <li class="footer-list-item"><a href="#">Liên hệ quảng cáo</a></li>
                                    
+                                    <li class="footer-list-item"><a href="#">Liên hệ công ty</a></li>
+                                </ul>
+                            </div>
+                            <div class="footer-item col col-4">
+                                <p class="footer-title">điều khoản và quy định</p>
+                                <ul class="footer-list-item">
+                                    <li class="footer-list-item"><a href="#">Điều khoản chung</a></li>
+                                    <li class="footer-list-item"><a href="#">Điều khoản giao dịch</a></li>
+                                    <li class="footer-list-item"><a href="#">Chính sách thanh toán</a></li>
+                                    <li class="footer-list-item"><a href="#">Chính sách bảo mật</a></li>
+                                    <li class="footer-list-item"><a href="#">Câu hỏi thường gặp</a></li>
+                                    <li class="footer-list-item"><a href="#">Kết nối</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="footer-copyright">&copy; 2022 <a href="https://cinestar.com.vn" target="_self">Cinestar.com.vn</a>. All rights reserved.</div>
+                    </div>
+                    </div>
+                </div>
+            </div> 
+        </div>
+    </div>
+</body>
+</html>

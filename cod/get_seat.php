@@ -1,22 +1,17 @@
 <?php
 header('Content-Type: application/json');
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "dacs";
+include "connectToDatabase.php";
 
-$conn = new mysqli($servername, $username, $password, $dbname);
+// Lấy screen_id từ URL
+$screen_id = $_GET['screen_id'];
 
-if ($conn->connect_error) {
-    die(json_encode(['error' => 'Database connection failed: ' . $conn->connect_error]));
-}
-
-$date = $_GET['date'];
-$time = $_GET['time'];
-
-$sql = "SELECT seat_name, status FROM tblseat WHERE screen_id = 1"; //sửa 
-$result = $conn->query($sql);
+// Câu truy vấn để lấy thông tin chỗ ngồi dựa trên screen_id
+$sql = "SELECT seat_name, status FROM tblseat WHERE screen_id = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $screen_id);
+$stmt->execute();
+$result = $stmt->get_result();
 
 $seats = [];
 if ($result->num_rows > 0) {
@@ -27,5 +22,6 @@ if ($result->num_rows > 0) {
 
 echo json_encode(['seats' => $seats]);
 
+$stmt->close();
 $conn->close();
 ?>

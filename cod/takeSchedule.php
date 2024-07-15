@@ -8,13 +8,13 @@ if ($movie_name) {
     $movie_name = mysqli_real_escape_string($conn, $movie_name);
 
     // Lấy movie_id và image_movie từ tblmovie dựa trên movie_name
-    $stmt = $conn->prepare("SELECT movie_id, image_movie,status_movie FROM tblmovie WHERE movie_name = ?");
+    $stmt = $conn->prepare("SELECT movie_id, image_movie,status_movie,screen_id FROM tblmovie WHERE movie_name = ?");
     if ($stmt === false) {
         die('Prepare failed: ' . htmlspecialchars($conn->error));
     }
     $stmt->bind_param("s", $movie_name);
     $stmt->execute();
-    $stmt->bind_result($movie_id, $image_movie,$status_movie);
+    $stmt->bind_result($movie_id, $image_movie,$status_movie,$screen_id);
     $stmt->fetch();
     $stmt->close();
 }
@@ -41,7 +41,7 @@ if (isset($movie_id)) {
     $stmt->close();
 } else {
     // Nếu không có movie_name hoặc movie_id không tồn tại, lấy toàn bộ thông tin từ tblshowtime và tblmovie
-    $stmt = $conn->prepare("SELECT tblmovie.movie_name, tblmovie.image_movie, tblshowtime.thoiGian, tblshowtime.date 
+    $stmt = $conn->prepare("SELECT tblmovie.movie_name, tblmovie.image_movie, tblshowtime.thoiGian, tblshowtime.date , tblmovie.screen_id
                             FROM tblshowtime 
                             JOIN tblmovie ON tblshowtime.movie_id = tblmovie.movie_id");
     if ($stmt === false) {

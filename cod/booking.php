@@ -1,44 +1,34 @@
 <?php
 include "connectToDatabase.php";
-$conn = new mysqli($servername, $username, $password, $dbname);
 
-if ($conn->connect_error) {
-    die("Kết nối thất bại: " . $conn->connect_error);
-}
+$movie_name = $_GET['movie_name'];
+$thoiGian = $_GET['thoiGian'];
+$date = $_GET['date'];
+$screen_id = $_GET['screen_id'];
+
+// Lấy giá phim từ cơ sở dữ liệu
+$sql = "SELECT price FROM tblmovie WHERE movie_name = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("s", $movie_name);
+$stmt->execute();
+$stmt->bind_result($moviePrice);
+$stmt->fetch();
+$stmt->close();
+
+// Lấy thông tin ghế từ cơ sở dữ liệu
+$sql = "SELECT seat_name, status FROM tblseat WHERE screen_id = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $screen_id);
+$stmt->execute();
+$result = $stmt->get_result();
 
 $seats = [];
-
-$sql = "SELECT * FROM tblseat";
-$result = $conn->query($sql);
-
-if ($result) {
-    if ($result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) {
-            $seats[] = $row;
-        }
-    } else {
-        echo "Không tìm thấy ghế nào";
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $seats[] = $row;
     }
-} else {
-    echo "Lỗi truy vấn: " . $conn->error;
 }
-
-$moviePrice = 0;
-
-$sql = "SELECT movie_name, price FROM tblmovie";
-$result = $conn->query($sql);
-
-if ($result) {
-    if ($result->num_rows > 0) {
-        $row = $result->fetch_assoc();
-        $moviePrice = $row['price'];
-    } else {
-        echo "Không tìm thấy giá phim";
-    }
-} else {
-    echo "Lỗi truy vấn: " . $conn->error;
-}
-
+$stmt->close();
 $conn->close();
 ?>
 
@@ -53,7 +43,11 @@ $conn->close();
 </head>
 <body>
     <div class="container">
-    <h1>Vui lòng lựa chọn thông tin</h1>
+        <h1>Tên phim: <?php echo htmlspecialchars($movie_name); ?></h1>
+        <h1>Ngày chiếu: <?php echo htmlspecialchars($date); ?></h1>
+        <h1>Giờ chiếu: <?php echo htmlspecialchars($thoiGian); ?></h1>
+        <h1>Phòng chiếu: <?php echo htmlspecialchars($screen_id); ?></h1>
+        <h1>Vui lòng lựa chọn thông tin</h1>
         <div class="book-tickets">
             <div class="ticket-selection">
                 <label for="num-tickets">Số lượng vé:</label>
@@ -64,12 +58,12 @@ $conn->close();
                 </select>
             </div>
             <div class="seat-selection">
-                <div class="section-title">CHỌN GHế</div>
+                <div class="section-title">CHỌN GHẾ</div>
                 <div class="seat-screen"><h1>Màn Hình</h1></div>
-                <div class="seat-grid">
+                <div class="seat-grid" id="seatGrid">
                     <?php foreach ($seats as $seat): ?>
                     <div class="seat <?= $seat['status'] == 'available' ? '' : 'unavailable'; ?>">
-                        <?= $seat['seat_name']; ?>
+                        <?= htmlspecialchars($seat['seat_name']); ?>
                     </div>
                     <?php endforeach; ?>
                 </div>
@@ -106,10 +100,9 @@ $conn->close();
             <button class="btn-book">Đặt Vé</button>
         </div>
     </div>
-    </div>
 
     <script>
-        const seatGrid = document.querySelector('.seat-grid');
+        const seatGrid = document.getElementById('seatGrid');
         const numTicketsSelect = document.getElementById('num-tickets');
         const totalPriceElem = document.querySelector('.total-price span');
         const btnBook = document.querySelector('.btn-book');
@@ -133,8 +126,8 @@ $conn->close();
             totalPriceElem.textContent = totalPrice.toLocaleString('vi-VN') + ' VNĐ';
         }
 
-        function loadSeats() {
-            fetch(`get_seats.php`)
+        function loadSeats(screen_id) {
+            fetch(`get_seats.php?screen_id=${screen_id}`)
                 .then(response => response.json())
                 .then(data => {
                     seatGrid.innerHTML = '';
@@ -180,8 +173,8 @@ $conn->close();
             }
 
             const bookingData = {
-                date: new Date().toISOString().split('T')[0],
-                time: new Date().toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' }),
+                date: <?= json_encode($date) ?>,
+                time: <?= json_encode($thoiGian) ?>,
                 seats: selectedSeats,
                 food: selectedFood,
                 total_price: totalPriceElem.textContent
@@ -198,7 +191,7 @@ $conn->close();
             .then(data => {
                 if (data.success) {
                     alert('Đặt vé thành công');
-                    loadSeats();
+                    loadSeats(<?= json_encode($screen_id) ?>);
                 } else {
                     alert('Đặt vé thất bại: ' + data.message);
                 }
@@ -206,7 +199,8 @@ $conn->close();
             .catch(error => console.error('Lỗi khi đặt vé:', error));
         });
 
-        loadSeats();
+        // Gọi hàm loadSeats với screen_id khi trang được tải
+        loadSeats(<?= json_encode($screen_id) ?>);
     </script>
 </body>
 </html>

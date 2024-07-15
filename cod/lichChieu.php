@@ -92,7 +92,7 @@ include "connectToDatabase.php"
                         echo "<div class='showtimes-container'>"; // Container for showtimes
                         foreach ($times as $time) {
                             echo "<div class='showtime-item'>";
-                            echo "<p><a href='details.php?time=" . urlencode($time) . "&date=" . urlencode($date) . "&movie_name=" . urlencode($movie_name) . "'>$time</a></p>";
+                            echo "<p><a href='booking.php?thoiGian=" . urlencode($time) . "&date=" . urlencode($date) . "&screen_id=" . urlencode($screen_id)  . "&movie_name=" . urlencode($movie_name) . "'>$time</a></p>";
                             echo "</div>";
                         }
                         echo "</div>";
@@ -130,7 +130,7 @@ include "connectToDatabase.php"
                             echo "<div class='showtimes-container'>"; // Container for showtimes
                             foreach ($times as $time) {
                                 echo "<div class='showtime-item'>";
-                                echo "<p><a href='details.php?time=" . urlencode($time) . "&date=" . urlencode($date) . "&movie_name=" . urlencode($movie) . "'>$time</a></p>";
+                                echo "<p><a href='details.php?thoiGian=" . urlencode($time) . "&date=" . urlencode($date) . "%screen_id" . urlencode($screen_id) . "&movie_name=" . urlencode($movie) . "'>$time</a></p>";
                                 echo "</div>";
                             }
                             echo "</div>";
