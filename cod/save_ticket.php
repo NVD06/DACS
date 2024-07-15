@@ -6,10 +6,15 @@ if ($data === null) {
     die(json_encode(['success' => false, 'message' => 'Dữ liệu không hợp lệ']));
 }
 
+<<<<<<< HEAD
 $seats = $data['seats'] ?? [];
 if (empty($seats)) {
     die(json_encode(['success' => false, 'message' => 'Không có ghế nào được chọn']));
 }
+=======
+// Kết nối tới cơ sở dữ liệu
+include "connectToDatabase";
+>>>>>>> 06cd1b6430c5ebdf8f49515c7daf71a57d69fb52
 
 $food = json_encode($data['food']);
 $total_price = floatval(str_replace(',', '', explode(' ', $data['total_price'])[0]));

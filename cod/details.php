@@ -1,6 +1,6 @@
 <?php
 include "connectToDatabase.php";
-
+session_start();
 if (isset($_GET['movie_name'])) {
     $movie_name = $_GET['movie_name'];
     $sql = "SELECT * FROM tblmovie WHERE movie_name = ?";
@@ -46,8 +46,8 @@ if (isset($_GET['movie_name'])) {
                     <div class="viTri">
                         <a href="index.php"><img src="https://cinestar.com.vn/_next/image/?url=%2Fassets%2Fimages%2Fheader-logo.png&w=1920&q=75" alt="Home page logo"></a>
                         <div class="bookAndpd">
-                            <a href="" class="Booking_T">ĐẶT VÉ NGAY</a>
-                            <a href="" class="Booking_F">ĐẶT BẮP NƯỚC</a>
+                            <a href="datve.php" class="Booking_T">ĐẶT VÉ NGAY</a>
+                            <a href="bapnuoc.php" class="Booking_F">ĐẶT BẮP NƯỚC</a>
                         </div>
                         <div class="searchAndLogin">
                             <div class="searchIcon">
@@ -60,9 +60,16 @@ if (isset($_GET['movie_name'])) {
                                     </button>
                                 </div>
                             </div>
-                            <div class="Login">
+                            <div class="Login" >
                                 <a href="logout.php">Đăng xuất</a>
                             </div>
+                            <p style="color:aqua;">
+                                <?php
+                                if (isset($_SESSION['userName'])) {
+                                    echo htmlspecialchars($_SESSION['userName']);
+                                }
+                                ?>
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -104,10 +111,6 @@ if (isset($_GET['movie_name'])) {
                     <p id="chiTietMoTa" style="color: white; margin-top: 30px;"><?php echo $movie['describe_movie']; ?></p>
                     <div class="LienKet">
                         <a href=""><h2>TRAILER</h2></a>
-<<<<<<< HEAD
-=======
-
->>>>>>> e8f8478b855a7bd76d333f8883779e4b87cdd822
                         <a href="lichChieu.php?movie_name=<?php echo $movie['movie_name']; ?>"><h2>Đặt vé</h2></a>
                     </div>
                 </div>
