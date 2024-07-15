@@ -1,3 +1,16 @@
+<?php
+session_start();
+function isLoggedIn() {
+    return isset($_SESSION['userName']);
+}
+function getCurrentUrl() {
+    return "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+}
+if (!isLoggedIn()) {
+    $_SESSION['redirect_url'] = getCurrentUrl();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,7 +18,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="bapnuoc.css">
-    <title>Đăng nhập</title>
+    <title>Home Page</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
 </head>
 <body background="" style="background-color: brown;">
     <div class="main_body">
@@ -15,8 +30,8 @@
                     <div class="viTri">
                         <a href=""><img src="https://cinestar.com.vn/_next/image/?url=%2Fassets%2Fimages%2Fheader-logo.png&w=1920&q=75" alt="Home page logo"></a>
                         <div class="bookAndpd">
-                            <a href="" class="Booking_T">ĐẶT VÉ NGAY</a>
-                            <a href="" class="Booking_F">ĐẶT BẮP NƯỚC</a>
+                            <a href="datve.php" class="Booking_T">ĐẶT VÉ NGAY</a>
+                            <a href="bapnuoc.php" class="Booking_F">ĐẶT BẮP NƯỚC</a>
                         </div>
                         <div class="searchAndLogin">
                             <div class="searchIcon">
@@ -29,16 +44,23 @@
                                     </button>
                                 </div>
                             </div>
-                            <div class="Login">
-                                <a href="">Đăng nhập</a>
+                            <div >
+                                <?php if (isLoggedIn()): ?>
+                                    <div style="display:flex;">
+                                    <div class="Login"><a href="logout.php">Đăng xuất</a></div>
+                                    <p style="color:aqua;"><?php echo htmlspecialchars($_SESSION['userName']); ?></p>
+                                    </div>
+                                <?php else: ?>
+                                    <div class="Login"> <a href="login.php">Đăng nhập</a></div>
+                                <?php endif; ?>
                             </div>
+                            
                         </div>
                     </div>
                 </div>
                 <div class="chose_feature">
                     <div class="Location2">
                         <nav class="first">
-                            <!-- Thêm biểu tượng địa điểm vào nút Chọn rạp -->
                             <button><i class="fas fa-map-marker-alt"></i> Chọn rạp</button>
                             <ul class="menu1">
                                 <li><a href="">Cinerstar Hồ Chí Minh</a></li>
@@ -46,20 +68,18 @@
                                 <li><a href="">Cinerstar Đà Nẵng</a></li>
                             </ul>
                         </nav>
-                        
                         <div class="second">
-                            <!-- Thêm biểu tượng lịch vào liên kết Lịch chiếu -->
-                            <a href=""><i class="fas fa-calendar"></i> Lịch chiếu</a>
+                            <a href="lichChieu.php"><i class="fas fa-calendar"></i> Lịch chiếu</a>
                             <a href="">Khuyến mãi</a>
-                            <a href="">Thuê sự kiện</a>
+                            <a href="events.php">Thuê sự kiện</a>
                             <a href="">Giải trí</a>
-                            <a href="">Giới thiệu</a>
+                            <a href="gioithieu.php">Giới thiệu</a>
                         </div>
                     </div>
                 </div>
                 
             </div>
-        </div>  
+        </div> 
         <div class="Page_Content">
             <div>
                 <div>

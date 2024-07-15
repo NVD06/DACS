@@ -8,13 +8,13 @@ if ($movie_name) {
     $movie_name = mysqli_real_escape_string($conn, $movie_name);
 
     // Lấy movie_id và image_movie từ tblmovie dựa trên movie_name
-    $stmt = $conn->prepare("SELECT movie_id, image_movie FROM tblmovie WHERE movie_name = ?");
+    $stmt = $conn->prepare("SELECT movie_id, image_movie,status_movie FROM tblmovie WHERE movie_name = ?");
     if ($stmt === false) {
         die('Prepare failed: ' . htmlspecialchars($conn->error));
     }
     $stmt->bind_param("s", $movie_name);
     $stmt->execute();
-    $stmt->bind_result($movie_id, $image_movie);
+    $stmt->bind_result($movie_id, $image_movie,$status_movie);
     $stmt->fetch();
     $stmt->close();
 }

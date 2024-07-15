@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-    <link rel="stylesheet" href="pdc.css">
+    <link rel="stylesheet" href="pdc.css">z
     <title>Phim đang chiếu</title>
 </head>
 <body background="" style="background-color: brown;">
@@ -16,8 +16,8 @@
                     <div class="viTri">
                         <a href="index.php"><img src="https://cinestar.com.vn/_next/image/?url=%2Fassets%2Fimages%2Fheader-logo.png&w=1920&q=75" alt="Home page logo"></a>
                         <div class="bookAndpd">
-                            <a href="" class="Booking_T">ĐẶT VÉ NGAY</a>
-                            <a href="" class="Booking_F">ĐẶT BẮP NƯỚC</a>
+                            <a href="datve.php" class="Booking_T">ĐẶT VÉ NGAY</a>
+                            <a href="bapnuoc.php" class="Booking_F">ĐẶT BẮP NƯỚC</a>
                         </div>
                         <div class="searchAndLogin">
                             <div class="searchIcon">

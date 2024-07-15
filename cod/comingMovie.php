@@ -1,3 +1,6 @@
+<?php 
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,8 +19,8 @@
                     <div class="viTri">
                         <a href="index.php"><img src="https://cinestar.com.vn/_next/image/?url=%2Fassets%2Fimages%2Fheader-logo.png&w=1920&q=75" alt="Home page logo"></a>
                         <div class="bookAndpd">
-                            <a href="" class="Booking_T">ĐẶT VÉ NGAY</a>
-                            <a href="" class="Booking_F">ĐẶT BẮP NƯỚC</a>
+                            <a href="datve.php" class="Booking_T">ĐẶT VÉ NGAY</a>
+                            <a href="bapnuoc.php" class="Booking_F">ĐẶT BẮP NƯỚC</a>
                         </div>
                         <div class="searchAndLogin">
                             <div class="searchIcon">
@@ -30,9 +33,16 @@
                                     </button>
                                 </div>
                             </div>
-                            <div class="Login">
-                                <a href="">Đăng nhập</a>
+                            <div class="Login" >
+                                <a href="logout.php">Đăng xuất</a>
                             </div>
+                            <p style="color:aqua;">
+                                <?php
+                                if (isset($_SESSION['userName'])) {
+                                    echo htmlspecialchars($_SESSION['userName']);
+                                }
+                                ?>
+                            </p>
                         </div>
                     </div>
                 </div>
