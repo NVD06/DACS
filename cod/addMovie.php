@@ -10,7 +10,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $daoDien = $_POST['daoDien'];
     $ngayChieu = $_POST['ngayChieu'];
     $phongChieu = $_POST['phongChieu'];
-    $soVeDaBan = $_POST['soVeDaBan'];
     $status = $_POST['status'];
     $price = $_POST['price'];
 
@@ -21,8 +20,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($row['count'] > 0) {
         echo "Error: Movie ID already exists.";
     } else {
-        $sql = "INSERT INTO tblmovie (movie_id, movie_name, image_movie, describe_movie, thoiLuong, daoDien, screen_id, date, number_tickets_sold, status_movie, price)
-                VALUES ('$idPhim', '$tenPhim', '$fileImage', '$Mota', '$thoiLuong', '$daoDien', '$phongChieu', '$ngayChieu', '$soVeDaBan', '$status', '$price')";
+        $sql = "INSERT INTO tblmovie (movie_id, movie_name, image_movie, describe_movie, thoiLuong, daoDien, screen_id, date, status_movie, price)
+                VALUES ('$idPhim', '$tenPhim', '$fileImage', '$Mota', '$thoiLuong', '$daoDien', '$phongChieu', '$ngayChieu', '$status', '$price')";
 
         if ($conn->query($sql) === TRUE) {
             echo "New record created successfully";

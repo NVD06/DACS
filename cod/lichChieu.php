@@ -1,6 +1,7 @@
 <?php
 session_start();
-include "takeSchedule.php"
+include "takeSchedule.php";
+include "connectToDatabase.php"
 ?>
 
 <!DOCTYPE html>
@@ -36,15 +37,13 @@ include "takeSchedule.php"
                                     </button>
                                 </div>
                             </div>
-                            <div class="Login">
+                            <div class="Login" >
                                 <a href="logout.php">Đăng xuất</a>
                             </div>
                             <p style="color:aqua;">
                                 <?php
                                 if (isset($_SESSION['userName'])) {
                                     echo htmlspecialchars($_SESSION['userName']);
-                                } else {
-                                    header('login.php');
                                 }
                                 ?>
                             </p>
@@ -61,20 +60,19 @@ include "takeSchedule.php"
                                 <li><a href="">Cinerstar Đà Nẵng</a></li>
                             </ul>
                         </nav>
-                        
                         <div class="second">
-                            <a href=""><i class="fas fa-calendar"></i> Lịch chiếu</a>
+                            <a href="lichChieu.php"><i class="fas fa-calendar"></i> Lịch chiếu</a>
                             <a href="">Khuyến mãi</a>
-                            <a href="">Thuê sự kiện</a>
+                            <a href="events.php">Thuê sự kiện</a>
                             <a href="">Giải trí</a>
-                            <a href="">Giới thiệu</a>
+                            <a href="gioithieu.php">Giới thiệu</a>
                         </div>
                     </div>
                 </div>
-                
             </div>
         </div>  
         <div class="Page_Content">
+<<<<<<< HEAD
             <div class="thoiGianChieu">
         <div class="anhPhim">
             <img src="<?php echo htmlspecialchars($image_movie ?? 'images/default_image.jpg'); ?>" alt="">
@@ -100,16 +98,70 @@ include "takeSchedule.php"
                         foreach ($times as $time) {
                             // Sử dụng thẻ <a> với thuộc tính href
                             echo "<a href='details.php?time=" . urlencode($time) . "&date=" . urlencode($date) . "&movie_name=" . urlencode($movie_name) . "'>$time</a>";
+=======
+                <?php
+                    if (isset($showtimes)) {
+                        if (isset($movie_id)) {
+                            echo "<div class='thoiGianChieu'>";
+                            echo "<div class='anhPhim'>";
+                            echo "<img src='" . htmlspecialchars($image_movie ?? 'images/default_image.jpg') . "' alt=''>";
+                            echo "<h2>" . htmlspecialchars($movie_name ?? 'Tất cả các phim') . "</h2>";
+                            echo "</div>";
+                            echo "<div class='gioChieu'>";
+                            foreach ($showtimes as $date => $times) {
+                                echo "<p><strong>$date</strong></p>";
+                                echo "<div class='showtimes-container'>"; // Container for showtimes
+                                foreach ($times as $time) {
+                                    echo "<div class='showtime-item'>";
+                                    echo "<p><a href='details.php?time=" . urlencode($time) . "&date=" . urlencode($date) . "&movie_name=" . urlencode($movie_name) . "'>$time</a></p>";
+                                    echo "</div>";
+                                }
+                                echo "</div>";
+                                echo "<br>";
+                            }
+                            echo "</div>";
+                            echo "</div>";
+                        } else {
+                            foreach ($showtimes as $movie => $dates) {
+                                // Lấy thông tin phim từ CSDL dựa trên $movie
+                                $stmt = $conn->prepare("SELECT image_movie FROM tblmovie WHERE movie_name = ?");
+                                if ($stmt === false) {
+                                    die('Prepare failed: ' . htmlspecialchars($conn->error));
+                                }
+                                $stmt->bind_param("s", $movie);
+                                $stmt->execute();
+                                $stmt->bind_result($image_movie);
+                                $stmt->fetch();
+                                $stmt->close();
+                        
+                                echo "<div class='thoiGianChieu'>";
+                                echo "<div class='anhPhim'>";
+                                echo "<img src='" . htmlspecialchars($image_movie ?? 'images/default_image.jpg') . "' alt=''>";
+                                echo "<h2>" . htmlspecialchars($movie) . "</h2>";
+                                echo "</div>";
+                                echo "<div class='gioChieu'>";
+                                foreach ($dates as $date => $times) {
+                                    echo "<p><strong>$date</strong></p>";
+                                    echo "<div class='showtimes-container'>"; // Container for showtimes
+                                    foreach ($times as $time) {
+                                        echo "<div class='showtime-item'>";
+                                        echo "<p><a href='details.php?time=" . urlencode($time) . "&date=" . urlencode($date) . "&movie_name=" . urlencode($movie) . "'>$time</a></p>";
+                                        echo "</div>";
+                                    }
+                                    echo "</div>";
+                                    echo "<br>";
+                                }
+                                echo "</div>";
+                                echo "</div>";
+                            }
+>>>>>>> e8f8478b855a7bd76d333f8883779e4b87cdd822
                         }
-                        echo "<br>";
                     }
-                }
-            }
-        }
-        ?>
+                ?>
+            </div>
         </div>
     </div>
-        </div>
+</div>
     </div>
         </div>
         <div class="end_page">

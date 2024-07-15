@@ -10,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $daoDien = $_POST['daoDien'];
     $ngayChieu = $_POST['ngayChieu'];
     $phongChieu = $_POST['phongChieu'];
-    $soVeDaBan = $_POST['soVeDaBan'];
+
     $status = $_POST['status'];
     $price = $_POST['price'];
 
@@ -30,9 +30,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($count == 0) {
         echo "Error: Movie id does not exist.";
     } else {
-        $updateSql = "UPDATE tblmovie SET movie_name=?, image_movie=?, describe_movie=?, thoiLuong=?, daoDien=?, date=?, screen_id=?, number_tickets_sold=?, status_movie=?, price=? WHERE movie_id=?";
+        $updateSql = "UPDATE tblmovie SET movie_name=?, image_movie=?, describe_movie=?, thoiLuong=?, daoDien=?, date=?, screen_id=?, status_movie=?, price=? WHERE movie_id=?";
         $stmt = $conn->prepare($updateSql);
-        $stmt->bind_param("sssiiissiii", $tenPhim, $fileImage, $Mota, $thoiLuong, $daoDien, $ngayChieu, $phongChieu, $soVeDaBan, $status, $price, $idPhim);
+        $stmt->bind_param("sssissisii", $tenPhim, $fileImage, $Mota, $thoiLuong, $daoDien, $ngayChieu, $phongChieu, $status, $price, $idPhim);
 
         if ($stmt->execute()) {
             if ($stmt->affected_rows > 0) {

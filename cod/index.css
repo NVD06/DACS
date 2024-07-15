@@ -355,6 +355,9 @@ a {
     height: 100%;
     box-sizing: border-box;
 }
+.movie{
+    height: 400px;
+}
 .movie img {
     width: 200px;
     height: 300px;
@@ -445,7 +448,7 @@ a {
 
 .thoiGianChieu{
     border: solid 1px none;
-    background-color: white;
+    background-color: rgb(155, 201, 61);
     width: 130vh;
     height: fit-content;
     padding: 5vh;
@@ -462,13 +465,16 @@ a {
     background-color: aqua;
     width: 60%;
     height: 25vw;
+    
 } 
 .gioChieu a{
     color: black;
     border: solid 1px;
     margin-left: 2px;
 }
-.more{
-    text-align: center;
+.showtimes-container{
+    display: flex;
 }
-/* lich chieu*/
+.showtimes-container .showtime-item{
+    padding: 5px;
+}

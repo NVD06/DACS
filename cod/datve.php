@@ -7,7 +7,7 @@ if ($conn->connect_error) {
 }
 
 // Truy vấn dữ liệu từ bảng phim
-$sql = "SELECT image_movie FROM tblmovie";
+$sql = "SELECT image_movie,movie_name,describe_movie FROM tblmovie";
 $result = $conn->query($sql);
 // Kiểm tra và lấy dữ liệu
 if ($result->num_rows > 0) {
@@ -93,7 +93,7 @@ $conn->close();
                         <div class="content">
                             <div class="name"><?php echo $movie['movie_name']; ?></div>
                             <div class="des"><?php echo $movie['describe_movie']; ?></div>
-                            <button><a style="color: black;" href="">Đặt Vé</a></button>
+                            <button><a style="color: black;" href="lichchieu.php?movie_name=<?php echo $movie['movie_name']; ?>">Đặt Vé</a></button>
                         </div>
                     </div>
                     <?php endforeach; ?>

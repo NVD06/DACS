@@ -9,6 +9,9 @@ if ($movie_name) {
 
     // Lấy movie_id và image_movie từ tblmovie dựa trên movie_name
     $stmt = $conn->prepare("SELECT movie_id, image_movie FROM tblmovie WHERE movie_name = ?");
+    if ($stmt === false) {
+        die('Prepare failed: ' . htmlspecialchars($conn->error));
+    }
     $stmt->bind_param("s", $movie_name);
     $stmt->execute();
     $stmt->bind_result($movie_id, $image_movie);
@@ -18,7 +21,10 @@ if ($movie_name) {
 
 // Kiểm tra nếu movie_id tồn tại và lấy dữ liệu từ tblshowtime dựa trên movie_id
 if (isset($movie_id)) {
-    $stmt = $conn->prepare("SELECT thoiGian, date FROM tblshowtime WHERE movie_id = ?");
+    $stmt = $conn->prepare("SELECT date, thoiGian FROM tblshowtime WHERE movie_id = ?");
+    if ($stmt === false) {
+        die('Prepare failed: ' . htmlspecialchars($conn->error));
+    }
     $stmt->bind_param("i", $movie_id);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -38,6 +44,9 @@ if (isset($movie_id)) {
     $stmt = $conn->prepare("SELECT tblmovie.movie_name, tblmovie.image_movie, tblshowtime.thoiGian, tblshowtime.date 
                             FROM tblshowtime 
                             JOIN tblmovie ON tblshowtime.movie_id = tblmovie.movie_id");
+    if ($stmt === false) {
+        die('Prepare failed: ' . htmlspecialchars($conn->error));
+    }
     $stmt->execute();
     $result = $stmt->get_result();
 

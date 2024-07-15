@@ -1,5 +1,14 @@
 <?php
 session_start();
+function isLoggedIn() {
+    return isset($_SESSION['userName']);
+}
+function getCurrentUrl() {
+    return "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+}
+if (!isLoggedIn()) {
+    $_SESSION['redirect_url'] = getCurrentUrl();
+}
 ?>
 
 <!DOCTYPE html>
@@ -22,7 +31,7 @@ session_start();
                         <a href=""><img src="https://cinestar.com.vn/_next/image/?url=%2Fassets%2Fimages%2Fheader-logo.png&w=1920&q=75" alt="Home page logo"></a>
                         <div class="bookAndpd">
                             <a href="booking.php" class="Booking_T">ĐẶT VÉ NGAY</a>
-                            <a href="" class="Booking_F">ĐẶT BẮP NƯỚC</a>
+                            <a href="bapnuoc.php" class="Booking_F">ĐẶT BẮP NƯỚC</a>
                         </div>
                         <div class="searchAndLogin">
                             <div class="searchIcon">
@@ -35,18 +44,17 @@ session_start();
                                     </button>
                                 </div>
                             </div>
-                            <div class="Login">
-                                <a href="logout.php">Đăng xuất</a>
+                            <div >
+                                <?php if (isLoggedIn()): ?>
+                                    <div style="display:flex;">
+                                    <div class="Login"><a href="logout.php">Đăng xuất</a></div>
+                                    <p style="color:aqua;"><?php echo htmlspecialchars($_SESSION['userName']); ?></p>
+                                    </div>
+                                <?php else: ?>
+                                    <div class="Login"> <a href="login.php">Đăng nhập</a></div>
+                                <?php endif; ?>
                             </div>
-                            <p style="color:aqua;">
-                                <?php
-                                if (isset($_SESSION['userName'])) {
-                                    echo htmlspecialchars($_SESSION['userName']);
-                                } else {
-                                    header("Location: login.php");
-                                }
-                                ?>
-                            </p>
+                            
                         </div>
                     </div>
                 </div>
@@ -60,14 +68,17 @@ session_start();
                                 <li><a href="">Cinerstar Đà Nẵng</a></li>
                             </ul>
                         </nav>
-                        
                         <div class="second">
                             <a href="lichChieu.php"><i class="fas fa-calendar"></i> Lịch chiếu</a>
                             <a href="">Khuyến mãi</a>
-                            <a href="">Thuê sự kiện</a>
+                            <a href="events.php">Thuê sự kiện</a>
                             <a href="">Giải trí</a>
+<<<<<<< HEAD
                             <a href="">Giới thiệu</a>
                             <a href="viewTicket.php">Vé đã đặt</a> 
+=======
+                            <a href="gioithieu.php">Giới thiệu</a>
+>>>>>>> e8f8478b855a7bd76d333f8883779e4b87cdd822
                         </div>
                     </div>
                 </div>
