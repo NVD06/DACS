@@ -75,7 +75,6 @@ include "takeSchedule.php"
             </div>
         </div>  
         <div class="Page_Content">
-            <!-- this is page content -->
             <div class="thoiGianChieu">
         <div class="anhPhim">
             <img src="<?php echo htmlspecialchars($image_movie ?? 'images/default_image.jpg'); ?>" alt="">
@@ -89,7 +88,7 @@ include "takeSchedule.php"
                     echo "<p><strong>$date</strong></p>";
                     foreach ($times as $time) {
                         // Sử dụng thẻ <a> với thuộc tính href
-                        echo "<p><a href='details.php?time=" . urlencode($time) . "&date=" . urlencode($date) . "&movie_name=" . urlencode($movie_name) . "'>$time</a></p>";
+                        echo "<p><a href='booking.php?time=" . urlencode($time) . "&date=" . urlencode($date) . "&movie_name=" . urlencode($movie_name) . "'>$time</a></p>";
                     }
                     echo "<br>";
                 }

@@ -17,7 +17,7 @@ session_start();
     <div class="main_body">
         <div class="menu">
             <div class="chung">
-                <div class="function">
+                <div class="function">  
                     <div class="viTri">
                         <a href=""><img src="https://cinestar.com.vn/_next/image/?url=%2Fassets%2Fimages%2Fheader-logo.png&w=1920&q=75" alt="Home page logo"></a>
                         <div class="bookAndpd">
@@ -67,6 +67,7 @@ session_start();
                             <a href="">Thuê sự kiện</a>
                             <a href="">Giải trí</a>
                             <a href="">Giới thiệu</a>
+                            <a href="viewTicket.php">Vé đã đặt</a> 
                         </div>
                     </div>
                 </div>

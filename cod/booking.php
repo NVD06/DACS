@@ -25,7 +25,7 @@ if ($result) {
 
 $moviePrice = 0;
 
-$sql = "SELECT price FROM tblmovie";
+$sql = "SELECT movie_name, price FROM tblmovie";
 $result = $conn->query($sql);
 
 if ($result) {
@@ -38,6 +38,11 @@ if ($result) {
 } else {
     echo "Lỗi truy vấn: " . $conn->error;
 }
+
+$conn->close();
+
+$date = $_GET['date'] ?? '';
+$time = $_GET['time'] ?? '';
 ?>
 
 <!DOCTYPE html>
@@ -53,24 +58,9 @@ if ($result) {
     <div class="container">
         <h1>Vui lòng lựa chọn thông tin</h1>
         <div class="book-tickets">
-            <div class="date-selection">
-                <div class="section-title">LỊCH CHIẾU</div>
-                <div class="date-item selected">08/07<br>Thứ Hai</div>
-                <div class="date-item">09/07<br>Thứ Ba</div>
-                <div class="date-item">10/07<br>Thứ Tư</div>
-            </div>
-
-            <div class="time-selection">
-                <div class="section-title">GIỜ CHIẾU</div>
-                <div class="time-item selected">14:45</div>
-                <div class="time-item">16:45</div>
-                <div class="time-item">18:45</div>
-                <div class="time-item">20:45</div>
-                <div class="time-item">23:55</div>
-            </div>
-
+            
             <div class="seat-selection">
-                <div class="section-title">CHỌN GHế</div>
+                <div class="section-title">CHỌN GHẾ</div>
                 <div class="seat-screen"><h1>Màn Hình</h1></div>
                 <div class="seat-grid">
                     <?php foreach ($seats as $seat): ?>
@@ -114,116 +104,113 @@ if ($result) {
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const dateItems = document.querySelectorAll('.date-item');
-            const timeItems = document.querySelectorAll('.time-item');
-            const seatGrid = document.querySelector('.seat-grid');
-            const foodItems = document.querySelectorAll('.food-item');
-            const totalPriceElem = document.querySelector('.total-price span');
-            const btnBook = document.querySelector('.btn-book');
+        const seatGrid = document.querySelector('.seat-grid');
+        const foodItems = document.querySelectorAll('.food-item');
+        const totalPriceElem = document.querySelector('.total-price span');
+        const btnBook = document.querySelector('.btn-book');
 
-            let selectedDate = dateItems[0].textContent.trim();
-            let selectedTime = timeItems[0].textContent.trim();
-            let selectedSeat = '';
-            let selectedFood = {};
+        let selectedSeat = '';
+        let selectedFood = {};
+        const moviePrice = <?= $moviePrice; ?>;
 
-            const foodPrices = {
-                'COMBO SOLO': 84000,
-                'COMBO COUPLE': 105000,
-                'COMBO PARTY': 199000
-            };
+        const foodPrices = {
+            'COMBO SOLO': 84000,
+            'COMBO COUPLE': 105000,
+            'COMBO PARTY': 199000
+        };
 
-            function updateTotalPrice() {
-                totalPrice = 0;
-                if (selectedSeat) {
-                    totalPrice += <?= $moviePrice; ?>;
-                }
-                for (let food in selectedFood) {
-                    totalPrice += foodPrices[food] * selectedFood[food];
-                }
-                totalPriceElem.textContent = totalPrice.toLocaleString('vi-VN') + ' VNĐ';
+        function updateTotalPrice() {
+            let totalPrice = 0;
+            if (selectedSeat) {
+                totalPrice += moviePrice;
             }
-
-            function loadSeats() {
-                fetch(`get_seats.php?date=${selectedDate}&time=${selectedTime}`)
-                    .then(response => response.json())
-                    .then(data => {
-                        seatGrid.innerHTML = '';
-                        data.forEach(seat => {
-                            const seatElem = document.createElement('div');
-                            seatElem.classList.add('seat', seat.status === 'available' ? '' : 'unavailable');
-                            seatElem.textContent = seat.seat_name;
-                            seatGrid.appendChild(seatElem);
-                        });
-                    })
-                    .catch(error => console.error('Lỗi khi tải ghế:', error));
+            for (let food in selectedFood) {
+                totalPrice += foodPrices[food] * selectedFood[food];
             }
+            totalPriceElem.textContent = totalPrice.toLocaleString('vi-VN') + ' VNĐ';
+        }
 
-            dateItems.forEach(item => {
-                item.addEventListener('click', () => {
-                    dateItems.forEach(i => i.classList.remove('selected'));
-                    item.classList.add('selected');
-                    selectedDate = item.textContent.trim();
-                    loadSeats();
-                });
-            });
+        function loadSeats() {
+            fetch(`get_seats.php`)
+                .then(response => response.json())
+                .then(data => {
+                    seatGrid.innerHTML = '';
+                    data.seats.forEach(seat => {
+                        const seatElem = document.createElement('div');
+                        seatElem.classList.add('seat', seat.status === 'available' ? '' : 'unavailable');
+                        seatElem.textContent = seat.seat_name;
+                        seatGrid.appendChild(seatElem);
+                    });
+                })
+                .catch(error => console.error('Lỗi khi tải ghế:', error));
+        }
 
-            timeItems.forEach(item => {
-                item.addEventListener('click', () => {
-                    timeItems.forEach(i => i.classList.remove('selected'));
-                    item.classList.add('selected');
-                    selectedTime = item.textContent.trim();
-                    loadSeats();
-                });
-            });
-
-            seatGrid.addEventListener('click', e => {
-                if (e.target.classList.contains('seat') && !e.target.classList.contains('unavailable')) {
-                    const selectedSeatElem = seatGrid.querySelector('.seat.selected');
-                    if (selectedSeatElem) {
-                        selectedSeatElem.classList.remove('selected');
-                    }
-                    e.target.classList.add('selected');
-                    selectedSeat = e.target.textContent.trim();
-                    updateTotalPrice();
+        seatGrid.addEventListener('click', e => {
+            if (e.target.classList.contains('seat') && !e.target.classList.contains('unavailable')) {
+                const selectedSeatElem = seatGrid.querySelector('.seat.selected');
+                if (selectedSeatElem) {
+                    selectedSeatElem.classList.remove('selected');
                 }
-            });
+                e.target.classList.add('selected');
+                selectedSeat = e.target.textContent.trim();
+                updateTotalPrice();
+            }
+        });
 
-            foodItems.forEach(item => {
-                const minus = item.querySelector('.minus');
-                const plus = item.querySelector('.plus');
-                const count = item.querySelector('span');
-                const foodName = item.querySelector('div:nth-child(2)').textContent.trim();
+        foodItems.forEach(item => {
+            const minus = item.querySelector('.minus');
+            const plus = item.querySelector('.plus');
+            const count = item.querySelector('span');
+            const foodName = item.querySelector('div:nth-child(2)').textContent.trim();
 
-                minus.addEventListener('click', () => {
-                    let value = parseInt(count.textContent);
-                    if (value > 0) {
-                        value--;
-                        count.textContent = value;
-                        selectedFood[foodName] = value;
-                        updateTotalPrice();
-                    }
-                });
-
-                plus.addEventListener('click', () => {
-                    let value = parseInt(count.textContent);
-                    value++;
+            minus.addEventListener('click', () => {
+                let value = parseInt(count.textContent);
+                if (value > 0) {
+                    value--;
                     count.textContent = value;
                     selectedFood[foodName] = value;
                     updateTotalPrice();
-                });
+                }
             });
 
-            btnBook.addEventListener('click', () => {
-                console.log('Selected date:', selectedDate);
-                console.log('Selected time:', selectedTime);
-                console.log('Selected seat:', selectedSeat);
-                console.log('Selected food:', selectedFood);
-                console.log('Total price:', totalPriceElem.textContent);
+            plus.addEventListener('click', () => {
+                let value = parseInt(count.textContent);
+                value++;
+                count.textContent = value;
+                selectedFood[foodName] = value;
+                updateTotalPrice();
             });
-
-            loadSeats();
         });
+
+        btnBook.addEventListener('click', () => {
+            const bookingData = {
+                date: '<?= $date; ?>',
+                time: '<?= $time; ?>',
+                seat: selectedSeat,
+                food: selectedFood,
+                total_price: totalPriceElem.textContent
+            };
+
+            fetch('save_ticket.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(bookingData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Đặt vé thành công');
+                    loadSeats();
+                } else {
+                    alert('Đặt vé thất bại: ' + data.message);
+                }
+            })
+            .catch(error => console.error('Lỗi khi đặt vé:', error));
+        });
+        
+        loadSeats();
     </script>
 </body>
 </html>
