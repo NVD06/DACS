@@ -28,6 +28,12 @@ $result = $conn->query($sql);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vé đã đặt</title>
     <link rel="stylesheet" href="index.css">
+    <style>
+        body {
+            background-color: white;
+            color: white;
+        }
+    </style>
 </head>
 <body>
     <div class="main_body">
@@ -48,8 +54,8 @@ $result = $conn->query($sql);
                     echo "<tr>";
                     echo "<td>" . htmlspecialchars($row['id']) . "</td>";
                     echo "<td>" . htmlspecialchars($row['movie']) . "</td>";
-                    echo "<td>" . htmlspecialchars($row['date']) . "</td>";
-                    echo "<td>" . htmlspecialchars($row['time']) . "</td>";
+                    echo "<td>" . htmlspecialchars($row['DATE']) . "</td>";
+                    echo "<td>" . htmlspecialchars($row['TIME']) . "</td>";
                     echo "<td>" . htmlspecialchars($row['seat']) . "</td>";
                     echo "<td>" . htmlspecialchars($row['food']) . "</td>";
                     echo "<td>" . htmlspecialchars($row['total_price']) . "</td>";

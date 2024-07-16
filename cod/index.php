@@ -60,7 +60,7 @@ if (!isLoggedIn()) {
                                         <p style="color:aqua; cursor:pointer;"><?php echo htmlspecialchars($_SESSION['userName']); ?></p>
                                         <div class="dropdown-content">
                                             <a href="profile.php">Thông tin cá nhân</a>
-                                           <a href="settings.php">Lịch sử thanh toán</a>
+                                            <a href="viewTicket.php">Lịch sử thanh toán</a>
                                             <a href="logout.php">Đăng xuất</a>
                                         </div>
                                     </div>
@@ -88,7 +88,7 @@ if (!isLoggedIn()) {
                             <a href="events.php">Thuê sự kiện</a>
                             <a href="">Giải trí</a>
                             <a href="">Giới thiệu</a>
-                            <a href="viewTicket.php">Vé đã đặt</a> 
+                            <a href="viewTicket.php">Dịch Vụ Đặc Biệt</a> 
                             <a href="gioithieu.php">Giới thiệu</a>
                         </div>
                     </div>

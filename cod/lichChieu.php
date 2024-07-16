@@ -63,7 +63,7 @@ if (isset($_GET['movie_name'])) {
                                         <p style="color:aqua; cursor:pointer;"><?php echo htmlspecialchars($_SESSION['userName']); ?></p>
                                         <div class="dropdown-content">
                                             <a href="profile.php">Thông tin cá nhân</a>
-                                            <a href="settings.php">Hóa đơn</a>
+                                            <a href="viewTicket.php">Lịch sử thanh toán</a>
                                             <a href="logout.php">Đăng xuất</a>
                                         </div>
                                     </div>
