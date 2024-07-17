@@ -7,7 +7,7 @@ function isLoggedIn() {
 }
 
 function searchMovies($query) {
-    global $conn; // Assuming you have a global $conn variable for the DB connection
+    global $conn;
 
     $stmt = $conn->prepare("SELECT * FROM tblmovie WHERE movie_name LIKE ?");
     $searchTerm = "%" . $query . "%";

@@ -86,9 +86,8 @@ if (!isLoggedIn()) {
                             <a href="lichChieu.php"><i class="fas fa-calendar"></i> Lịch chiếu</a>
                             <a href="">Khuyến mãi</a>
                             <a href="events.php">Thuê sự kiện</a>
-                            <a href="">Giải trí</a>
                             <a href="">Giới thiệu</a>
-                            <a href="viewTicket.php">Dịch Vụ Đặc Biệt</a> 
+                            <a href="special.php">Dịch Vụ Đặc Biệt</a> 
                             <a href="gioithieu.php">Giới thiệu</a>
                         </div>
                     </div>
