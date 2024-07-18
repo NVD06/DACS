@@ -12,6 +12,19 @@ if (!isLoggedIn()) {
     header("Location: login.php?redirect_url=" . urlencode($_SERVER['REQUEST_URI']));
     exit;
 }
+<<<<<<< HEAD:cod/cod/lichChieu.php
+=======
+
+if (isset($_GET['movie_name'])) {
+    $movie_name = $_GET['movie_name'];
+    // Perform actions to show movie schedule
+    // ...
+} else {
+    echo "No movie name provided";
+    exit;
+}
+
+>>>>>>> 7a056e2a45ef8e4f66fde13a8c4356ea35704a1f:cod/lichChieu.php
 ?>
 
 <!DOCTYPE html>
@@ -144,7 +157,11 @@ if (!isLoggedIn()) {
                             echo "<div class='showtimes-container'>"; // Container for showtimes
                             foreach ($times as $time) {
                                 echo "<div class='showtime-item'>";
+<<<<<<< HEAD:cod/cod/lichChieu.php
                                 echo "<p><a href='booking.php?thoiGian=" . urlencode($time) . "&date=" . urlencode($date) . "&screen_id=" . urlencode($screen_id) . "&movie_name=" . urlencode($movie) . "'>$time</a></p>";
+=======
+                                echo "<p><a href='details.php?thoiGian=" . urlencode($time) . "&date=" . urlencode($date) . "%screen_id" . urlencode($screen_id) . "&movie_name=" . urlencode($movie) . "'>$time</a></p>";
+>>>>>>> 7a056e2a45ef8e4f66fde13a8c4356ea35704a1f:cod/lichChieu.php
                                 echo "</div>";
                             }
                             echo "</div>";

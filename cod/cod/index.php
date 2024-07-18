@@ -60,7 +60,11 @@ if (!isLoggedIn()) {
                                         <p style="color:aqua; cursor:pointer;"><?php echo htmlspecialchars($_SESSION['userName']); ?></p>
                                         <div class="dropdown-content">
                                             <a href="profile.php">Thông tin cá nhân</a>
+<<<<<<< HEAD:cod/cod/index.php
                                             <a href="viewTicket.php?userName= <?php echo htmlspecialchars($_SESSION['userName']) ?>">Lịch sử thanh toán</a>
+=======
+                                            <a href="viewTicket.php">Lịch sử thanh toán</a>
+>>>>>>> 7a056e2a45ef8e4f66fde13a8c4356ea35704a1f:cod/index.php
                                             <a href="logout.php">Đăng xuất</a>
                                         </div>
                                     </div>
@@ -86,9 +90,12 @@ if (!isLoggedIn()) {
                             <a href="lichChieu.php"><i class="fas fa-calendar"></i> Lịch chiếu</a>
                             <a href="">Khuyến mãi</a>
                             <a href="events.php">Thuê sự kiện</a>
-                            <a href="">Giải trí</a>
                             <a href="">Giới thiệu</a>
+<<<<<<< HEAD:cod/cod/index.php
                             <a href="viewTicket.php">Dịch Vụ Đặc Biệt</a> 
+=======
+                            <a href="special.php">Dịch Vụ Đặc Biệt</a> 
+>>>>>>> 7a056e2a45ef8e4f66fde13a8c4356ea35704a1f:cod/index.php
                             <a href="gioithieu.php">Giới thiệu</a>
                         </div>
                     </div>
