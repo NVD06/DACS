@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +10,7 @@
 </head>
 <body>
     <div class="wrapper">
-        <div class="form-signup">
+        <div class="form-signin">
             <form action="signup-button.php" method="post">
                 <h1>Sign Up</h1>
                 <div class="input-box">
@@ -18,6 +19,7 @@
                 </div>
                 <div class="input-box">
                     <input type="text" name="name" id="name" placeholder="Name" required>
+                    <i class='bx bxl-github'></i>
                 </div>
                 <div class="input-box">
                     <input type="password" name="password" id="password" placeholder="Password" required>

@@ -1,33 +1,8 @@
 <?php
-<<<<<<< HEAD:cod/cod/booking.php
 session_start();
 function isLoggedIn() {
     return isset($_SESSION['userName']);
 }
-=======
-include "connectToDatabase.php";
-
-$movie_name = $_GET['movie_name'];
-$thoiGian = $_GET['thoiGian'];
-$date = $_GET['date'];
-$screen_id = $_GET['screen_id'];
-
-// Lấy giá phim từ cơ sở dữ liệu
-$sql = "SELECT price FROM tblmovie WHERE movie_name = ?";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("s", $movie_name);
-$stmt->execute();
-$stmt->bind_result($moviePrice);
-$stmt->fetch();
-$stmt->close();
-
-// Lấy thông tin ghế từ cơ sở dữ liệu
-$sql = "SELECT seat_name, status FROM tblseat WHERE screen_id = ?";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("i", $screen_id);
-$stmt->execute();
-$result = $stmt->get_result();
->>>>>>> 7a056e2a45ef8e4f66fde13a8c4356ea35704a1f:cod/booking.php
 
 include "connectToDatabase.php";
 
@@ -207,8 +182,6 @@ $conn->close();
             const plusBtn = item.querySelector('.plus');
             const quantityElem = item.querySelector('span');
             const foodName = item.querySelector('div:nth-child(2)').textContent.trim();
-<<<<<<< HEAD:cod/cod/booking.php
-=======
 
             plusBtn.addEventListener('click', () => {
                 selectedFood[foodName]++;
@@ -224,49 +197,7 @@ $conn->close();
                 }
             });
         });
->>>>>>> 7a056e2a45ef8e4f66fde13a8c4356ea35704a1f:cod/booking.php
 
-            plusBtn.addEventListener('click', () => {
-                selectedFood[foodName]++;
-                quantityElem.textContent = selectedFood[foodName];
-                updateTotalPrice();
-            });
-
-<<<<<<< HEAD:cod/cod/booking.php
-            minusBtn.addEventListener('click', () => {
-                if (selectedFood[foodName] > 0) {
-                    selectedFood[foodName]--;
-                    quantityElem.textContent = selectedFood[foodName];
-                    updateTotalPrice();
-=======
-            const bookingData = {
-                date: <?= json_encode($date) ?>,
-                time: <?= json_encode($thoiGian) ?>,
-                seats: selectedSeats,
-                food: selectedFood,
-                total_price: totalPriceElem.textContent
-            };
-
-            fetch('save_ticket.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(bookingData)
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    alert('Đặt vé thành công. Hóa đơn của bạn:\n' + JSON.stringify(data.receipt, null, 2));
-                    loadSeats(<?= json_encode($screen_id) ?>);
-                } else {
-                    alert('Đặt vé thất bại: ' + data.message);
->>>>>>> 7a056e2a45ef8e4f66fde13a8c4356ea35704a1f:cod/booking.php
-                }
-            });
-        });
-
-<<<<<<< HEAD:cod/cod/booking.php
         btnBook.addEventListener('click', () => {
         if (selectedSeats.length !== ticketCount) {
             alert('Vui lòng chọn đủ số lượng ghế.');
@@ -300,8 +231,6 @@ $conn->close();
     });
 
 
-=======
->>>>>>> 7a056e2a45ef8e4f66fde13a8c4356ea35704a1f:cod/booking.php
         // Gọi hàm loadSeats với screen_id khi trang được tải
         loadSeats(<?= json_encode($screen_id) ?>);
     </script>

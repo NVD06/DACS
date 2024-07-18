@@ -5,12 +5,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    $stmt = $conn->prepare("SELECT leveluser, password,userName FROM tbluser WHERE email = ?");
+    // Kiểm tra định dạng mật khẩu
+    if (strlen($password) < 8 || !preg_match('/[A-Z]/', $password)) {
+        echo "<script>alert('Mật khẩu phải dài ít nhất 8 ký tự, có dấu gạch dưới (_) và có ít nhất một chữ in hoa!'); window.location.href='login.php';</script>";
+        exit;
+    }
+
+    $stmt = $conn->prepare("SELECT leveluser, password, username FROM tbluser WHERE email = ?");
     $stmt->bind_param("s", $email);
     $stmt->execute();
     $stmt->store_result();
-    $stmt->bind_result($level, $hashed_password, $username);
-    $stmt->fetch();
 
     if ($stmt->num_rows > 0 && password_verify($password, $hashed_password)) {
         session_start();
@@ -22,10 +26,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             header("Location: index.php");
         }
     } else {
-        echo "<script>alert('invalid email or password'); window.location.href='login.php';</script>";
+        echo "<script>alert('Email hoặc mật khẩu sai'); window.location.href='login.php';</script>";
         }
 
     $stmt->close();
     $conn->close();
+
 }
 ?>
