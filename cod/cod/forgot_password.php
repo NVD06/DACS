@@ -11,39 +11,44 @@ require 'connectToDatabase.php';
 
 
 // Truy vấn để lấy địa chỉ email từ bảng tbluser
-$sql = "SELECT email FROM tbluser WHERE userName = ?";
+$sql = "SELECT email FROM tbluser WHERE user_id = ?";
 $stmt = $conn->prepare($sql);
-$stmt->bind_param("s", $userName);
+$stmt->bind_param("i", $user_id);
 $stmt->execute();
-$stmt->bind_result($userEmail); 
+$stmt->bind_result($email);
 $stmt->fetch();
 $stmt->close();
 
-
-$mail = new PHPMailer(true);
-
-try {
-	$mail->SMTPDebug = 2;									
-	$mail->isSMTP();											
-	$mail->Host	 = 'smtp.gmail.com';					
-	$mail->SMTPAuth = true;							
-	$mail->Username = 'concoko35@gmail.com';				
-	$mail->Password = 'password';						
-	$mail->SMTPSecure = 'tls';							
-	$mail->Port	 = 587;
-
-	$mail->setFrom('from@gmail.com', 'Name');		
-	$mail->addAddress($userEmail);
-	
-	
-	$mail->isHTML(true);								
-	$mail->Subject = 'Test Email';
-	$mail->Body = 'HTML message body in <b>bold</b> ';
-	$mail->AltBody = 'Body in plain text for non-HTML mail clients';
-	$mail->send();
-	echo "Mail has been sent successfully!";
-} catch (Exception $e) {
-	echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+if (empty($email)) {
+    echo "User email not found.";
+    exit;
 }
 
+
+try {
+    //Server settings
+    $mail->SMTPDebug = SMTP::DEBUG_SERVER;
+    $mail->isSMTP();
+    $mail->Host = 'smtp.gmail.com';
+    $mail->SMTPAuth = true;
+    $mail->Username = 'concoko35@gmail.com';
+    $mail->Password = 'your_email_password'; // Lưu ý: Không nên lưu mật khẩu trực tiếp trong mã nguồn
+    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+    $mail->Port = 587;
+
+    //Recipients
+    $mail->setFrom('concoko35@gmail.com', 'Your Name');
+    $mail->addAddress($userEmail);
+
+    //Content
+    $mail->isHTML(true);
+    $mail->Subject = 'Test Email';
+    $mail->Body    = 'HTML message body in <b>bold</b>';
+    $mail->AltBody = 'Body in plain text for non-HTML mail clients';
+
+    $mail->send();
+    echo "Mail has been sent successfully!";
+} catch (Exception $e) {
+    echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+}
 ?>
