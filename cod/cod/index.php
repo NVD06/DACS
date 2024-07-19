@@ -17,7 +17,7 @@ if (!isLoggedIn()) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="index_page.css">
     <title>Home Page</title>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
@@ -115,9 +115,10 @@ if (!isLoggedIn()) {
                 });
             </script>
             <div class="container1">
-                <h3>PHIM ĐANG CHIẾU</h3>
+                <h1 style="margin-bottom:40px;">PHIM ĐANG CHIẾU</h1>
                 <div class="playing_movies" id="playing_movies">
                 </div>
+                <!-- <h3 class="name">${movie.movie_name}</h3>  movie-->
                     <script>
                         document.addEventListener('DOMContentLoaded', function() {
                             fetch('getPlayingMovies.php')
@@ -130,12 +131,12 @@ if (!isLoggedIn()) {
                                         movieDiv.innerHTML = `
                                        <div class="movie">
                                             <img src="${movie.image_movie}" alt="${movie.movie_name}">
-                                            <h3 class="name">${movie.movie_name}</h3> 
+    
                                             <div class="movie_information">
                                                 <h2>${movie.movie_name}</h2>
                                                 <p>${movie.thoiLuong}</p>
                                                 <p>${movie.daoDien}</p>
-                                                <a href="details.php?movie_name=${movie.movie_name}" style="margin-left:40%; border:solid 1px none; border-radius:40%; background-color:yellow; padding: 5px; color:black;">Chi tiết</a>
+                                                <a href="details.php?movie_name=${movie.movie_name}" style="margin-left:0%; border:solid 1px none; border-radius:40%; background-color:yellow; padding: 5px; color:black;">Chi tiết</a>
                                             </div>
                                         </div>
                                         `;
@@ -173,11 +174,16 @@ if (!isLoggedIn()) {
                         });
                                     
                     </script>
-                <a href="playingMovies.php">XEM THÊM</a>
-                <h3>PHIM SẮP CHIẾU</h3>
+
+                    <div style=" margin-top: 20px;margin-bottom:60px;">
+                    <a href="playingMovies.php" style="color: white;">XEM THÊM</a>    
+                    </div>
+                
+                <h1 style="margin-bottom:40px;">PHIM SẮP CHIẾU</h1>
                 <div class="comming_movies" id="comming_movies">
                 
                 </div>
+                <!-- <h3 class="name">${movie.movie_name}</h3>   movie-->
                     <script>
                         document.addEventListener('DOMContentLoaded', function() {
                             fetch('getComingMovies.php')
@@ -190,12 +196,12 @@ if (!isLoggedIn()) {
                                         movieDiv.innerHTML = `
                                         <div class="movie">
                                             <img src="${movie.image_movie}" alt="${movie.movie_name}">
-                                            <h3 class="name">${movie.movie_name}</h3>  
+                                            
                                             <div class="movie_information">
                                                 <h2>${movie.movie_name}</h2>
                                                 <p>${movie.thoiLuong}</p>
                                                 <p>${movie.daoDien}</p>
-                                                <a href="details.php?movie_name=${movie.movie_name}"style="margin-left:40%; border:solid 1px none; border-radius:40%; background-color:yellow; padding: 5px; color:black;">Chi tiet</a>
+                                                <a href="details.php?movie_name=${movie.movie_name}"style="margin-left:0%; border:solid 1px none; border-radius:40%; background-color:yellow; padding: 5px; color:black;">Chi tiet</a>
                                             </div>
                                         </div>
                                         `;
@@ -233,7 +239,10 @@ if (!isLoggedIn()) {
                         });
                                     
                     </script>
-                <a href="comingMovie.php">XEM THÊM</a>
+                
+                    <div style=" margin-top: 20px;margin-bottom:40px;">
+                        <a href="comingMovie.php" style="">XEM THÊM</a>   
+                    </div>
                 <script
                         type="text/javascript"
                         src="https://code.jquery.com/jquery-1.11.0.min.js"
@@ -244,7 +253,6 @@ if (!isLoggedIn()) {
                         src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"
                         ></script>
             </div>
-            
         </div>    
              
         <div class="end_page">

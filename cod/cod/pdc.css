@@ -1,5 +1,5 @@
 @import url(VideoLink.css);
-@import url(index.css);
+@import url(index_page.css);
 
 body {
     margin: 0 auto;
@@ -22,11 +22,15 @@ a{
 .slideshow{
     display: flex;
     width: auto;
+
 }
+
 .container_phim{
     width: 250px;
     margin-right: 50px;
     margin-bottom: 100px;
+    background-color: rgb(235, 223, 134);
+    border-radius: 20px;
 }
 .overlay-container{
     display: flex;
@@ -35,6 +39,7 @@ a{
     position: relative;
     overflow: hidden;
     background-size: cover;
+    border-radius: 20px;
 }
 .overlay-text{
     position: absolute;
@@ -60,8 +65,9 @@ a{
     font-size: 20px;
     padding-top: 10px;
     padding-bottom: 10px;
+    height: 40px;
 }
 .title_phim:hover{
-    color: rgb(222, 222, 53);
+    color: rgb(84, 187, 231);
 }
 

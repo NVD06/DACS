@@ -1,3 +1,15 @@
+<?php
+session_start();
+function isLoggedIn() {
+    return isset($_SESSION['userName']);
+}
+function getCurrentUrl() {
+    return "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+}
+if (!isLoggedIn()) {
+    $_SESSION['redirect_url'] = getCurrentUrl();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,7 +17,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-    <link rel="stylesheet" href="pdc.css">z
+    <link rel="stylesheet" href="pdc.css">
     <title>Phim đang chiếu</title>
 </head>
 <body background="" style="background-color: brown;">
@@ -30,8 +42,19 @@
                                     </button>
                                 </div>
                             </div>
-                            <div class="Login">
-                                <a href="">Đăng nhập</a>
+                            <div>
+                                <?php if (isLoggedIn()): ?>
+                                    <div class="dropdown" style="display:flex;">
+                                        <p style="color:aqua; cursor:pointer;"><?php echo htmlspecialchars($_SESSION['userName']); ?></p>
+                                        <div class="dropdown-content">
+                                            <a href="profile.php">Thông tin cá nhân</a>
+                                            <a href="viewTicket.php?userName= <?php echo htmlspecialchars($_SESSION['userName']) ?>">Lịch sử thanh toán</a>
+                                            <a href="logout.php">Đăng xuất</a>
+                                        </div>
+                                    </div>
+                                <?php else: ?>
+                                    <div class="Login"> <a href="login.php">Đăng nhập</a></div>
+                                <?php endif; ?>
                             </div>
                         </div>
                     </div>
@@ -57,6 +80,7 @@
                 </div>
             </div>
         </div> 
+        <div class="Page_Content">
         <div style="text-transform: uppercase;color: white;font-size: 30px;margin-top: 40px;">Phim đang chiếu</div> 
         <div class="Page_Content" style="display: flex;width: 80%;flex-wrap: wrap;margin-top: 40px;margin-bottom: 100px; ">
         <?php
@@ -77,8 +101,8 @@
                             </div>
                         </div>
                         <div class="title_phim">' . $row['movie_name'] . '</div>
-                        <div style="display: flex;justify-content: space-between;">
-                            <div>
+                        <div style="display: flex;justify-content: space-between;padding-bottom:10px">
+                            <div style="padding-left:15px">
                                 <a href="#" class="videoLink" data-trailer-url="">Xem video</a>
                                 <div class="videoPopup popup">
                                     <div class="popup-content">
@@ -89,7 +113,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div>
+                            <div style="padding-right:15px">
                                 <a href="lichchieu.php?movie_name=' . $row['movie_name'] . '">Đặt vé</a>
                             </div>
                         </div>
@@ -118,7 +142,8 @@
         </script>
 
         </div>            
-        </div>         
+        </div>   
+        </div>      
         <div class="end_page">
             <div class="footer">
                 <div>
