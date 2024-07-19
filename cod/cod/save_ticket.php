@@ -5,7 +5,7 @@ if (!isset($_SESSION['userName'])) {
 }
 
 include "connectToDatabase.php";
-$data = json_decode(file_get_contents('php://input'), true);
+$data = $_SESSION['booking_details'];
 
 if ($data === null) {
     die(json_encode(['success' => false, 'message' => 'Dữ liệu không hợp lệ']));
@@ -30,7 +30,7 @@ $movie = $result_movie->fetch_assoc();
 $movie_id = $movie['movie_id'];
 $movie_name = $movie['movie_name'];
 $image_movie = $movie['image_movie'];
-
+$screen_id = $data['screen_id'];
 $date = $data['date'];
 $time = $data['time'];
 
@@ -60,22 +60,23 @@ try {
         }
     }
 
-    // Cập nhật doanhThu cho phim
     $sql_update_revenue = $conn->prepare("UPDATE tblmovie SET doanhThu = doanhThu + ? WHERE movie_id = ?");
     if ($sql_update_revenue === false) {
         throw new Exception('Lỗi chuẩn bị câu truy vấn cập nhật doanh thu: ' . $conn->error);
     }
-
+    
     $sql_update_revenue->bind_param("di", $total_price, $movie_id);
     if ($sql_update_revenue->execute() === false) {
         throw new Exception('Lỗi cập nhật doanh thu: ' . $sql_update_revenue->error);
     }
-
+    
     $conn->commit();
 
-    $_SESSION['booking_details'] = [
+    // Lưu dữ liệu vào session để sendEmail.php sử dụng
+    $_SESSION['email_booking_details'] = [
         'user_name' => $userName,
         'movie_name' => $movie_name,
+        'screen_id' => $screen_id,
         'date' => $date,
         'time' => $time,
         'seats' => $seats,
@@ -83,7 +84,8 @@ try {
         'total_price' => number_format($total_price, 0, ',', ',') . ' VNĐ'
     ];
 
-    echo json_encode(['success' => true, 'redirect' => 'bill.php']);
+    // Gọi sendEmail.php
+    include 'sendEmail.php';
 
 } catch (Exception $e) {
     $conn->rollback();
