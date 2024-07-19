@@ -9,7 +9,7 @@ if (strlen($password) < 8 || !preg_match('/[A-Z]/', $password)) {
     echo "<script>alert('Mật khẩu phải dài ít nhất 8 ký tự, có dấu gạch dưới (_) và có ít nhất một chữ in hoa!'); window.location.href='login.php';</script>";
     exit;
 }
-    $stmt = $conn->prepare("SELECT leveluser, password,userName FROM tbluser WHERE email = ?");
+    $stmt = $conn->prepare("SELECT leveluser, password, userName FROM tbluser WHERE email = ?");
     $stmt->bind_param("s", $email);
     $stmt->execute();
     $stmt->store_result();

@@ -59,23 +59,12 @@ if (!isLoggedIn()) {
                     </div>
                 </div>
                 <div class="chose_feature">
-                    <div class="Location2">
-                        <nav class="first">
-                            <!-- Thêm biểu tượng địa điểm vào nút Chọn rạp -->
-                            <button><i class="fas fa-map-marker-alt"></i> Chọn rạp</button>
-                            <ul class="menu1">
-                                <li><a href="">Cinerstar Hồ Chí Minh</a></li>
-                                <li><a href="">Cinerstar Hà Nội</a></li>
-                                <li><a href="">Cinerstar Đà Nẵng</a></li>
-                            </ul>
-                        </nav>
-                        
-                        <div class="second">
+                    <div class="Location2">        
+                        <div class="first">
                             <a href="lichChieu.php"><i class="fas fa-calendar"></i> Lịch chiếu</a>
                             <a href="">Khuyến mãi</a>
                             <a href="events.php">Thuê sự kiện</a>
                             <a href="giaitri.php">Giải trí</a>
-                            <a href="viewTicket.php">Dịch Vụ Đặc Biệt</a> 
                             <a href="gioithieu.php">Giới thiệu</a>
                         </div>
                     </div>
@@ -113,159 +102,85 @@ if (!isLoggedIn()) {
             <div class="footer">
                 <div>
                     <div class="container">
-                    <div class="footer-wr">
-                        <div class="footer-top-mobile">&nbsp;</div>
-                        <div class="footer-list row">
-                            <div class="footer-item col col-4"><a href="/" class="ft-logo" aria-label="The logo of Cinestar"><img src="/assets/images/footer-logo.png" alt=""></a>
-                                <div class="ft-text">
-                                    <p class="txt-deskop">BE HAPPY, BE A STAR</p>
-                                </div>
-                                <div class="ft-group-btn"><a class="btn btn--pri" href="/movie"><span class="txt">Đặt vé </span></a><a class="btn btn--outline" href="/popcorn-drink"><span class="txt">Đặt bắp nước</span></a></div>
-                
-                                <div class="ft-menu-mobile">
-                                    <ul class="menu-list">
-                                        <li class="menu-item"><a href="" class="menu-link"> Tài khoản</a></li>
-                                        <li class="menu-item"><a href="" class="menu-link">Cho thuê sự kiện</a></li>
-                                        <li class="menu-item"><a href="" class="menu-link">Dịch vụ khác</a></li>
-                                        <li class="menu-item"><a href="" class="menu-link">Giới thiệu</a></li>
-                                        <li class="menu-item"><a class="menu-link" href="">Chính sách bảo mật</a></li>
-                                        <li class="menu-item"><a href="" class="menu-link">Tin tức</a></li>
-                                        <li class="menu-item"><a href="" class="menu-link">Tuyển dụng</a></li>
-                                        <li class   ="menu-item"><a href="" class="menu-link">Liên hệ</a></li>
-                                    </ul>
-                                </div>
-                                <div class="ft-hotline-socials">
-                                    <ul class="list">
-                                        <li class="item item-fb"><a href=" class="link" aria-label="Facebook of Cinestart">
-                                                <img src="/assets/images/footer-facebook.svg" alt=""></a></li>
-                                        <!-- <li class="item item-ig"><a href="https://www.instagram.com/cine_star/" class="link"> <img
-                                                    src="/assets/images/footer-instagram.svg" alt=""></a></li>
-                                        <li class="item item-lk">
-                                            <a class="link"> <img src="/assets/images/footer-linkedIn.svg" alt=""></a></li> -->
-                                        <li class="item item-yt">
-                                            <a class="link" href="" aria-label="Youtube of Cinestar">
-                                                <img src="" alt=""></a></li>
-                                        <li class="item item-tt">
-                                            <a class="link" href="" aria-label="Tiktok of Cinestar">
-                                                <img src="" alt=""></a></li>
-                <li class="item item-zl">
-                                            <a class="link" href=" ria-label="Zalo of Cinestar">
-                                                <img src="" alt=""></a></li>
-                                    </ul>
-                                </div>
-                                <div class="ft-lg">
-                                    <div class="txt">
-                                        <p>Ngôn ngữ:</p>
+                        <div class="footer-wr">
+                            <div class="footer-list row" style="margin-left:16%;">
+                                <div class="footer-item col col-4">
+                                    <a href="/" class="ft-logo" aria-label="The logo of Cinestar">
+                                        <img src="https://cinestar.com.vn/_next/image/?url=%2Fassets%2Fimages%2Fheader-logo.png&w=1920&q=75" alt="">
+                                    </a>
+                                    <div class="ft-text">
+                                        <p class="txt-deskop">BE HAPPY, BE A STAR</p>
                                     </div>
-                                    <div class="lg-action popUpJs" id="lang-footer" data-popup="dt-lg-footer">
-                                        <div class="lg-popup" data-ui-id="lang-vn">
-                                            <div class="lg-option">
-                                                <span class="image">
-                                                    <img src="" alt="">
-                                                </span>
-                                                <span class="txt">VN</span>
-                                            </div>
-                                        </div>
+                                    <div class="ft-group-btn">
+                                        <a class="btn btn--pri" href="/movie">
+                                            <span class="btn__text">ĐẶT VÉ</span>
+                                        </a>
+                                        <a class="btn btn--border" href="#">
+                                            <span class="btn__text">ĐẶT BẮP NƯỚC</span>
+                                        </a>
                                     </div>
                                 </div>
-                            </div>
-                
-                        
-                <div class="footer-item col col-4">
-                                <div class="row footer-item-top"><div class="col-6 col">
-                                    <div class="text">Tài khoản</div>
-                                    <ul class="menu-list">
-                                        <li class="menu-item"><a class="menu-link" href="">Đăng nhập</a></li>
-                                        <li class="menu-item"><a class="menu-link" href="">Đăng ký</a></li>
-                                        <li class="menu-item"><a class="menu-link" href="">Membership</a></li>
+                                <div class="footer-item col col-4">
+                                    <p class="footer-title">TÀI KHOẢN</p>
+                                    <ul class="footer-list-item">
+                                        <li class="footer-list-item"><a href="#">Đăng nhập</a></li>
+                                        <li class="footer-list-item"><a href="#">Đăng ký</a></li>
+                                        <li class="footer-list-item"><a href="#">Membership</a></li>
                                     </ul>
-                                </div><div class="col-6 col">
-                                
-                                <div class="text">Thuê sự kiện</div>
-                                <ul class="menu-list">
-                                    <li class="menu-item"><a class="menu-link" href="">Thuê rạp</a></li>
-                                    <li class="menu-item"><a class="menu-link" href="">Các loại hình cho thuê khác</a>
-                                </li></ul>
-                                </div></div>
-                                <div class="row footer-item-bot"><div class="col-6 col">
-                                    <div class="text">Xem Phim</div>
-                                    <ul class="menu-list">
-                                        <li class="menu-item"><a class="menu-link" href="">Phim đang chiếu</a></li>
-                                        <li class="menu-item"><a class="menu-link" href="">Phim sắp chiếu</a></li>
+                                </div>
+                                <div class="footer-item col col-4">
+                                    <p class="footer-title">XEM PHIM</p>
+                                    <ul class="footer-list-item">
+                                        <li class="footer-list-item"><a href="#">Phim đang chiếu</a></li>
+                                        <li class="footer-list-item"><a href="#">Phim sắp chiếu</a></li>
+                                        <li class="footer-list-item"><a href="#">Suất chiếu đặc biệt</a></li>
                                     </ul>
-                                </div><div class="col-6 col">
-                                    <div class="text">Cinestar</div>
-                                    <ul class="menu-list">
-                                        <li class="menu-item"><a class="menu-link" href="/about-us">Giới thiệu</a></li>
-                                        <li class="menu-item"><a class="menu-link" href="/contact">Liên hệ</a></li>
-                                        <li class="menu-item"><a class="menu-link" href="/career/">Tuyển dụng</a></li>
+                                </div>
+                                <div class="footer-item col col-4">
+                                    <p class="footer-title">THUÊ SỰ KIỆN</p>
+                                    <ul class="footer-list-item">
+                                        <li class="footer-list-item"><a href="#">Thuê rạp</a></li>
+                                        <li class="footer-list-item"><a href="#">Các loại hình cho thuê khác</a></li>
                                     </ul>
-                                </div></div>
+                                </div>
+                                <div class="footer-item col col-4">
+                                    <p class="footer-title">DỊCH VỤ KHÁC</p>
+                                    <ul class="footer-list-item">
+                                        <li class="footer-list-item"><a href="#">Nhà hàng</a></li>
+                                        <li class="footer-list-item"><a href="#">Kidzone</a></li>
+                                        <li class="footer-list-item"><a href="#">Bowling</a></li>
+                                        <li class="footer-list-item"><a href="#">Billiards</a></li>
+                                        <li class="footer-list-item"><a href="#">Gym</a></li>
+                                        <li class="footer-list-item"><a href="#">Nhà hát Opera</a></li>
+                                        <li class="footer-list-item"><a href="#">Coffee</a></li>
+                                    </ul>
+                                </div>
+                                <div class="footer-item col col-4">
+                                    <p class="footer-title">HỆ THỐNG RẠP</p>
+                                    <ul class="footer-list-item">
+                                        <li class="footer-list-item"><a href="#">Cinerstar Hà Nội </a></li>
+                                    </ul>
+                                </div>
                             </div>
-                            <div class="footer-item col col-2">
-                                <div class="text">Dịch vụ khác</div>
-                                <ul class="menu-list">
-                                    <li class="menu-item"><a class="menu-link" href="">Nhà hàng</a></li>
-                                    <li class="menu-item"><a class="menu-link" href="">Kidzone</a></li>
-                                    <li class="menu-item"><a class="menu-link" href="">Bowling</a></li>
-                                    <li class="menu-item"><a class="menu-link" href="">Billiards</a></li>
-                                    <li class="menu-item"><a class="menu-link" href="">Gym</a></li>
-                                    <li class="menu-item"><a class="menu-link" href="">Nhà hát Opera</a></li>
-                                    <li class="menu-item"><a class="menu-link" href="">Coffee</a></li>
-                                </ul>
+                            <div class="footer-bottom">
+                                <div class="footer-social">
+                                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                    <a href="#"><i class="fab fa-youtube"></i></a>
+                                    <a href="#"><i class="fab fa-tiktok"></i></a>
+                                    <a href="#"><i class="fab fa-zalo"></i></a>
+                                </div>
+                                <div class="footer-language">
+                                    <span>Ngôn ngữ:</span>
+                                    <a href="#" class="language-active"><img src="images/flag-vn.png" alt="VN"></a>
+                                </div>
                             </div>
-                            <div class="footer-item col col-2">
-                                <div class="text">Hệ thống rạp</div>
-                                <ul class="menu-list">
-                                    
-                <li class="menu-item"><a class="menu-link" href="">Tất cả hệ thống rạp</a></li> <li class="menu-item"> <a class="menu-link" href="/book-tickets/8f3a5832-8340-4a43-89bc-6653817162f1"> Cinestar Quốc Thanh </a> </li> <li class="menu-item"> <a class="menu-link" href="/book-tickets/667c7727-857e-4aac-8aeb-771a8f86cd14"> Cinestar Hai Bà Trưng (TP.HCM) </a> </li> <li class="menu-item"> <a class="menu-link" href="/book-tickets/cf13e1ce-2c1f-4c73-8ce5-7ef65472db3c"> Cinestar Sinh Viên (Bình Dương) </a> </li> <li class="menu-item"> <a class="menu-link" href="/book-tickets/8f54df74-3796-42ea-896e-cd638eec1fe3"> Cinestar Mỹ Tho </a> </li> <li class="menu-item"> <a class="menu-link" href="/book-tickets/4a51b9ee-f143-4411-9dbb-5f54a1c382c0"> Cinestar Kiên Giang </a> </li> <li class="menu-item"> <a class="menu-link" href="/book-tickets/104509be-034e-47c1-bf1b-aba7f2df4f28"> Cinestar Lâm Đồng </a> </li> <li class="menu-item"> <a class="menu-link" href="/book-tickets/e08f986a-1937-419e-b1b1-759b7c74728b"> Cinestar Đà Lạt </a> </li> <li class="menu-item"> <a class="menu-link" href="/book-tickets/f8a60463-5c34-49a9-9ae8-52081e387bb8"> Cinestar Huế </a> </li>
-                
-                                </ul>
+                            <div class="footer-copyright">
+                                &copy; 2023 Cinestar. All rights reserved.
                             </div>
-                        </div>
-                        <div class="footer-bottom">
-                            <div class="footer-bottom-left">© 2023 Cinestar. All rights reserved.</div>
-                            <ul class="menu-list" style="list-style-type:none;">
-                                <li class="menu-item"><a class="menu-link" href="">Chính sách bảo mật</a></li>
-                                <li class="menu-item"><a class="menu-link" href="">Tin điện ảnh</a></li>
-                                <li class="menu-item"><a class="menu-link" href="">Hỏi và đáp</a></li>
-                                <!-- <li class="menu-item"><a class="menu-link" href="/career/">Tuyển dụng</a></li>
-                                <li class="menu-item"><a class="menu-link" href="/contact">Liên hệ</a></li>
-                                <li class="menu-item"><a class="menu-link" href="/about-us">Giới thiệu</a></li> -->
-                            </ul>
                         </div>
                     </div>
+                </div>
             </div>
-            <div classname="ft-author">
-                    <div classname="container" style="
-                /* justify-content: center; */
-                text-align: center;
-            ">
-                      <div classname="ft-bct" style="
-                width: 143px;
-                /* height: 50px; */
-                margin: 12px auto;
-            "><a href="" target="_blank" aria-label="Ministry of Industry and Trade recognized Cinestar">
-                         <img src="" alt=""> </a>
-                      </div>
-                      <div classname="ft-author-content" style="font-size: 10px">
-                        <ul style="list-style-type:none;">
-                          <li>
-                            CÔNG TY CỔ PHẦN GIẢI TRÍ PHÁT HÀNH PHIM – RẠP CHIẾU PHIM NGÔI SAO
-                            <br>
-                            ĐỊA CHỈ: 135 HAI BÀ TRƯNG, PHƯỜNG BẾN NGHÉ, QUẬN 1, TP.HCM
-                          </li>
-                          <li>
-                            GIẤY CNĐKDN SỐ: 0312742744, ĐĂNG KÝ LẦN ĐẦU NGÀY 18/04/2014, ĐĂNG KÝ THAY ĐỔI LẦN THỨ 2 NGÀY 15/09/2014, CẤP BỞI SỞ KH&amp;ĐT TP.HCM
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-            <script>
-            console.log("run script admin");
-            </script>
-            <script src=""></script></div></div>
         </div>
     </div>
 </body>

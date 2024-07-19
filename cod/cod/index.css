@@ -6,13 +6,13 @@ body, html {
 }
 
 body {
-    background: linear-gradient(rgba(90, 5, 103, 0.4), rgba(33, 4, 160, 0.877)), url('https://www.onlinekhabar.com/wp-content/uploads/2020/03/film-hall.jpg');
+    background: linear-gradient(rgba(90, 5, 103, 0), rgba(33, 4, 160, 0)), url('https://www.onlinekhabar.com/wp-content/uploads/2020/03/film-hall.jpg');
     height: fit-content;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
     background-blend-mode: overlay;
-    background-attachment: fixed
+    background-attachment: fixed;
 }
 
 body::before {
@@ -448,7 +448,7 @@ a {
 
 .thoiGianChieu{
     border: solid 1px none;
-    background-color: rgb(155, 201, 61);
+    background-color: rgba(255, 223, 0, 1);
     width: 130vh;
     height: fit-content;
     padding: 5vh;
@@ -462,13 +462,17 @@ a {
 }
 .gioChieu{
     border: solid 1px black;
-    background-color: aqua;
+    background-color: rgba(76, 17, 170, 0.887);
     width: 60%;
     height: 25vw;
-    
+    color: white;
 } 
+.gioChieu h1{
+    display: flex;
+    padding: 25%;
+}
 .gioChieu a{
-    color: black;
+    color: white;
     border: solid 1px;
     margin-left: 2px;
 }
