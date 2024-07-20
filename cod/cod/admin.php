@@ -7,28 +7,29 @@ include "takeShowTimeIn4.php";
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="adminDisplay.css">
-    <title>Document</title>
+    <title>Admin Panel</title>
 </head>
-<body style="background-color: brown;">
-    <a href="logout.php" style="border:solid 1px black; padding:10px; margin:20px;">Đăng xuất</a>
-    <a href="index.php">Trang chủ</a>
-    <br><br><br>
-    <a href="printFile.php">Doanh thu</a>
-    <div class="khungChinh" style="margin-top:50px;">
-        <div class="PhimChucNang">
-            <button id="add-button">Add</button>
-            <button id="delete-button">Delete</button>
-            <button id="edit-button">Edit</button>
-        </div>
+<body>
+    <div class="header">
+        <h1>Admin Panel</h1>
+    </div>
+    <div class="navigation">
+        <a href="logout.php">Đăng xuất</a>
+        <a href="index.php">Trang chủ</a>
+        <a href="printFile.php">Doanh thu</a>
+    </div>
+    <div class="khungChinh">
+        <h2>Quản lý phim</h2>
         <div class="cacThuocTinhPhim" id="movieForm">
-                <div>ID: <input type="text" id="idPhim"></div>
-                <div>Tên phim: <input type="text" id="tenPhim"></div>
-                <div>Ảnh: <input type="text" id="fileImage"></div>
-                <div>Mô tả: <textarea id="Mota" name="message" rows="4" cols="50" style="width: 165px;"></textarea></div>
-                <div>Thời lượng: <input type="number" id="thoiLuong"></div>
-                <div>Đạo diễn và diễn viên: <input type="text" name="daoDien" id="daoDien"></div>
-                <div>Ngày chiếu: <input type="date" id="ngayChieu" style="width:165px;"></div>
-                <div>Phòng chiếu: <select name="number" id="phongChieu">
+            <div>ID: <input type="text" id="idPhim"></div>
+            <div>Tên phim: <input type="text" id="tenPhim"></div>
+            <div>Ảnh: <input type="text" id="fileImage"></div>
+            <div>Mô tả: <textarea id="Mota" name="message" rows="4" cols="50"></textarea></div>
+            <div>Thời lượng: <input type="number" id="thoiLuong"></div>
+            <div>Đạo diễn và diễn viên: <input type="text" name="daoDien" id="daoDien"></div>
+            <div>Ngày chiếu: <input type="date" id="ngayChieu"></div>
+            <div>Phòng chiếu: 
+                <select name="number" id="phongChieu">
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -36,62 +37,82 @@ include "takeShowTimeIn4.php";
                     <option value="5">5</option>
                     <option value="6">6</option>
                     <option value="7">7</option>
-                </select></div>
-                <div>Trạng thái phim: <select name="status" id="status">
+                </select>
+            </div>
+            <div>Trạng thái phim: 
+                <select name="status" id="status">
                     <option value="playing">playing</option>
                     <option value="comming">comming</option>
-                </select></div>
-                <div>Giá vé: <input type="number" id="price"></div>
-
-                <h3>Thoi Gian va phong chieu</h3>
-                <div>ma chieu: <input type="int" id="showtime_id"></div>
-                <div>thoi gian: <input type="time" id="thoiGian"></div>
-                <div>ngayChieu: <input type="date" id="date_time"></div>
-                <div>ma Phim: <input type="" id="idPhim2"></div>
-                <div class="PhimChucNang">
-                    <button id="add-button2">Add</button>
-                    <button id="delete-button2">Delete</button>
-                    <button id="edit-button2">Edit</button>
-                </div>
+                </select>
+            </div>
+            <div>Giá vé: <input type="number" id="price"></div>
+        </div>
+        <div class="PhimChucNang">
+            <button id="add-button">Add</button>
+            <button id="delete-button">Delete</button>
+            <button id="edit-button">Edit</button>
         </div>
     </div>
-    <div class="khungChinh" style="margin-top:60%;">
+    <div class="khungChinh">
+        <h2>Thời gian và phòng chiếu</h2>
+        <div>Ma chiếu: <input type="number" id="showtime_id"></div>
+        <div>Thời gian: <input type="time" id="thoiGian"></div>
+        <div>Ngày chiếu: <input type="date" id="date_time"></div>
+        <div>Ma phim: <input type="text" id="idPhim2"></div>
+        <div class="PhimChucNang">
+            <button id="add-button2">Add</button>
+            <button id="delete-button2">Delete</button>
+            <button id="edit-button2">Edit</button>
+        </div>
+    </div>
+    <div>
         <h2>Lịch Chiếu</h2>
         <table>
             <thead>
                 <tr>
-                    <th>Showtime ID</th>
-                    <th>Thời Gian</th>
-                    <th>Ngày</th>
                     <th>Movie ID</th>
                     <th>Tên Phim</th>
                     <th>Ảnh</th>
+                    <th>Giờ Chiếu</th>
                 </tr>
             </thead>
             <tbody>
                 <?php
+                $movies = [];
                 if ($result->num_rows > 0) {
                     while ($row = $result->fetch_assoc()) {
+                        $idPhim = htmlspecialchars($row['movie_id']);
+                        if (!isset($movies[$idPhim])) {
+                            $movies[$idPhim] = [
+                                'movie_name' => htmlspecialchars($row['movie_name']),
+                                'image_movie' => htmlspecialchars($row['image_movie']),
+                                'showtimes' => []
+                            ];
+                        }
+                        $movies[$idPhim]['showtimes'][] = htmlspecialchars($row['thoiGian']) . ' ' . htmlspecialchars($row['date']);
+                    }
+                }
+
+                if (!empty($movies)) {
+                    foreach ($movies as $idPhim => $movie) {
                         echo "<tr>";
-                        echo "<td>" . htmlspecialchars($row['showtime_id']) . "</td>";
-                        echo "<td>" . htmlspecialchars($row['thoiGian']) . "</td>";
-                        echo "<td>" . htmlspecialchars($row['date']) . "</td>";
-                        echo "<td>" . htmlspecialchars($row['movie_id']) . "</td>";
-                        echo "<td>" . htmlspecialchars($row['movie_name']) . "</td>";
-                        echo "<td><img src='" . htmlspecialchars($row['image_movie']) . "' alt='" . htmlspecialchars($row['movie_name']) . "' class='movie-image'></td>";
+                        echo "<td>{$idPhim}</td>";
+                        echo "<td>{$movie['movie_name']}</td>";
+                        echo "<td><img src='{$movie['image_movie']}' alt='{$movie['movie_name']}' onerror=\"this.onerror=null;this.src='default.jpg';\"></td>";
+                        echo "<td>" . implode('<br>', $movie['showtimes']) . "</td>";
                         echo "</tr>";
                     }
                 } else {
-                    echo "<tr><td colspan='6'>Không có lịch chiếu nào</td></tr>";
+                    echo "<tr><td colspan='4'>Không có lịch chiếu nào</td></tr>";
                 }
                 ?>
             </tbody>
         </table>
     </div>
     <footer>
-        <div style="display: flex;">
-            <div class="cacPhimDangChieu" style="width:250px;"></div>
-            <div class="cacPhimSapChieu" style="width:250px;"></div>
+        <div>
+            <div class="cacPhimDangChieu"></div>
+            <div class="cacPhimSapChieu"></div>
         </div>
     </footer>
 
@@ -179,7 +200,6 @@ include "takeShowTimeIn4.php";
             });
 
             document.getElementById('add-button').addEventListener('click', function() {
-                // Lấy các giá trị từ các input fields
                 const idPhim = document.getElementById('idPhim').value;
                 const tenPhim = document.getElementById('tenPhim').value;
                 const fileImage = document.getElementById('fileImage').value;
@@ -191,7 +211,6 @@ include "takeShowTimeIn4.php";
                 const status = document.getElementById('status').value;
                 const price = document.getElementById('price').value;
 
-                // Tạo FormData object
                 const formData = new FormData();
                 formData.append('idPhim', idPhim);
                 formData.append('tenPhim', tenPhim);
@@ -204,7 +223,6 @@ include "takeShowTimeIn4.php";
                 formData.append('status', status);
                 formData.append('price', price);
 
-                // Gửi request
                 fetch('addMovie.php', {
                     method: 'POST',
                     body: formData
@@ -289,15 +307,14 @@ include "takeShowTimeIn4.php";
                 .then(response => response.json())
                 .then(movies => {
                     const container = document.querySelector(containerClass);
-                    container.innerHTML = ''; // Clear existing content
+                    container.innerHTML = ''; 
                     movies.forEach(movie => {
-                        console.log('Movie image URL:', movie.image_movie); // Log the image URL
                         const movieDiv = document.createElement('div');
                         movieDiv.classList.add('movie');
                         movieDiv.innerHTML = `
                             <p>${movie.movie_id}</p>
                             <h3>${movie.movie_name}</h3>
-                            <img src="${movie.image_movie}" alt="${movie.movie_name}" onerror="this.onerror=null;this.src='default.jpg'; console.error('Error loading image:', '${movie.image_movie}');">
+                            <img src="${movie.image_movie}" alt="${movie.movie_name}" onerror="this.onerror=null;this.src='default.jpg';">
                             <p>${movie.describe_movie}</p>
                             <p>Thời lượng: ${movie.thoiLuong}</p>
                             <p>Đạo diễn: ${movie.daoDien}</p>
@@ -306,25 +323,23 @@ include "takeShowTimeIn4.php";
                             <p>Số vé đã bán: ${movie.number_tickets_sold}</p>
                             <p>Trạng thái: ${movie.status_movie}</p>
                             <p>Giá vé: ${movie.price}</p>
-                            <button class="displayInformation">xem thong tin</button>
+                            <button class="displayInformation">Sửa</button>
                         `;
-                        container.appendChild(movieDiv);
-                    });
-
-                    document.querySelectorAll('.displayInformation').forEach(button => {
-                        button.addEventListener('click', function() {
-                            const movieDiv = this.parentElement;
-                            document.getElementById('idPhim').value = movieDiv.querySelector('p:nth-child(1)').textContent;
-                            document.getElementById('tenPhim').value = movieDiv.querySelector('h3').textContent;
-                            document.getElementById('fileImage').value = movieDiv.querySelector('img').src;
-                            document.getElementById('Mota').value = movieDiv.querySelector('p:nth-child(4)').textContent;
-                            document.getElementById('thoiLuong').value = movieDiv.querySelector('p:nth-child(5)').textContent.replace('Thời lượng: ', '');
-                            document.getElementById('daoDien').value = movieDiv.querySelector('p:nth-child(6)').textContent.replace('Đạo diễn: ', '');
-                            document.getElementById('ngayChieu').value = movieDiv.querySelector('p:nth-child(7)').textContent.replace('Ngày chiếu: ', '');
-                            document.getElementById('phongChieu').value = movieDiv.querySelector('p:nth-child(8)').textContent.replace('Phòng chiếu: ', '');
-                            document.getElementById('status').value = movieDiv.querySelector('p:nth-child(10)').textContent.replace('Trạng thái: ', '');
-                            document.getElementById('price').value = movieDiv.querySelector('p:nth-child(11)').textContent.replace('Giá vé: ', '');
+                        movieDiv.querySelector('.displayInformation').addEventListener('click', function() {
+                            document.getElementById('idPhim').value = movie.movie_id;
+                            document.getElementById('tenPhim').value = movie.movie_name;
+                            document.getElementById('fileImage').value = movie.image_movie;
+                            document.getElementById('Mota').value = movie.describe_movie;
+                            document.getElementById('thoiLuong').value = movie.thoiLuong;
+                            document.getElementById('daoDien').value = movie.daoDien;
+                            document.getElementById('ngayChieu').value = movie.date;
+                            document.getElementById('phongChieu').value = movie.screen_id;
+                            document.getElementById('status').value = movie.status_movie;
+                            document.getElementById('price').value = movie.price;
+                            
+                            document.getElementById('movieForm').scrollIntoView({ behavior: 'smooth' });
                         });
+                        container.appendChild(movieDiv);
                     });
                 })
                 .catch(error => {
@@ -332,11 +347,8 @@ include "takeShowTimeIn4.php";
                 });
             }
 
-            // Fetch and display movies when the page loads
-            window.onload = function() {
-                fetchMovies('playing', '.cacPhimDangChieu');
-                fetchMovies('coming', '.cacPhimSapChieu');
-            }
+            fetchMovies('playing', '.cacPhimDangChieu');
+            fetchMovies('coming', '.cacPhimSapChieu');
         });
     </script>
 </body>
