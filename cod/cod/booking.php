@@ -89,10 +89,9 @@ $conn->close();
                 <div class="Location2">
                     <div class="first">
                         <a href="lichChieu.php"><i class="fas fa-calendar"></i> Lịch chiếu</a>
-                        <a href="">Khuyến mãi</a>
+                        <a href="khuyenmai.php">Khuyến mãi</a>
                         <a href="events.php">Thuê sự kiện</a>
-                        <a href="">Giới thiệu</a>
-                        <a href="gioithieu.php">Giới thiệu</a>
+                        <a href="about.php">Giới thiệu</a>
                     </div>
                 </div>
             </div>
@@ -160,11 +159,8 @@ $conn->close();
             </div>
             <div class="food-item">
                 <img src="./images/Combo-Party.png" alt="Combo Party">
-                <div>Thuê người xem cùng</div>
-                <select id="movies" name="movie_id">
-            <option value="1">Nam</option>
-            <option value="2">Nữ</option>
-        </select>
+                <div>COMBO PARTY</div>
+                <div>Combo 3 Bắp + 3 Coca</div>
                 <div>199,000 VNĐ</div>
                 <button class="minus">-</button><span>0</span><button class="plus">+</button>
             </div>

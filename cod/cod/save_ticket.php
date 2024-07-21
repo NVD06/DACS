@@ -20,16 +20,17 @@ $food = json_encode($data['food']);
 $total_price = floatval(str_replace(',', '', explode(' ', $data['total_price'])[0]));
 $userName = $_SESSION['userName'];
 
-$sql_movie = "SELECT movie_id, movie_name, image_movie FROM tblmovie LIMIT 1";
-$result_movie = $conn->query($sql_movie);
+$sql_movie = "SELECT movie_id FROM tblmovie WHERE movie_name = ?";
+$stmt_movie = $conn->prepare($sql_movie);
+$stmt_movie->bind_param("s", $data['movie_name']);
+$stmt_movie->execute();
+$result_movie = $stmt_movie->get_result();
 if ($result_movie === false || $result_movie->num_rows === 0) {
     die(json_encode(['success' => false, 'message' => 'Không tìm thấy thông tin phim hoặc lỗi truy vấn']));
 }
 
 $movie = $result_movie->fetch_assoc();
 $movie_id = $movie['movie_id'];
-$movie_name = $movie['movie_name'];
-$image_movie = $movie['image_movie'];
 $screen_id = $data['screen_id'];
 $date = $data['date'];
 $time = $data['time'];
@@ -44,7 +45,7 @@ try {
             throw new Exception('Lỗi chuẩn bị câu truy vấn: ' . $conn->error);
         }
 
-        $sql_ticket->bind_param("ssssssd", $userName, $movie_name, $date, $time, $seat, $food, $total_price);
+        $sql_ticket->bind_param("sissssd", $userName, $movie_id, $date, $time, $seat, $food, $total_price);
         if ($sql_ticket->execute() === false) {
             throw new Exception('Lỗi chèn dữ liệu vào bảng tblticket: ' . $sql_ticket->error);
         }
@@ -75,7 +76,7 @@ try {
     // Lưu dữ liệu vào session để sendEmail.php sử dụng
     $_SESSION['email_booking_details'] = [
         'user_name' => $userName,
-        'movie_name' => $movie_name,
+        'movie_name' => $data['movie_name'],
         'screen_id' => $screen_id,
         'date' => $date,
         'time' => $time,

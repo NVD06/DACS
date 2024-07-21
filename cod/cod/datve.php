@@ -35,7 +35,7 @@ $conn->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="datve.css">
-    <title>Đăng nhập</title>    
+    <title>Đặt vé</title>    
     <script>
     function checkLogin(event, movieName) {
         <?php if (!isLoggedIn()): ?>
@@ -55,7 +55,6 @@ $conn->close();
                         <a href="index.php"><img src="https://cinestar.com.vn/_next/image/?url=%2Fassets%2Fimages%2Fheader-logo.png&w=1920&q=75" alt="Home page logo"></a>
                         <div class="bookAndpd">
                             <a href="" class="Booking_T">ĐẶT VÉ NGAY</a>
-                            <a href="" class="Booking_F">ĐẶT BẮP NƯỚC</a>
                         </div>
                         <div class="searchAndLogin">
                             <div class="searchIcon">
@@ -89,23 +88,13 @@ $conn->close();
                 </div>
                 <div class="chose_feature">
                     <div class="Location2">
-                        <nav class="first">
-                            <!-- Thêm biểu tượng địa điểm vào nút Chọn rạp -->
-                            <button><i class="fas fa-map-marker-alt"></i> Chọn rạp</button>
-                            <ul class="menu1">
-                                <li><a href="">Cinerstar Hồ Chí Minh</a></li>
-                                <li><a href="">Cinerstar Hà Nội</a></li>
-                                <li><a href="">Cinerstar Đà Nẵng</a></li>
-                            </ul>
-                        </nav>
-                        
-                        <div class="second">
+                        <div class="first">
                             <!-- Thêm biểu tượng lịch vào liên kết Lịch chiếu -->
-                            <a href=""><i class="fas fa-calendar"></i> Lịch chiếu</a>
-                            <a href="">Khuyến mãi</a>
-                            <a href="">Thuê sự kiện</a>
-                            <a href="">Giải trí</a>
-                            <a href="">Giới thiệu</a>
+                            <a href="lichChieu.php"><i class="fas fa-calendar"></i> Lịch chiếu</a>
+                            <a href="khuyenmai.php">Khuyến mãi</a>
+                            <a href="events.php">Thuê sự kiện</a>
+                            <a href="giaitri.php">Giải trí</a>
+                            <a href="about.php">Giới thiệu</a>
                         </div>
                     </div>
                 </div>  

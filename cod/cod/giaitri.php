@@ -17,7 +17,7 @@ if (!isLoggedIn()) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="giaitri.css">
-    <title>Đăng nhập</title>
+    <title>Giải trí</title>
 </head>
 <body background="" style="background-color: brown;">
     <div class="main_body">
@@ -28,7 +28,6 @@ if (!isLoggedIn()) {
                         <a href="index.php"><img src="https://cinestar.com.vn/_next/image/?url=%2Fassets%2Fimages%2Fheader-logo.png&w=1920&q=75" alt="Home page logo"></a>
                         <div class="bookAndpd">
                             <a href="" class="Booking_T">ĐẶT VÉ NGAY</a>
-                            <a href="" class="Booking_F">ĐẶT BẮP NƯỚC</a>
                         </div>
                         <div class="searchAndLogin">
                             <div class="searchIcon">
@@ -62,10 +61,10 @@ if (!isLoggedIn()) {
                     <div class="Location2">        
                         <div class="first">
                             <a href="lichChieu.php"><i class="fas fa-calendar"></i> Lịch chiếu</a>
-                            <a href="">Khuyến mãi</a>
+                            <a href="khuyenmai.php">Khuyến mãi</a>
                             <a href="events.php">Thuê sự kiện</a>
                             <a href="giaitri.php">Giải trí</a>
-                            <a href="gioithieu.php">Giới thiệu</a>
+                            <a href="about.php">Giới thiệu</a>
                         </div>
                     </div>
                 </div>

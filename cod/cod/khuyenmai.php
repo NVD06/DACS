@@ -21,8 +21,8 @@ if (!isLoggedIn()) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="index.css">
-    <link rel="stylesheet" href="events.css">
-    <title>Sự kiện</title>
+    <link rel="stylesheet" href="khuyenmai.css">
+    <title>Khuyến mãi</title>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
 </head>
@@ -78,70 +78,51 @@ if (!isLoggedIn()) {
             </div>
         </div>  
         <div class="Page_Content">
-        <div class="promotion-movie-wr">
-                                <div class="promotion-movie-list row pb-80">
-                                    <div class="promotion-it col" data-aos="fade-up">
-                                        <div class="promotion-content">
-                                            <div class="head">
-                                                <h4 class="sub-tittle">Marathon Siêu anh hùng</h4>
-                                                <p class="desc">Tham gia vào một đại tiệc phim với loạt phim siêu anh hùng. Hóa trang thành siêu anh hùng yêu thích và nhận được những ưu đãi đặc biệt!</p>
-                                            </div>
-                                            <div class="inner">
-                                                <p class="tt">Chi tiết</p>
-                                                <ul class="list object">
-                                                    <li>Địa điểm: Rạp Cinestar</li>
-                                                    <li>Ngày: 25 Tháng 6, 2024</li>
-                                                    <li>Thời gian: Từ 10:00 sáng</li>
-                                                </ul>
-                                            </div>
-                                            <div class="inner">
-                                                <p class="tt">Lưu ý</p>
-                                                <ul class="list note">
-                                                    <li>Ưu đãi đặc biệt dành cho khách đến sớm.</li>
-                                                    <li>Yêu cầu hóa trang nhưng không bắt buộc.</li>
-                                                </ul>
-                                            </div>
-                                            <a href="/datve" title="Đăng ký ngay" class="btn btn--pri">Đăng ký ngay</a>
-                                        </div>
-                                    </div>
-                                    <div class="promotion-it col" data-aos="fade-up">
-                                        <div class="promotion-image">
-                                            <img src="https://example.com/images/marathon-sieu-anh-hung.jpg" alt="Marathon Siêu anh hùng">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="promotion-movie-list row pb-80">
-                                    <div class="promotion-it col" data-aos="fade-up">
-                                        <div class="promotion-content">
-                                            <div class="head">
-                                                <h4 class="sub-tittle">Mùa hè Đại nhạc kịch</h4>
-                                                <p class="desc">Trải nghiệm sự hồi hộp của các bộ phim bom tấn mới nhất tại Cinestar. Giá đặc biệt áp dụng!</p>
-                                            </div>
-                                            <div class="inner">
-                                                <p class="tt">Chi tiết</p>
-                                                <ul class="list object">
-                                                    <li>Địa điểm: Rạp Cinestar</li>
-                                                    <li>Thời gian: Từ 15 Tháng 7 đến 31 Tháng 7, 2024</li>
-                                                    <li>Thời gian: Cả ngày</li>
-                                                </ul>
-                                            </div>
-                                            <div class="inner">
-                                                <p class="tt">Lưu ý</p>
-                                                <ul class="list note">
-                                                    <li>Giảm giá cho tất cả các vé phim trong thời gian khuyến mãi.</li>
-                                                    <li>Có hiệu lực cho cả mua trực tuyến và tại rạp.</li>
-                                                </ul>
-                                            </div>
-                                            <a href="/datve" title="Đặt vé" class="btn btn--pri">Đặt vé</a>
-                                        </div>
-                                    </div>
-                                    <div class="promotion-it col" data-aos="fade-up">
-                                        <div class="promotion-image">
-                                            <img src="https://example.com/images/mua-he-dai-nhac-kich.jpg" alt="Mùa hè Đại nhạc kịch">
-                                        </div>
-                                    </div>
-                                </div>
+        <center style="font-size: +50px; padding-top: 30px; color:white;">Promotions</center>
+                    <div class="Promotion" style="margin-left: 10%;">
+                        <div class="border-prmotion" style="display: flex; margin-top: 50px;">   
+                            <div class="promotion-img">
+                                <img src="https://www.cinestar.com.vn/pictures/0330-web.jpg" alt="">
                             </div>
+                            <div class="promotion-describe" style="margin-left: 20px; margin-right: 180px;">
+                                <h1>CINESTAR'S PURPLE DAY - THỨ 3 TUẦN CUỐI MỖI THÁNG</h1>
+                                <h3>
+                                    CHIẾN BINH ÁO TÍM - CHIẾN THẦN CINESTAR
+                                </h3>
+                                <p>Các mem hãy Mặc trang phục màu tím (áo, váy, quần, túi xách, nón, giày), mua vé xem phim sau đó nhận ngay 01 vé Xem phim Voucher C'GREEN.
+
+                                    Chương trình diễn ra liên tục vào các Thứ 3 Tuần cuối trong tháng.</p>
+                            </div>
+                        </div>
+                        <div class="border-prmotion" style="display: flex; margin-top: 50px;">   
+                            <div class="promotion-img">
+                                <img src="https://www.cinestar.com.vn/pictures/0330-web.jpg" alt="">
+                            </div>
+                            <div class="promotion-describe" style="margin-left: 20px; margin-right: 180px;">
+                                <h1>CINESTAR'S PURPLE DAY - THỨ 3 TUẦN CUỐI MỖI THÁNG</h1>
+                                <h3>
+                                    CHIẾN BINH ÁO TÍM - CHIẾN THẦN CINESTAR
+                                </h3>
+                                <p>Các mem hãy Mặc trang phục màu tím (áo, váy, quần, túi xách, nón, giày), mua vé xem phim sau đó nhận ngay 01 vé Xem phim Voucher C'GREEN.
+
+                                    Chương trình diễn ra liên tục vào các Thứ 3 Tuần cuối trong tháng.</p>
+                            </div>
+                        </div>
+                        <div class="border-prmotion" style="display: flex; margin-top: 50px;">   
+                            <div class="promotion-img">
+                                <img src="https://www.cinestar.com.vn/pictures/0330-web.jpg" alt="">
+                            </div>
+                            <div class="promotion-describe" style="margin-left: 20px; margin-right: 180px;">
+                                <h1>CINESTAR'S PURPLE DAY - THỨ 3 TUẦN CUỐI MỖI THÁNG</h1>
+                                <h3>
+                                    CHIẾN BINH ÁO TÍM - CHIẾN THẦN CINESTAR
+                                </h3>
+                                <p>Các mem hãy Mặc trang phục màu tím (áo, váy, quần, túi xách, nón, giày), mua vé xem phim sau đó nhận ngay 01 vé Xem phim Voucher C'GREEN.
+
+                                    Chương trình diễn ra liên tục vào các Thứ 3 Tuần cuối trong tháng.</p>
+                            </div>
+                        </div>
+                    </div>
         </div>
     </div>
 </div>

@@ -30,9 +30,7 @@ if (!isLoggedIn()) {
                     <div class="viTri">
                         <a href=""><img src="https://cinestar.com.vn/_next/image/?url=%2Fassets%2Fimages%2Fheader-logo.png&w=1920&q=75" alt="Home page logo"></a>
                         <div class="bookAndpd">
-                            <a href="datve.php" class="Booking_T">ĐẶT VÉ NGAY</a>
-                            <a href="bapnuoc.php" class="Booking_F">ĐẶT BẮP NƯỚC</a>
-                        </div>
+                            <a href="datve.php" class="Booking_T">ĐẶT VÉ NGAY</a>                        </div>
                         <div class="searchAndLogin">
                             <div class="searchIcon">
                                 <!-- <div class="search-container">
@@ -76,11 +74,10 @@ if (!isLoggedIn()) {
                     <div class="Location2">
                         <nav class="first">
                         <a href="lichChieu.php"><i class="fas fa-calendar"></i> Lịch chiếu</a>
-                            <a href="">Khuyến mãi</a>
+                            <a href="khuyenmai.php">Khuyến mãi</a>
                             <a href="events.php">Thuê sự kiện</a>
                             <a href="giaitri.php">Giải trí</a>
-                            <a href="viewTicket.php">Dịch Vụ Đặc Biệt</a> 
-                            <a href="gioithieu.php">Giới thiệu</a>
+                            <a href="about.php">Giới thiệu</a>
                         </nav>
                     </div>
                 </div>

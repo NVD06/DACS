@@ -1,44 +1,51 @@
-body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-    margin: 0;
-    padding: 0;
+/* Đặt màu nền, lề và khoảng cách cho nội dung chính */
+.Page_Content {
     background-color: #f4f4f4;
-    color: #333;
-}
-
-header {
-    background-color: #333;
-    color: #fff;
-    padding: 20px 0;
-    text-align: center;
-}
-
-h1 {
-    margin: 0;
-}
-
-.introduction, .services, .mission {
     padding: 20px;
     margin: 20px auto;
-    max-width: 800px;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 1200px;
+    border-radius: 8px;
 }
 
-h2 {
+/* Định dạng cho tiêu đề của phần nội dung */
+.page-header h1 {
+    color: #333;
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Định dạng cho các phần */
+section {
+    margin-bottom: 20px;
+}
+
+/* Định dạng cho tiêu đề của từng phần */
+section h2 {
     color: #444;
+    font-size: 2rem;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #ccc;
+    padding-bottom: 10px;
 }
 
-p, ul {
-    margin: 20px 0;
+/* Định dạng cho đoạn văn trong các phần */
+section p {
+    color: #666;
+    font-size: 1rem;
+    line-height: 1.6;
 }
 
-ul {
-    list-style-type: disc;
-    padding-left: 20px;
+/* Định dạng cho danh sách dịch vụ */
+.services {
+   width: 1200px;
 }
-
-ul li {
-    margin: 10px 0;
+/* Định dạng cho đoạn văn trong phần sứ mệnh */
+.mission p {
+    font-size: 1rem;
+    color: #666;
+    line-height: 1.6;
+    border-left: 4px solid #007bff;
+    padding-left: 15px;
+    margin-top: 10px;
 }

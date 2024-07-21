@@ -51,7 +51,6 @@ if (isset($_GET['query'])) {
                     <a href="index.php"><img src="https://cinestar.com.vn/_next/image/?url=%2Fassets%2Fimages%2Fheader-logo.png&w=1920&q=75" alt="Home page logo"></a>
                     <div class="bookAndpd">
                         <a href="datve.php" class="Booking_T">ĐẶT VÉ NGAY</a>
-                        <a href="bapnuoc.php" class="Booking_F">ĐẶT BẮP NƯỚC</a>
                     </div>
                     <div class="searchAndLogin">
                         <div class="search-container">
@@ -83,22 +82,12 @@ if (isset($_GET['query'])) {
             </div>
             <div class="chose_feature">
                 <div class="Location2">
-                    <nav class="first">
-                        <button><i class="fas fa-map-marker-alt"></i> Chọn rạp</button>
-                        <ul class="menu1">
-                            <li><a href="">Cinerstar Hồ Chí Minh</a></li>
-                            <li><a href="">Cinerstar Hà Nội</a></li>
-                            <li><a href="">Cinerstar Đà Nẵng</a></li>
-                        </ul>
-                    </nav>
-                    <div class="second">
+                    <div class="first">
                         <a href="lichChieu.php"><i class="fas fa-calendar"></i> Lịch chiếu</a>
-                        <a href="">Khuyến mãi</a>
-                        <a href="events.php">Thuê sự kiện</a>
-                        <a href="">Giải trí</a>
-                        <a href="">Giới thiệu</a>
-                        <a href="viewTicket.php">Vé đã đặt</a> 
-                        <a href="gioithieu.php">Giới thiệu</a>
+                            <a href="khuyenmai.php">Khuyến mãi</a>
+                            <a href="events.php">Thuê sự kiện</a>
+                            <a href="giaitri.php">Giải trí</a>
+                            <a href="about.php">Giới thiệu</a>
                     </div>
                 </div>
             </div>
